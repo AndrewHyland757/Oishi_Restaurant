@@ -1,0 +1,52 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Serif+Display:wght@300&family=Noto+Serif+JP&display=swap');
+
+
+/*  CSS to style the background image and navbar */
+
+.background{
+  background: url("../images/home-image.jpg");
+  height: 100vh;
+  background-size: cover;
+  width: 100vw;
+  filter:brightness(0.8);
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.brand-style{
+    font-family: dela gothic one, sans-serif;
+    font-size: 60px;
+    margin-top: 20px;   
+    color: whitesmoke;
+}
+
+.navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 160px;
+    text-align: center;
+    background-color: transparent;
+    margin-left: -80px;
+}
+.navbar>.container .navbar-brand-centered, 
+.navbar>.container-fluid .navbar-brand-centered {
+   
+}
+ .nav-link{
+  color:#c46f07;
+  /*color: #cb9c45;
+  color: #ff7a5c;*/
+ }
+
+ .nav-item>a:hover {
+    color:#7c4111;
+}
+
+.navbar-nav>.active>a {
+    color:#7c4111;
+}
