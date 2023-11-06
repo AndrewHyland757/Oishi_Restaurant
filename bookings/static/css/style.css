@@ -5,7 +5,7 @@
 /*  CSS to style the background image and navbar */
 
 .background{
-  background: url("../images/home-image.jpg");
+  background: url("../images/home-image2.jpg");
   height: 100vh;
   background-size: cover;
   width: 100vw;
@@ -107,3 +107,13 @@ h1, h2, h3, h4, h5 {
       font-size: 14px; 
     }
   
+    /*  CSS to style the chef section */
+
+    .chef-image{
+        background-image:url("../images/chef2.jpg");
+        background-position:center;
+        background-size:cover;
+        height: 220px;
+        width: 220px;
+        border-radius: 50%;
+      }
