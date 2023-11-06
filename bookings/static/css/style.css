@@ -51,8 +51,7 @@
     color:#7c4111;
 }
 
-
-/*  CSS to style fonts and section headings and sub-headings */
+/*  CSS to style fonts, section headings and sub-headings */
 
  p {
     margin-bottom: 30px;
@@ -91,3 +90,20 @@ h1, h2, h3, h4, h5 {
     letter-spacing: .2em;
     text-transform: uppercase; 
 }
+
+/*  CSS to style the specials-section headings and sub-headings */
+
+.specials-heading {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .specials-sub-heading{
+      color: #c46f07;
+      margin: 0 0 20px 0;
+      letter-spacing: .1em;
+      text-transform: uppercase; 
+      font-size: 14px; 
+    }
+  
