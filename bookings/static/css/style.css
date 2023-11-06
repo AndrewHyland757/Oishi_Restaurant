@@ -50,3 +50,44 @@
 .navbar-nav>.active>a {
     color:#7c4111;
 }
+
+
+/*  CSS to style fonts and section headings and sub-headings */
+
+ p {
+    margin-bottom: 30px;
+    font-size: 20px; 
+    font-weight: 300;
+    color: gray;
+}
+  
+h1, h2, h3, h4, h5 {
+    color: #23242a;
+    font-family: "noto serif jp", serif;
+    font-weight: 500;
+}
+  
+.section {
+    padding-top: 5em ;
+    padding-bottom: 5em;
+    z-index: 2;
+    position: relative;
+}
+  
+.section-heading h2 {
+    font-size: 50px;
+    color: #23242a;
+}
+  
+@media (max-width: 991.98px) {
+    .section-heading h2 {
+      font-size: 30px;
+    }
+}
+  
+.sub-heading {
+    color: #c46f07;
+    margin: 0 0 20px 0;
+    letter-spacing: .2em;
+    text-transform: uppercase; 
+}
