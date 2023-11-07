@@ -30,8 +30,8 @@
     display: block;
     width: 160px;
     text-align: center;
-    background-color: transparent;
-    margin-left: -80px;
+    
+    margin-left: -87px;
 }
 .navbar>.container .navbar-brand-centered, 
 .navbar>.container-fluid .navbar-brand-centered {
@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5 {
       font-size: 14px; 
     }
   
-    /*  CSS to style the chef section */
+/*  CSS to style the chef section */
 
 .chef-image{
     background-image:url("../images/chef2.jpg");
@@ -135,7 +135,7 @@ h1, h2, h3, h4, h5 {
 .form-label {
   font-size: 20px; 
   margin-top: 15px;
-  margin-bottom: 15px; /* not working */
+ /* margin-bottom: 15px; */
   font-weight: normal;
 }
 
@@ -167,3 +167,10 @@ textarea.form-control {
 .btn.btn-outline-white:hover {
     border: 2px solid transparent;
 }
+
+ /*  CSS to style the reservation section */
+ 
+.footer-font p{
+    font-size: 15px;
+    font-weight: 400;
+  }

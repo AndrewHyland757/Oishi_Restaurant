@@ -7,4 +7,4 @@ def index(request):
     return render(request, 'bookings/index.html')
 
 def register(request):
-    return render(request, 'bookings/index.html')
+    return render(request, 'bookings/register.html')

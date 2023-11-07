@@ -3,42 +3,42 @@
 
 {% block content %}
 
-<!-- Nav bar and main image -->
+<!-- Section:Nav bar and home page  -->
 
 <div class="container-fluid background" >
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="container-fluid">
-        <a class="navbar-brand navbar-brand-centered brand-style" href="#">Oishī</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-          <ul class="navbar-nav ">
-            <li class="nav-item active">
-              <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Reserve</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-dark ">
+    <div class="container-fluid">
+      <a class="navbar-brand navbar-brand-centered brand-style" href="#">Oishī</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reserve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
+</div>
 
-  <!-- About Section-->
+  <!-- Section: About  -->
 
 <div class="section mt-5 pb-5 pt-md-5 bg-white">
   <div class="container">
@@ -83,7 +83,7 @@
   </div>
 </div>
 
-<!-- Specials Section -->
+<!-- Section: Specials  -->
 
 <div class="section bg-light">
   <div class="container">
@@ -130,7 +130,7 @@
   </div>
 </div>
 
-<!--  Chef Section -->
+<!-- Section: Chef  -->
 
 <div class="section bg-white">
   <div class="container">
@@ -157,7 +157,7 @@
   </div>
 </div>
 
-<!--  Reservation -->
+<!-- Section: Reservation  -->
 
 <div class="section bg-light">
   <div class="container">
@@ -210,4 +210,6 @@
     </div>
   </div>
 </div>
+
+
 {% endblock content %}
