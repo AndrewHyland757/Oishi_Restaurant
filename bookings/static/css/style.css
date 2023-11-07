@@ -30,8 +30,7 @@
     display: block;
     width: 160px;
     text-align: center;
-    
-    margin-left: -87px;
+    margin-left: -90px;
 }
 .navbar>.container .navbar-brand-centered, 
 .navbar>.container-fluid .navbar-brand-centered {
@@ -50,6 +49,15 @@
 .navbar-nav>.active>a {
     color:#7c4111;
 }
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
 
 /*  CSS to style fonts, section headings and sub-headings */
 
