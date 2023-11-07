@@ -103,7 +103,7 @@
         <div class="card-body border-0">
           <h6 class="specials-sub-heading text-center mt-3 ">From the pot</h6>
           <h3 class="specials-heading text-center">Tonkotsu Ramen</h3>
-          <p class="text-center mb-5">Pork broth enriched with lard, topped with spring onions, sesame seeds and & half a seasoned egg.</p>
+          <p class="text-center mb-5">Classic noodles in an enriched soy sauce broth and roast pork belly & kikurage. Topped with spring onions, sesame seeds and & half a seasoned egg.</p>
         </div>
       </div>
 
@@ -157,7 +157,57 @@
   </div>
 </div>
 
+<!--  Reservation -->
 
+<div class="section bg-light">
+  <div class="container">
+    <div class="row section-heading mb-5 justify-content-center  ">
 
-
+    <div class="col-md-12 text-center">
+        <h2 class="mb-3">Reservation</h2>
+        <p class="mb-5">To book a table please fill in your details below</p>  
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-10 p-5 form-wrap">
+        <form action="#">
+          <div class="row mb-4">
+            <div class="form-group col-lg-4 col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email">
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="text" class="form-control" id="phone">
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+              <label for="persons" class="form-label">Table Size</label>
+                <select name="persons" id="persons" class="form-control">
+                  <option value="">1 person</option>
+                  <option value="">2 persons</option>
+                  <option value="">3 persons</option>
+                  <option value="">4 persons</option>
+                  <option value="">5 persons</option>
+                </select>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+              <label for="date" class="form-label">Date</label>
+              <input type="text" class="form-control" id="date">
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+              <label for="time" class="form-label">Time</label>
+              <input type="text" class="form-control ui-timepicker-input" id="time" autocomplete="off">
+            </div>
+          </div>
+          <div class="text-center mt-5" >
+            <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07" type="submit">Book a Table</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

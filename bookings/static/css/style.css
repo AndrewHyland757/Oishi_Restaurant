@@ -109,11 +109,61 @@ h1, h2, h3, h4, h5 {
   
     /*  CSS to style the chef section */
 
-    .chef-image{
-        background-image:url("../images/chef2.jpg");
-        background-position:center;
-        background-size:cover;
-        height: 220px;
-        width: 220px;
-        border-radius: 50%;
-      }
+.chef-image{
+    background-image:url("../images/chef2.jpg");
+    background-position:center;
+    background-size:cover;
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+}
+
+ /*  CSS to style the reservation section */
+
+.form-wrap {
+    padding: 40px;
+    background: #fff;
+    -webkit-box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+  }
+
+.form-control:hover {
+  
+  border: 2px solid #c46f07; 
+}
+
+.form-label {
+  font-size: 20px; 
+  margin-top: 15px;
+  margin-bottom: 15px; /* not working */
+  font-weight: normal;
+}
+
+textarea.form-control {
+  height: inherit;
+}
+
+.btn {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.btn:hover {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn.btn-primary.btn-outline-primary {
+  border-width: 2px;
+  cursor: pointer;
+}
+
+.btn.btn-outline-white {
+  border: 2px solid #fff;
+}
+
+.btn.btn-outline-white:hover {
+    border: 2px solid transparent;
+}
