@@ -50,14 +50,6 @@
     color:#7c4111;
 }
 
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
-.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-}
-
-
 
 /*  CSS to style fonts, section headings and sub-headings */
 
@@ -136,12 +128,15 @@ h1, h2, h3, h4, h5 {
   }
 
 .form-control:hover {
-  
   border: 2px solid #c46f07; 
 }
 
+.form-control:focus {
+  box-shadow: none;
+}
+
 .form-label {
-  font-size: 20px; 
+  font-size: 18px; 
   margin-top: 15px;
  /* margin-bottom: 15px; */
   font-weight: normal;
@@ -152,15 +147,15 @@ textarea.form-control {
 }
 
 .btn {
+  background-color: #c46f07;
   text-transform: uppercase;
   letter-spacing: .2em;
   font-size: 14px;
   font-weight: 700;
 }
 
-.btn:hover {
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important;
+.btn.sub-heading{
+  color:white;
 }
 
 .btn.btn-primary.btn-outline-primary {

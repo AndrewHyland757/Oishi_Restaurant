@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-rf_hz1x132p33b+j8_07!3w)0)mas+mq%8vsb4dlm*trss5g!#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
+
+CSRF_TRUSTED_ORIGINS = ['https://laughing-system-x55gw7w7gqw2j7w-8000.app.github.dev/admin/logout']
 
 
 # Application definition
@@ -36,18 +38,33 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    #'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django.contrib.staticfiles',
     'bookings',
 ]
+
+SITD_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.contrib.csrf.middleware.CsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'oishi_restaurant.urls'

@@ -1,14 +1,12 @@
 from django.shortcuts import render
-from .models import Reservation
-from .forms import ReserveTableForm
+from .models import Reservation, Customer
+from .forms import ReserveTableForm, CustomerForm
 
 # Create your views here.
 
     
 def index(request):
     return render(request, 'bookings/index.html')
-
-
 
 
 def index(request):
@@ -25,14 +23,8 @@ def index(request):
     return render(request, 'bookings/index.html', {"form" : form})
 
 
-
-
-    
-
+def login(request):
+    return render(request, 'bookings/login.html')
 
 def register(request):
     return render(request, 'bookings/register.html')
-
-
-def login(request):
-    return render(request, 'bookings/login.html')
