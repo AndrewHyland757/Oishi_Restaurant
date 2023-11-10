@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-rf_hz1x132p33b+j8_07!3w)0)mas+mq%8vsb4dlm*trss5g!#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://laughing-system-x55gw7w7gqw2j7w-8000.app.github.dev/admin/logout']
+CSRF_TRUSTED_ORIGINS = ['https://8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
 
 
 # Application definition
