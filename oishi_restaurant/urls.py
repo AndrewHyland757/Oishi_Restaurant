@@ -22,5 +22,7 @@ urlpatterns = [
     path('register/', include('bookings.urls')),
     path('login/', include('bookings.urls')),
     path('accounts/', include('allauth.urls')),
+   
+
 ]
 

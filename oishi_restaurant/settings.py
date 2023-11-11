@@ -25,9 +25,13 @@ SECRET_KEY = 'django-insecure-rf_hz1x132p33b+j8_07!3w)0)mas+mq%8vsb4dlm*trss5g!#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
+#ALLOWED_HOSTS = ['localhost', '8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
+#CSRF_TRUSTED_ORIGINS = ['https://8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
+
+ALLOWED_HOSTS = ['8000-andrewhylan-oishirestau-xbcjsqzepcp.ws-eu106.gitpod.io']
+
+CSRF_TRUSTED_ORIGINS = ['8000-andrewhylan-oishirestau-xbcjsqzepcp.ws-eu106.gitpod.io']
 
 
 # Application definition
@@ -38,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    #'django.contrib.sites',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -60,7 +64,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    #'django.contrib.csrf.middleware.CsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -84,6 +87,8 @@ TEMPLATES = [
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'oishi_restaurant.wsgi.application'
 
