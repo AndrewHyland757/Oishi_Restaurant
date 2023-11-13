@@ -29,9 +29,9 @@ DEBUG = True
 
 #CSRF_TRUSTED_ORIGINS = ['https://8000-andrewhyland757-oishi-re-2smjpauflu.us2.codeanyapp.com']
 
-ALLOWED_HOSTS = ['8000-andrewhylan-oishirestau-xbcjsqzepcp.ws-eu106.gitpod.io']
+ALLOWED_HOSTS = ['8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io']
 
-CSRF_TRUSTED_ORIGINS = ['8000-andrewhylan-oishirestau-xbcjsqzepcp.ws-eu106.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io']
 
 
 # Application definition
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'bookings',
 ]
 
-SITD_ID = 1
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 
