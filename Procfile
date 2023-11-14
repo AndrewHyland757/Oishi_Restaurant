@@ -1,0 +1,1 @@
+web: gunicorn oishi_restaurant.wsgi
