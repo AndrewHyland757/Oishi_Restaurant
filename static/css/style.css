@@ -91,6 +91,12 @@ h1, h2, h3, h4, h5 {
     text-transform: uppercase; 
 }
 
+a:link {
+  
+  text-decoration: none;
+  
+  }
+
 /*  CSS to style the specials-section headings and sub-headings */
 
 .specials-heading {
@@ -107,7 +113,7 @@ h1, h2, h3, h4, h5 {
       font-size: 14px; 
     }
   
-/*  CSS to style the chef section */
+/*  CSS to style the chef section image */
 
 .chef-image{
     background-image:url("../images/chef2.jpg");
@@ -171,7 +177,7 @@ textarea.form-control {
     border: 2px solid transparent;
 }
 
- /*  CSS to style the reservation section */
+ /*  CSS to style the footer section */
  
 .footer-font p{
     font-size: 15px;

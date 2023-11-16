@@ -6,7 +6,7 @@ from .forms import ReserveTableForm, CustomerForm
 
     
 def index(request):
-    return render(request, 'bookings/index.html')
+    return render(request, 'index.html')
 
 
 def index(request):
@@ -20,11 +20,11 @@ def index(request):
     context = {
         "form": form
     }
-    return render(request, 'bookings/index.html', {"form" : form})
+    return render(request, 'index.html', {"form" : form})
 
 
-def login(request):
-    return render(request, 'bookings/login.html')
+#def login(request):
+    #return render(request, '/login.html')
 
-def register(request):
-    return render(request, 'bookings/register.html')
+#def register(request):
+    #return render(request, '/register.html')

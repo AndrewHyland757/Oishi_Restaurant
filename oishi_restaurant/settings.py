@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'bookings',
 ]
+ACCOUNT_FORMS = {'login': 'bookings.forms.YourLoginForm'}
+
 
 SITE_ID = 1
 
