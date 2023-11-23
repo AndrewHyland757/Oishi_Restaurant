@@ -1,110 +1,106 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Oishi Restaurant
 
-Welcome AndrewHyland757,
+![](assets/images/responsive.jpg)
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Live application can be found here](https://oishi-restaurant.herokuapp.com/)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
+This is a full-stack framework project built using Django, Python, HTML, & CSS. The website is built for a fictional Japanese restaurant called Oishi as an educational project for Code Institue's portfolio four. It is designed to showcase the restaurant and allow the customer to make, edit and delete reservations through their account. 
 
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-------
-
-## Release History
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**September 20 2023:** Update Python version to 3.9.17.
-
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
-------
-
-## FAQ about the uptime script
-
-**Why have you added this script?**
-
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
-
-**How will this affect me?**
-
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
-
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
-
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
-
-**So….?**
-
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
-
-**Can I opt out?**
-
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
-
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
-
-**Anything more?**
-
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
 
 ---
+## UX
 
-Happy coding!
+## Strategy
+Using the core UX principles I first started with Strategy, thinking about the target audience for this restaurant & the features they would benefit from.
+
+The target audience for 'Grow' are:
+- 25-60 year olds
+- People interested in food, fine-dining and eating-out
+- People that are interested in culture, travel and local hotspots
+
+These users will be looking for:
+- A user-friendly website that balances information with an aesthetic that communicates the restaurant's values and reflects target customers
+- Information about the restaurant, tyoes of dishes it serves and who runs it
+- A way to book a table 
+- A way to view and manage reservations
+- Contact information
+- A way to easily access social media accounts form the website
+
+
+ It is increasingly common for people to make restaurant reservations on the go from their mobioe devices. Therefore, creating a mobile friendly website is essential. Bootstrap grids and elements along side custom CSS has benn used in the front-end creation. 
+
+## User Stories
+Please find all my defined user stories & their acceptance criteria [here](https://github.com/daisygunn/grow-restaurant/issues)
+
+1. As a user I can intuitively navigate through the site so that I can view desired content.
+2. As a user I can get key information about the restaurant from the landing page so that I can spend less time having to search for information.
+3. As an admin user I can log in so that I can access the site's backend.
+4. As an admin user I can approve or reject any reservation requests so that I can manage the restaurant's bookings efficiently.
+
+
+5. As a user I can register or log in so that I can manage my booking requests.
+6. As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
+7. As a user I am prompted to register for an account so that I can create an account and receive the benefits from having a profile.
+8. As a user I can log in so that I can auto-populate forms with my information on the site.
+
+9. As a user I can submit a reservation request so that I can visit the restaurant.
+10. As an admin user I can prevent guests from submitting reservation requests for full slots so that I can efficiently manage customer expectations and prevent a backlog of bookings.
+
+11. As a logged-in customer I can edit/delete an existing enquiry so that I can make changes if required online.
+12. As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
+
+## Scope
+As a MVP the website has to achieve the desired user & business goals, the following features will be included in this version:
+
+- A responsive navbar that will have links to all the sections and pages in the website
+
+- A visually strong landing page that entices the user on to further exploration of the business 
+- About section, with a brief suitable description and three images. 
+- Specials section showcasing some of the menu items on offer. 
+- Chef section describing the head chef with an image. 
+- Reservations section, where logged-in users can make reservations.
+- A footer section with contact information, social media links and opening times. 
+
+ 
+- Register and login pages using Django allauth.
+- A logout page for logged in users.  
+
+
+## Structure and Styling
+This website has been designed with simplicity and visual consisty in mind. It is built around the home page which contains the landing-image. As one scrolls down the  about,specials, head Chef and Reservation  sections appear. 
+
+
+## Features
+### Navigation Bar & Landing Page
+![Screenshot of navigation, logo and main image](assets/images/screenshot-homepage.jpg)
+* The nav-bar, situated on the top-right of the pages, provides the user with a clear and easily identifiable way to go between the sections and pages. 
+* The logo sits in the centerof the nav-bar. This works well with the image used as draws the eye from the centeral action in the photo natuarrly to the logo. It uses an off-white colour in have a strong contrast. 
+ 
+
+### About Section
+![Screenshot of ethos section](assets/images/screenshot-ethos.jpg)
+* This provides a brief description of the restaurant.
+* The images conveys a sense of location and energy.  
+
+### Specials Section
+![Screenshot of offers section](assets/images/screenshot-offers.jpg)
+* In this section further details are given on some of the signature dishes on offer alon with an image. 
+  
+
+### Chef Section
+* Here a description of the head chef is given with a suitable image. 
+
+### Footer Section
+* In the footer section links are provided to the restaurant's social media accounts.
+* Contact details and address are given.
+* Details of opening hours.  
+
+### Register/Login/Logout pages
+![Screenshot of gallery page](assets/images/screenshot-gallery.jpg)
+* Register and login pages using Django allauth.
+* A logout link is provided in the nav-bar fir logged in users. 
+
+### Databases
+
+The reservation app requires a database to store information. This incluses ywo custom models.  
+

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <h1> hello </h1>
+<head>
+    <title>Make Reservation</title>
+</head>
+<body>
+    <h2>Make Reservation</h2>
+    <form method="post" action="{% url 'make_reservation' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit Reservation">
+    </form>
+</body>
+</html>
