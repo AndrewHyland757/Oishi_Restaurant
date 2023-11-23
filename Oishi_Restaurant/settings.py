@@ -34,7 +34,7 @@ DEBUG = True
 #ALLOWED_HOSTS = ['8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io']
 
 
-ALLOWED_HOSTS = ["oishi.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["oishi.herokuapp.com", "8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io"]
 
 
 
