@@ -1,11 +1,5 @@
-{% extends "base.html" %}
+{% extends "account/base_manage.html" %}
 {% load allauth i18n %}
-
-
-
-
-
-
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
@@ -40,6 +34,7 @@
 
 <!-- Section: Nav Bar -->
 
+<!--
 <div class="container-fluid bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
       <div class="container-fluid mb-4">
@@ -79,8 +74,10 @@
     </div>
   </nav>
 </div>
+-->
 <!-- Section: Sign in -->
 
+<!--
 <div class="section bg-light" id="">
     <div class="container">
       <div class="row section-heading mb-5 justify-content-center  ">
@@ -93,7 +90,7 @@
       <div class="row justify-content-center">
         <div class="col-md-10 p-5 form-wrap">
             {% url 'account_login' as login_url %}
-            <!-- Sign Out form -->
+            
             <form method="post" action=action_url no_visible_fields=True>
             {% csrf_token %}
             {% if redirect_field_value %}
@@ -111,4 +108,4 @@
       </div>
     </div>
   </div>
- 
+-->

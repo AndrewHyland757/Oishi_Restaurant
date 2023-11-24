@@ -26,7 +26,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#footer">Contact</a>
           </li>
-          <!--
           {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -39,7 +38,6 @@
                         <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                     </li>
                     {% endif %}
-          -->
         </ul>
       </div>
     </div>
@@ -170,21 +168,19 @@
     <div class="row section-heading mb-5 justify-content-center  ">
       <div class="col-md-12 text-center">
           <h2 class="mb-3">Reservation</h2>
-          <p class="mb-5">Please 
-            <!--
+         
+            
             {% if user.is_authenticated %}
-                    login
+                    <p class="mb-5">Please <a href="{% url 'account_login' %}">login</a> to make a booking</p>  
                     {% else %}
-                    <a href="{% url 'account_login' %}">login</a>
-                    {% endif %} 
-                    -->
-                    to make a booking</p>  
-                    
+                    <p class="mb-5">Please fill in your reservation details to make a booking</p>
+                    {% endif %}        
         </div>
+        
       </div>
     <div class="row justify-content-center">
       <div class="col-md-10 p-5 form-wrap">
-        <!--
+        
         <form action="" method="POST">
           {% csrf_token %}
           <div class="row mb-4">
@@ -200,7 +196,7 @@
             <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Book a Table</button></div>
         </form>
         
-        -->
+        
       </div>
     </div>
   </div>
