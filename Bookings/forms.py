@@ -4,7 +4,6 @@ from .models import Booking
 #from allauth.account.forms import LogoutForm
 
 
-
 class BookingForm(forms.ModelForm):
     
     class Meta:
@@ -21,6 +20,30 @@ class BookingForm(forms.ModelForm):
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'time': forms.Select(attrs={'class': 'form-control' }),
         }
+
+
+class BookingFormNotLoggedIn(forms.ModelForm):
+    
+    class Meta:
+        model = Booking
+        fields =  ['guests', 'date', 'time', 'email', 'customer' ]
+        labels = {
+        'guests': 'Number of guests',
+        'date': 'Date',
+        'time': 'Time',
+        'customer': 'Name',
+        'email': 'Email',
+    }
+    
+        widgets={
+            'guests': forms.Select(attrs={'class': 'form-control' }),
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'time': forms.Select(attrs={'class': 'form-control' }),
+            'customer': forms.TextInput(attrs={'class': 'form-control' }),
+            'email': forms.EmailInput(attrs={'class': 'form-control' }),
+        }
+
+
 
 """
 

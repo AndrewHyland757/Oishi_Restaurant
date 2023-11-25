@@ -1,4 +1,5 @@
 from django.db import models
+#from allauth.models import CustomUser as User
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
@@ -51,9 +52,15 @@ class Booking(models.Model):
     guests = models.IntegerField(default = 1, choices = guest_choices)
     customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
+    email = models.EmailField(null=True)
+    
 
     def __str__(self):
         return f"{self.customer}'s reservation on {self.date}"
+        
     def clean(self):
         if self.date < timezone.now().date():
             raise ValidationError("Please choose a valid date")
+        #overlapping_bookings = Booking.objects.filter(date= self.date, time=self.time, table=self.table)
+    
+
