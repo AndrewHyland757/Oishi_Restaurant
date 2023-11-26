@@ -116,6 +116,36 @@ def home(request):
 #     context = {'form': form}
 #     return render(request, "index.html", context)
 
+
+
+def home(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = BookingForm(request.POST)
+            if form.is_valid():
+                form_instance = form.save(commit=False)
+                form_instance.customer_name = request.user
+                form_instance.save()
+                return redirect('home')  # Redirect to the home page to clear the form
+        else:
+            form = BookingForm()
+    else:
+        if request.method == 'POST':
+            form = BookingFormGuest(request.POST)
+            if form.is_valid():
+                form_instance = form.save(commit=False)
+                form_instance.save()
+                return redirect('home')  # Redirect to the home page to clear the form
+        else:
+            form = BookingFormNotLoggedIn()
+
+    context = {'form': form}
+    return render(request, "index.html", context)
+
+
+
+
+"""
 def home(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -135,19 +165,4 @@ def home(request):
 
     context = {'form': form}
     return render(request, "index.html", context)
-
-
-
-
-
-
-
 """
-
-    form = BookingForm()
-    context = {
-        'form': form
-    }
-"""
-   
-    

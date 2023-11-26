@@ -49,14 +49,18 @@ class Table(models.Model):
 class Booking(models.Model):
     date = models.DateField()
     time = models.CharField(default = '12:00', max_length=100, choices = time_choices)
-    guests = models.IntegerField(default = 1, choices = guest_choices)
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    number_of_guests = models.IntegerField(default = 1, choices = guest_choices)
+    customer_name = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    guest_name = models.CharField(max_length=100, null=True)
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     email = models.EmailField(null=True)
     
 
     def __str__(self):
-        return f"{self.customer}'s reservation on {self.date}"
+        if  self.guest_name == True:
+            return f"{self.customer_name}'s reservation on {self.date}"
+        else:
+            return f"{self.guest_name}'s reservation on {self.date}"
         
     def clean(self):
         if self.date < timezone.now().date():

@@ -8,15 +8,15 @@ class BookingForm(forms.ModelForm):
     
     class Meta:
         model = Booking
-        fields =  ['guests', 'date', 'time',]
+        fields =  ['number_of_guests', 'date', 'time',]
         labels = {
-        'guests': 'Number of guests',
+        'number_of_guests': 'Number of guests',
         'date': 'Date',
         'time': 'Time',
     }
     
         widgets={
-            'guests': forms.Select(attrs={'class': 'form-control' }),
+            'number_of_guests': forms.Select(attrs={'class': 'form-control' }),
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'time': forms.Select(attrs={'class': 'form-control' }),
         }
@@ -26,20 +26,20 @@ class BookingFormNotLoggedIn(forms.ModelForm):
     
     class Meta:
         model = Booking
-        fields =  ['guests', 'date', 'time', 'email', 'customer' ]
+        fields =  ['number_of_guests', 'date', 'time', 'email', 'guest_name']
         labels = {
-        'guests': 'Number of guests',
+        'number_of_guests': 'Number of guests',
         'date': 'Date',
         'time': 'Time',
-        'customer': 'Name',
+        'guest_name': 'Name',
         'email': 'Email',
     }
     
         widgets={
-            'guests': forms.Select(attrs={'class': 'form-control' }),
+            'number_of_guests': forms.Select(attrs={'class': 'form-control' }),
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'time': forms.Select(attrs={'class': 'form-control' }),
-            'customer': forms.TextInput(attrs={'class': 'form-control' }),
+            'guest_name': forms.TextInput(attrs={'class': 'form-control' }),
             'email': forms.EmailInput(attrs={'class': 'form-control' }),
         }
 
