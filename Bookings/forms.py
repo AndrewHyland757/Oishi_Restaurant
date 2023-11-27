@@ -1,6 +1,7 @@
 from django import forms
 from .models import Booking
-#from allauth.account.forms import LoginForm
+from allauth.account.forms import SignupForm
+from allauth.account.forms import LoginForm
 #from allauth.account.forms import LogoutForm
 
 
@@ -44,31 +45,28 @@ class BookingFormNotLoggedIn(forms.ModelForm):
         }
 
 
-
-"""
-
 class YourLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super(YourLoginForm, self).__init__(*args, **kwargs)
-        self.fields['login'].widget = forms.TextInput(attrs={'class': 'form-control'})
-        self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
-        #self.fields['remember'].widget = forms.BooleanField(attrs={'class': 'form-control'})
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+        #self.fields['login'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        #self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
+        #self.fields['remember'].widget = forms.CheckboxInput(attrs={'class': 'form-control'})
 
+"""
 
+class CustomSignupForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(CustomSignupForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        self.fields['email'].widget = forms.TextInput(attrs={'class': 'form-control'})
+        #self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
+        #self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
+"""
 
-class ReserveTableForm(forms.ModelForm):
-    
-    class Meta:
-        model = Reservation
-        fields =  ['number_of_guests', 'requested_date', 'requested_time',]
-        labels = {
-        'requested_date': 'Date',
-        'requested_time': 'Time',
-    }
-        widgets={
-            'number_of_guests': forms.Select(attrs={'class': 'form-control' }),
-            'requested_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'requested_time': forms.Select(attrs={'class': 'form-control' }),
-        }
-
-"""  
+class CustomSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomSignupForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'

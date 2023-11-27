@@ -11,7 +11,7 @@ from .forms import BookingForm, BookingFormNotLoggedIn
 
 
 def get_max_tables():
-    """ Returns max number of tables """
+    """ Returns max number of tables in restaurant """
     max_tables = len(Table.objects.all())
 
     return max_tables
@@ -26,12 +26,20 @@ def get_tables_booked(requested_time, requested_date):
     return tables_booked
 
 
-def get_customer(request, User):
-    """ Returns customer instance if User is logged in """
-    customer_email = request.user.email
-    customer = Customer.objects.filter(email=customer_email).first()
+def check_availability(requested_time, requested_date):
 
-    return customer
+    # Max number of tables in restaurant 
+    max_tables = len(Table.objects.all())
+
+    # Number of tables booked on requested time and date 
+    tables_booked = len(Booking.objects.filter(
+        time=requested_time,
+        date=requested_date))
+    
+    if tables_booked < max_tables:
+        return "Table available"
+
+
 
 
 """
@@ -90,31 +98,6 @@ def home(request):
 
 """
 
-# #@login_required(login_url='accounts/login')
-# def home(request):
-    
-#     if request.user.is_authenticated:
-#         if request.method == 'POST':
-#             form = BookingForm(request.POST)
-#             if form.is_valid():
-#                 form_instance = form.save(commit=False)
-#                 form_instance.customer = request.user
-#                 form_instance.save()
-#                 messages.success(request,"Booking success!")
-
-                
-                
-#         else:
-#             form = BookingForm()
-#     else:
-        
-#         messages.error(request, 'you must be registered and loggedin to make a booking!')
-#         login_url = reverse('account_login')
-#         #return redirect(login_url)
-        
-#     form = BookingForm()    
-#     context = {'form': form}
-#     return render(request, "index.html", context)
 
 
 
@@ -131,7 +114,7 @@ def home(request):
             form = BookingForm()
     else:
         if request.method == 'POST':
-            form = BookingFormGuest(request.POST)
+            form = BookingFormNotLoggedIn(request.POST)
             if form.is_valid():
                 form_instance = form.save(commit=False)
                 form_instance.save()

@@ -51,7 +51,7 @@
 </div>
 
 
-
+<!--
 
 
 {% block head_title %}
@@ -91,13 +91,12 @@
     {% endelement %}
 
 
-    {% endblock content %}
+    
 
 
 
 
-
-
+-->
 
 
 
@@ -122,6 +121,7 @@
       <div class="row justify-content-center">
         <div class="col-md-10 p-5 form-wrap">
             {% url 'account_login' as login_url %}
+
             <!-- Sign in form -->
             <form method="post" action=login_url tags="entrance,login">
             {% csrf_token %}
@@ -151,7 +151,7 @@
   </div>
 
 
-
+  {% endblock content %}
 
 
 
