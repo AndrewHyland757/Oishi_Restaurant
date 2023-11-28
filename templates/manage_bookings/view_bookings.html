@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+
+<!-- Section: Nav Bar -->
+
+<div class="container-fluid bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
+    <div class="container-fluid mb-4">
+      <a class="navbar-brand navbar-brand-centered brand-style" style=" color: #23242a; position: absolute;" href="#">Oishī</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+<ul>
+  
+  {% for booking in bookings %}
+  <li>
+    <p> Your booking on {{ booking.date }}  at {{ booking.time }} for {{ booking.number_of_guests }} 
+      {% if booking.number_of_guests == 1 %} 
+      guest
+      {% else %}
+      guests
+      {% endif %}
+      </p>
+      <a href="{% url 'edit_bookings' booking.id %}">Edit</a>
+      <a href="{% url 'cancel_bookings' booking.id %}">Cancel</a>
+  </li>
+  {% endfor %}
+</ul>
+
+
+
+        {% endblock content %}

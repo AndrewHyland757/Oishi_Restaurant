@@ -22,13 +22,13 @@
             <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="{% url 'home' %}#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reservation">Reserve</a>
+            <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#footer">Contact</a>
+            <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           {% if user.is_authenticated %}
                     <li class="nav-item">

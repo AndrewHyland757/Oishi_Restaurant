@@ -57,7 +57,7 @@ class Booking(models.Model):
     
 
     def __str__(self):
-        if  self.guest_name == True:
+        if  self.guest_name == None:
             return f"{self.customer_name}'s reservation on {self.date}"
         else:
             return f"{self.guest_name}'s reservation on {self.date}"

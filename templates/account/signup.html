@@ -18,13 +18,13 @@
             <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="{% url 'home' %}#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#reservation">Reserve</a>
+            <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#footer">Contact</a>
+            <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -46,6 +46,41 @@
 
 
 
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+
+    {% element h1 %}
+        {% trans "Sign Up" %}
+    {% endelement %}
+    <p>
+        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
+    {% url 'account_signup' as action_url %}
+    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+
+
+
+
+
+    {% endblock content %}
 
 
 <!-- Section: Sign in -->
@@ -111,4 +146,4 @@
 </div>
 
 
-{% endblock content %}
+

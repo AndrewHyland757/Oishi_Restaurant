@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 # from .forms import BookingForm
 from django.contrib.auth.decorators import login_required
 from .models import Table, Booking
@@ -126,26 +126,36 @@ def home(request):
     return render(request, "index.html", context)
 
 
+@login_required(login_url='account_login')
+def view_bookings(request):
+    bookings = Booking.objects.filter(customer_name = request.user).order_by('date', 'time')
+    context = {
+        'bookings' : bookings
+    }
+    return render(request, 'manage_bookings/view_bookings.html', context )
 
 
-"""
-def home(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = BookingForm(request.POST)
-            if form.is_valid():
-                form_instance = form.save(commit=False)
-                form_instance.customer = request.user
-                form_instance.save()
-                return redirect('home')  # Redirect to the home page to clear the form
+def edit_bookings(request, booking_id):
+    booking = get_object_or_404(Booking, pk = booking_id)
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance = booking)
+        if form.is_valid():
+            form_instance = form.save(commit=False)
+            form_instance.customer_name = request.user
+            form_instance.save()
+            return redirect('view_bookings')  # Redirect to the home page to clear the form
         else:
             form = BookingForm()
+            context = {'form': form}
+            return render(request, 'manage_bookings/edit_bookings.html', context)
     else:
-        if request.method == 'POST':
-            form = BookingFormNotLoggedIn(request.POST)
-        else:
-            form = BookingFormNotLoggedIn()
-
+        form = BookingForm(instance = booking)
+    
     context = {'form': form}
-    return render(request, "index.html", context)
-"""
+    return render(request, "manage_bookings/edit_bookings.html", context)
+
+
+def cancel_bookings(request, booking_id):
+    booking = get_object_or_404(Booking, pk = booking_id)
+    del booking
+    return render(request, 'manage_bookings/cancel_bookings.html')  
