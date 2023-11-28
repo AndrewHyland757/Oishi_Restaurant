@@ -44,50 +44,6 @@
   </nav>
 </div>
 
-<!--
-
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
-
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-
-
-
-
-
--->
-
-
-
-
-
-
-
 
 
 
@@ -95,42 +51,64 @@
 <!-- Section: Sign in -->
 
 <div class="section bg-light" id="">
-    <div class="container">
-      <div class="row section-heading mb-5 justify-content-center  ">
-        <div class="col-md-12 text-center">
-            <h2 class="mb-3">{% trans "Register" %}</h2>
-            <p class="mb-5"> Fill in your details to create an account</p>
-          </div>
-        </div>
-      <div class="row justify-content-center">
-        <div class="col-md-10 p-5 form-wrap">
-            {% url 'account_login' as login_url %}
-            <!-- Sign in form -->
-            <form method="post" action=login_url tags="entrance,login">
-            {% csrf_token %}
-              <div class="row mb-4">
+  <div class="container">
 
-                <!-- Loop to iterate the fields in the sign in form -->
-                {% for field in form %}
-                <div class=" col-lg-4 col-md-6">
-                  <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-                  {{ field }}
-                </div>
-                {% endfor %}
-
-                {% if redirect_field_value %}
-                  <input type="hidden" 
-                      name="{{ redirect_field_name }}" 
-                      value="{{ redirect_field_value }}" />
-                {% endif %}
-              </div>
-              <div class="text-center mt-5" >
-                <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">{% trans "Register" %}</button></div>
-            </form>
-            {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-        </div>
+    <div class="row section-heading mb-5 justify-content-center">
+      <div class="col-md-12 text-center">
+        <h2 class="mb-3">{% trans "Register" %}</h2>
+          <p class="mb-5"> Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
       </div>
     </div>
+
+    {% url 'account_signup' as action_url %}
+
+    <!-- Sign up form wrap-->
+    <div class="row justify-content-center">
+      <div class="col-md-10 p-5 form-wrap">
+        <!-- Sign up form -->
+        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+        {% slot body %}
+        {% csrf_token %}
+
+        <!-- If statement to handle Sign up form errors -->
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <p>{{ error|escape }}</p> 
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <p>{{ error|escape }}</p>
+        {% endfor %}
+        {% endif %}
+        
+        <div class="row mb-4">
+        <!-- Loop to iterate the fields in the sign in form -->
+          {% for field in form %}
+            <div class=" col-lg-4 col-md-6">
+                  <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                      {{ field }}
+            </div>
+          {% endfor %}
+
+          {% if redirect_field_value %}
+            <input type="hidden"
+                    name="{{ redirect_field_name }}"
+                    value="{{ redirect_field_value }}" />
+          {% endif %}
+        {% endslot %}
+        {% endelement %}
+
+        <div class="text-center mt-5" >
+          <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">{% trans "Sign Up" %}</button></div>
+        </div>
+        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
+      </div>
+    </div>
+
+
   </div>
-  
-  {% endblock content %}
+</div>
+
+
+{% endblock content %}

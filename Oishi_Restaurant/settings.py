@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'Bookings',
 ]
 
-
+"""
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = True
@@ -68,15 +68,15 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 #ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
 
-ACCOUNT_FORMS = {
-    'login': 'Bookings.forms.YourLoginForm',
-    'signup': 'Bookings.forms.CustomSignupForm'
-}
+
 
 #ACCOUNT_SESSION_REMEMBER = 
+"""
 
-
-
+ACCOUNT_FORMS = {
+    #'login': 'Bookings.forms.YourLoginForm',
+    'signup': 'Bookings.forms.CustomSignupForm'
+}
 
 
 SITE_ID = 1

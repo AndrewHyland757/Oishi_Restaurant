@@ -174,7 +174,8 @@
                     <p class="mb-5">Please fill in your reservation details to make a booking</p>
                     
                     {% else %}
-                    <p class="mb-5">Please <a href="{% url 'account_login' %}">login</a> to make a booking</p>  
+                    <p class="mb-5">If you have an account please <a href="{% url 'account_login' %}">login</a> to make a booking.<br>
+                    Otherwise, you can <a href="{% url 'account_signup' %}">create</a> an account or make a booking as a guest below</p>  
                     {% endif %}        
         </div>
         

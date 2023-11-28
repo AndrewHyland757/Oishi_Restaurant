@@ -1,33 +1,6 @@
-{% extends "account/base_manage.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
-{% block head_title %}
-    {% trans "Sign Out" %}
-{% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    <p>{% trans 'Are you sure you want to sign out?' %}</p>
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-{% endblock content %}
-
-
-
 
 
 
@@ -35,7 +8,6 @@
 <!-- Section: Nav Bar -->
 
 
-<!--
 <div class="container-fluid bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
       <div class="container-fluid mb-4">
@@ -75,10 +47,52 @@
     </div>
   </nav>
 </div>
--->
-<!-- Section: Sign in -->
 
-<!--
+
+
+    {% trans "Sign Out" %}
+
+    {% element h1 %}
+        {% trans "Sign Out" %}
+    {% endelement %}
+    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+    {% url 'account_logout' as action_url %}
+    {% element form method="post" action=action_url no_visible_fields=True %}
+        {% slot body %}
+            {% csrf_token %}
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            {% element button type="submit" %}
+                {% trans 'Sign Out' %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+
+
+
+
+  
+    {% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Section: Sign out -->
+
+
 <div class="section bg-light" id="">
     <div class="container">
       <div class="row section-heading mb-5 justify-content-center  ">
@@ -109,4 +123,3 @@
       </div>
     </div>
   </div>
--->
