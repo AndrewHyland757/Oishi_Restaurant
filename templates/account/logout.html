@@ -31,8 +31,8 @@
             <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'account_logout' %}">Logout</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                     </li>
                     {% else %}
                     <li class="nav-item">
@@ -50,45 +50,6 @@
 
 
 
-    {% trans "Sign Out" %}
-
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    <p>{% trans 'Are you sure you want to sign out?' %}</p>
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-
-
-
-
-  
-    {% endblock content %}
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- Section: Sign out -->
 
@@ -99,13 +60,39 @@
         <div class="col-md-12 text-center">
             <h2 class="mb-3">{% trans "Sign Out" %}</h2>
             <p class="mb-5"> Are you sure you want to sign out?</p>
-          </div>
         </div>
+      </div>
 
       <div class="row justify-content-center">
         <div class="col-md-10 p-5 form-wrap">
-            {% url 'account_login' as login_url %}
             
+            
+            {% url 'account_logout' as action_url %}
+            {% element form method="post" action=action_url no_visible_fields=True %}
+            {% slot body %}
+            {% csrf_token %}
+            {% if redirect_field_value %}
+              <input type="hidden"
+                     name="{{ redirect_field_name }}"
+                     value="{{ redirect_field_value }}" />
+          {% endif %}
+      {% endslot %}
+      {% slot actions %}
+          <div class="text-center mt-5" >
+                <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">{% trans "Sign Out" %}</button>
+          </div>
+      {% endslot %}
+  
+  {% endelement %}
+</div>
+</div>
+</div>
+
+
+{% endblock content %}
+            
+<!--
+
             <form method="post" action=action_url no_visible_fields=True>
             {% csrf_token %}
             {% if redirect_field_value %}
@@ -123,3 +110,33 @@
       </div>
     </div>
   </div>
+  
+  -->
+<!--
+
+  {% trans "Sign Out" %}
+
+  {% element h1 %}
+      {% trans "Sign Out" %}
+  {% endelement %}
+
+  <p>{% trans 'Are you sure you want to sign out?' %}</p>
+  {% url 'account_logout' as action_url %}
+  {% element form method="post" action=action_url no_visible_fields=True %}
+      {% slot body %}
+          {% csrf_token %}
+          {% if redirect_field_value %}
+              <input type="hidden"
+                     name="{{ redirect_field_name }}"
+                     value="{{ redirect_field_value }}" />
+          {% endif %}
+      {% endslot %}
+      {% slot actions %}
+          {% element button type="submit" %}
+              {% trans 'Sign Out' %}
+          {% endelement %}
+      {% endslot %}
+  {% endelement %}
+
+-->
+ 

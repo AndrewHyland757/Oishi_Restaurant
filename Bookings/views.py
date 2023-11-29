@@ -109,7 +109,7 @@ def home(request):
                 form_instance = form.save(commit=False)
                 form_instance.customer_name = request.user
                 form_instance.save()
-                return redirect('home')  # Redirect to the home page to clear the form
+                return redirect('view_bookings')  # Redirect to the home page to clear the form
         else:
             form = BookingForm()
     else:
@@ -118,7 +118,7 @@ def home(request):
             if form.is_valid():
                 form_instance = form.save(commit=False)
                 form_instance.save()
-                return redirect('home')  # Redirect to the home page to clear the form
+                return redirect('view_bookings')  # Redirect to the home page to clear the form
         else:
             form = BookingFormNotLoggedIn()
 
@@ -154,7 +154,7 @@ def edit_bookings(request, booking_id):
     context = {'form': form}
     return render(request, "manage_bookings/edit_bookings.html", context)
 
-
+"""
 def cancel_bookings(request, booking_id):
     booking = get_object_or_404(Booking, pk = booking_id)
     if request.method == 'POST':
@@ -175,17 +175,26 @@ def cancel_bookings(request, booking_id):
     context = {'form': form}
     return render(request, "manage_bookings/cancel_bookings.html", context)
 
-
-
-
-
-
-
 """
+
+
+
+
+
+def get_booking_date(pk):
+    
+    requested_date  = Booking.objects.filter(pk.requested_date)
+        
+
+    return requested_date
+
+def cancel_bookings(request, booking_id):
     booking = get_object_or_404(Booking, pk = booking_id)
+    #booking_date = booking.time()
+    
     context = {'booking': booking}
-    booking.delete()
+    #booking.delete()
     
     
+    #return redirect(request, 'manage_bookings/view_bookings.html')  
     return render(request, 'manage_bookings/cancel_bookings.html', context)  
-"""

@@ -26,8 +26,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="{% url 'view_bookings' %}">View Bookings</a>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
         </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
@@ -68,44 +68,59 @@
   
   
         <ul>
-          <div class="row mb-4">
+          <div class="row mb-4" >
             <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Date</th>
-      <th scope="col">Time</th>
-      <th scope="col">Guests</th>
-      <th scope="col">Action</th>
+      <th class="text-center" scope="col">Date</th>
+      <th  class="text-center" scope="col">Time</th>
+      <th class="text-center" scope="col">Guests</th>
+      <th class="text-center" scope="col">Action</th>
     </tr>
   </thead>
   
   <tbody>
     {% for booking in bookings %}
     <tr>
-      <td>{{ booking.date }}</td>
-      <td>{{ booking.time }}</td>
-      <td>{{ booking.number_of_guests }}</td>
+      <td class="text-center">{{ booking.date }}</td>
+      <td class="text-center">{{ booking.time }}</td>
+      <td class="text-center">{{ booking.number_of_guests }}</td>
+
       <!--
       <td>
+
         <a href="{% url 'edit_bookings' booking.id %}">
-          <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Edit</button>
+          <button class="btn btn-primary btn-outline-white g"  style="background-color: #c46f07;" type="submit">Edit</button>
         </a>
       </a>
       <a href="{% url 'cancel_bookings' booking.id %}">
-        <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Cancel</button>
+        <button class="btn  btn-outline-white "  style="background-color: #c46f07;" type="submit">Cancel</button>
       </a>
     </td>
     -->
 
-    <td>
+    <td class="text-center">
       <a href="{% url 'edit_bookings' booking.id %}" style="color:#c46f07">Edit</a>
+      
       <a href="{% url 'cancel_bookings' booking.id %}" style="color:#c46f07">Cancel</a>
     </td>
     </tr>
+  
     {% endfor %}
     
   </tbody>
 </table>
+
+<div class="text-center mt-5" >
+  <p class="mb-5">Or, <a href="{% url 'home' %}#reservation" style="color:#c46f07">create</a> a new booking</p>
+</div>
+
+
+
+
+
+ 
+
 
 
 

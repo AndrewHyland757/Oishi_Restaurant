@@ -46,14 +46,22 @@ class BookingFormNotLoggedIn(forms.ModelForm):
 
 
 class YourLoginForm(LoginForm):
+    
     def __init__(self, *args, **kwargs):
         super(YourLoginForm, self).__init__(*args, **kwargs)
+       
+        
         #for field_name, field in self.fields.items():
             #field.widget.attrs['class'] = 'form-control'
             #del field.widget.attrs['placeholder']
+        #del self.fields["remember"]
         self.fields['login'].widget = forms.TextInput(attrs={'class': 'form-control'})
         self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
-        self.fields['remember'].widget = forms.CheckboxInput(attrs={'class': 'form-control'})
+        #self.fields['remember'].widget = forms.CheckboxInput(attrs={'class': 'form-control'})
+        #self.fields['remember'].widget = forms.CheckboxInput(attrs=['disable'] = True)
+        #self.fields["remember"].disabled = True
+        
+        #self.fields['remember'].widget.attrs['diasbale'] = True
 
 """
 

@@ -73,10 +73,10 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 #ACCOUNT_SESSION_REMEMBER = 
 """
 
-#ACCOUNT_FORMS = {
-    #'login': 'Bookings.forms.YourLoginForm',
+ACCOUNT_FORMS = {
+    'login': 'Bookings.forms.YourLoginForm',
     #'signup': 'Bookings.forms.CustomSignupForm'
-#}
+}
 
 
 SITE_ID = 1
