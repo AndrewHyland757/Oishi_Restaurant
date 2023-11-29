@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 
 from django.contrib import messages
-from .forms import BookingForm, BookingFormNotLoggedIn
+from .forms import BookingForm, BookingFormNotLoggedIn, CancelBookingForm
 
 
 
@@ -43,33 +43,7 @@ def check_availability(requested_time, requested_date):
 
 
 """
-#@login_required(login_url='accounts/login')
-def home(request):
-    
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = BookingForm(request.POST)
-            if form.is_valid():
-                form = BookingForm(request.POST)
-                #customer = get_customer(request, User)
-                requested_date = request.POST.get('date')
-                requested_time = request.POST.get('time')
-                requested_guests = request.POST.get('guests')
-                
-                # Returns number of tables booked on requested time and date
-                tables_booked = get_tables_booked(requested_time, requested_date)
 
-                # Returns max number of tables 
-                max_tables = get_max_tables()
-
-                if tables_booked < max_tables:
-                    form.save()
-                #else:
-                #raise ValidationError("Sorry, we are fully booked at that time.")
-                #form = BookingForm()
-    else:
-        if request.method == 'POST':
-            form = BookingFormNotLoggedIn(request.POST)
             if form.is_valid():
                 form = BookingForm(request.POST)
                 requested_date = request.POST.get('date')
@@ -89,18 +63,15 @@ def home(request):
                 #form = BookingForm()
 
 
-    form = BookingForm()
-    context = {
-        'form': form
-    }
-    
-    return render(request, "index.html", context)
+
 
 """
 
 
 
-
+"""
+Function to render the homepage and handle the reservation requests
+"""
 def home(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -154,28 +125,28 @@ def edit_bookings(request, booking_id):
     context = {'form': form}
     return render(request, "manage_bookings/edit_bookings.html", context)
 
-"""
+
 def cancel_bookings(request, booking_id):
     booking = get_object_or_404(Booking, pk = booking_id)
     if request.method == 'POST':
-        form = BookingForm(request.POST, instance = booking)
+        form = CancelBookingForm(request.POST, instance = booking)
         
         if form.is_valid():
             form_instance = form.save(commit=False)
             form_instance.customer_name = request.user
             form_instance.delete()
-            return redirect('view_bookings')  # Redirect to the home page to clear the form
+            return redirect('view_bookings')  # Redirect to the view booking page to clear when instance is deleted
         else:
-            form = BookingForm()
+            form = CancelBookingForm()
             context = {'form': form}
             return render(request, 'manage_bookings/cancel_bookings.html', context)
     else:
-        form = BookingForm(instance = booking)
+        form = CancelBookingForm(instance = booking)
     
     context = {'form': form}
     return render(request, "manage_bookings/cancel_bookings.html", context)
 
-"""
+
 
 
 
@@ -187,7 +158,7 @@ def get_booking_date(pk):
         
 
     return requested_date
-
+"""
 def cancel_bookings(request, booking_id):
     booking = get_object_or_404(Booking, pk = booking_id)
     #booking_date = booking.time()
@@ -198,3 +169,27 @@ def cancel_bookings(request, booking_id):
     
     #return redirect(request, 'manage_bookings/view_bookings.html')  
     return render(request, 'manage_bookings/cancel_bookings.html', context)  
+
+    """
+"""
+def cancel_bookings(request, booking_id):
+    booking = get_object_or_404(Booking, pk = booking_id)
+    if request.method == 'POST':
+        form = CancelBookingForm(request.POST, instance = booking)
+        if form.is_valid():
+            #form_instance = form.save(commit=False)
+            #form_instance.customer_name = request.user
+            form.delete()
+            return redirect('view_bookings')  # Redirect to the home page to clear the form
+        #else:
+            #form = CancelBookingForm()
+            #context = {'form': form}
+            #return render(request, 'manage_bookings/view_bookings.html', context)
+    else:
+        #form = CancelBookingForm(instance = booking)
+        form = CancelBookingForm()
+    
+    context = {'form': form}
+    return render(request, "manage_bookings/cancel_bookings.html", context) 
+
+    """

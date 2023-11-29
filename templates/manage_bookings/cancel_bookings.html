@@ -27,6 +27,9 @@
             <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
+        </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           <li class="nav-item">
@@ -79,10 +82,10 @@
       
 -->
 
-        <form action="" method="POST" {% if form.disabled %}disabled{% endif %}>
+        <form action="" method="POST">
           {% csrf_token %}
           <div class="row mb-4">
-            <p class="text-center"> Are you sure you want to delete your booking  {{ booking.date}}  {{ booking.time}}  {{ booking.number_of_guests }}? </p>
+            <p class="text-center"> Are you sure you want to delete your table for {{ booking.number_of_guests }} on {{ booking.date}} at {{ booking.time}}? </p>
       
             {% for field in form %}
               <div class=" col-lg-4 col-md-6">
@@ -90,7 +93,7 @@
                 {{ field }}
               </div>
             {% endfor %}
-            
+        
           </div>
           
           <div class="text-center mt-5" >

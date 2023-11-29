@@ -80,6 +80,7 @@
             <p class="mb-5"> {% blocktrans %}If you have not created an account yet, then please
                 <a  href="{{ signup_url }}" style="color: #c46f07;">sign up</a> first.{% endblocktrans %}
                 </p>
+                
           </div>
         </div>
       
@@ -94,26 +95,44 @@
         {% slot body %}
         {% csrf_token %}
 
+        
+          
         <!-- If statement to handle Sign up form errors -->
         {% if form.errors %}
         {% for field in form %}
         {% for error in field.errors %}
-        <p>{{ error|escape }}</p> 
+        
+        <p class = "text-center">{{ error|escape }}</p> 
+        
         {% endfor %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-        <p>{{ error|escape }}</p>
+        
+        <p class = "text-center">{{ error|escape }}</p>
+      
         {% endfor %}
         {% endif %}
+      
+
+        <div class="row mb-4 justify-content-center">
         
-        <div class="row mb-4">
-        <!-- Loop to iterate the fields in the sign in form -->
-          {% for field in form %}
+        <div class=" col-lg-4 col-md-6">
+          <label class="form-label" for="{{ field.auto_id }}">Username</label>
+              {{ form.login }}
+        </div>
+        <div class=" col-lg-4 col-md-6">
+          <label class="form-label" for="{{ field.auto_id }}">Password</label>
+              {{ form.password }}
+        </div>
+        <!--
+        {% for field in form %}
             <div class=" col-lg-4 col-md-6">
                   <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
                       {{ field }}
             </div>
           {% endfor %}
+          -->
+
 
           {% if redirect_field_value %}
             <input type="hidden"
@@ -124,7 +143,7 @@
         {% endelement %}
 
         <div class="text-center mt-5" >
-          <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">{% trans "Sign Up" %}</button></div>
+          <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">{% trans "Sign In" %}</button></div>
         </div>
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
       </div>

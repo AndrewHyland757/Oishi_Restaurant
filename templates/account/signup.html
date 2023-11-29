@@ -46,41 +46,16 @@
 
 
 
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
-
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
 
 
 
 
 
-    {% endblock content %}
+
+
+
+
+
 
 
 <!-- Section: Sign in -->
@@ -91,6 +66,7 @@
     <div class="row section-heading mb-5 justify-content-center">
       <div class="col-md-12 text-center">
         <h2 class="mb-3">{% trans "Register" %}</h2>
+          <p class="mb-2"> Create an account to manage your reservations</a>.</p>
           <p class="mb-5"> Already have an account? Then please <a href="{{ login_url }}">sign in</a>.</p>
       </div>
     </div>
@@ -109,11 +85,11 @@
         {% if form.errors %}
         {% for field in form %}
         {% for error in field.errors %}
-        <p>{{ error|escape }}</p> 
+        <p class = "text-center">{{ error|escape }}</p> 
         {% endfor %}
         {% endfor %}
         {% for error in form.non_field_errors %}
-        <p>{{ error|escape }}</p>
+        <p class = "text-center">{{ error|escape }}</p>
         {% endfor %}
         {% endif %}
         
@@ -145,5 +121,35 @@
   </div>
 </div>
 
+{% endblock content %}
 
 
+{% block head_title %}
+    {% trans "Signup" %}
+{% endblock head_title %}
+
+    {% element h1 %}
+        {% trans "Sign Up" %}
+    {% endelement %}
+    <p>
+        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
+    </p>
+    {% url 'account_signup' as action_url %}
+    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+        {% slot body %}
+            {% csrf_token %}
+            {% element fields form=form unlabeled=True %}
+            {% endelement %}
+            {% if redirect_field_value %}
+                <input type="hidden"
+                       name="{{ redirect_field_name }}"
+                       value="{{ redirect_field_value }}" />
+            {% endif %}
+        {% endslot %}
+        {% slot actions %}
+            {% element button tags="prominent,signup" type="submit" %}
+                {% trans "Sign Up" %}
+            {% endelement %}
+        {% endslot %}
+    {% endelement %}
+    {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}

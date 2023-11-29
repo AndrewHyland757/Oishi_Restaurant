@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'Bookings',
 ]
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # added because signup stopped working
 """
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
@@ -75,7 +75,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_FORMS = {
     'login': 'Bookings.forms.YourLoginForm',
-    #'signup': 'Bookings.forms.CustomSignupForm'
+    'signup': 'Bookings.forms.CustomSignupForm'
 }
 
 
