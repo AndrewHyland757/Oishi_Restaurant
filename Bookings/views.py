@@ -157,5 +157,35 @@ def edit_bookings(request, booking_id):
 
 def cancel_bookings(request, booking_id):
     booking = get_object_or_404(Booking, pk = booking_id)
-    del booking
-    return render(request, 'manage_bookings/cancel_bookings.html')  
+    if request.method == 'POST':
+        form = BookingForm(request.POST, instance = booking)
+        
+        if form.is_valid():
+            form_instance = form.save(commit=False)
+            form_instance.customer_name = request.user
+            form_instance.delete()
+            return redirect('view_bookings')  # Redirect to the home page to clear the form
+        else:
+            form = BookingForm()
+            context = {'form': form}
+            return render(request, 'manage_bookings/cancel_bookings.html', context)
+    else:
+        form = BookingForm(instance = booking)
+    
+    context = {'form': form}
+    return render(request, "manage_bookings/cancel_bookings.html", context)
+
+
+
+
+
+
+
+"""
+    booking = get_object_or_404(Booking, pk = booking_id)
+    context = {'booking': booking}
+    booking.delete()
+    
+    
+    return render(request, 'manage_bookings/cancel_bookings.html', context)  
+"""

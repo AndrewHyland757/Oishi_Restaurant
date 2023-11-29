@@ -27,6 +27,9 @@
             <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
+        </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           <li class="nav-item">
@@ -39,21 +42,65 @@
 </div>
 
 
+<!-- Section: Edit Bookings  -->
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="row mb-4">
-      {% for field in form %}
-        <div class=" col-lg-4 col-md-6">
-          <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-          {{ field }}
+<div class="section bg-light" id="reservation">
+  <div class="container">
+    <div class="row section-heading mb-5 justify-content-center  ">
+      <div class="col-md-12 text-center">
+          <h2 class="mb-3">Edit Bookings</h2>
+         
+            
+            
+                    <p class="mb-5">Edit your bookings here</p>
+                    
+                          
         </div>
-      {% endfor %}
+        
+      </div>
+    <div class="row justify-content-center">
+      <div class="col-md-10 p-5 form-wrap">
+        
+
+
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="row mb-4">
+            {% for field in form %}
+              <div class=" col-lg-4 col-md-6">
+                <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                {{ field }}
+              </div>
+            {% endfor %}
+          </div>
+          
+          <div class="text-center mt-5" >
+            <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Edit</button></div>
+        </form>
+      
+
+
+        
+           
+      </div>
     </div>
-    
-    <div class="text-center mt-5" >
-      <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Edit</button></div>
-  </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         {% endblock content %}

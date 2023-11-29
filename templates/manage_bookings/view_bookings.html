@@ -27,6 +27,9 @@
             <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" href="{% url 'view_bookings' %}">View Bookings</a>
+        </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           <li class="nav-item">
@@ -39,6 +42,112 @@
 </div>
 
 
+
+
+
+<div class="section bg-light" id="reservation">
+  <div class="container">
+    <div class="row section-heading mb-5 justify-content-center  ">
+      <div class="col-md-12 text-center">
+          <h2 class="mb-3">Your Bookings</h2>
+         
+            
+            
+                    <p class="mb-5">You can edit or cancel your bookings here</p>
+                    
+                    
+        </div>
+        
+      </div>
+    <div class="row justify-content-center">
+      <div class="col-md-10 p-5 form-wrap">
+        
+
+
+      
+  
+  
+        <ul>
+          <div class="row mb-4">
+            <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Guests</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    {% for booking in bookings %}
+    <tr>
+      <td>{{ booking.date }}</td>
+      <td>{{ booking.time }}</td>
+      <td>{{ booking.number_of_guests }}</td>
+      <!--
+      <td>
+        <a href="{% url 'edit_bookings' booking.id %}">
+          <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Edit</button>
+        </a>
+      </a>
+      <a href="{% url 'cancel_bookings' booking.id %}">
+        <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Cancel</button>
+      </a>
+    </td>
+    -->
+
+    <td>
+      <a href="{% url 'edit_bookings' booking.id %}" style="color:#c46f07">Edit</a>
+      <a href="{% url 'cancel_bookings' booking.id %}" style="color:#c46f07">Cancel</a>
+    </td>
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+
+
+
+
+<!--
+  <ul>
+            {% for booking in bookings %}
+              
+                
+                <li>
+                  <p> Your booking on {{ booking.date }}  at {{ booking.time }} for {{ booking.number_of_guests }} 
+                  {% if booking.number_of_guests == 1 %} 
+                      guest
+                  {% else %}
+                      guests
+                  {% endif %}
+                  </p>
+                  <a href="{% url 'edit_bookings' booking.id %}">
+                    <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Edit</button>
+                  </a>
+                  <a href="{% url 'cancel_bookings' booking.id %}">
+                    <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Cancel</button>
+                  </a>
+                </li>
+               
+              
+            {% endfor %}
+          </div>
+        </ul>
+
+          --> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!--
 
 <ul>
   
@@ -57,6 +166,6 @@
   {% endfor %}
 </ul>
 
-
+-->
 
         {% endblock content %}

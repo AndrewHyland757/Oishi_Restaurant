@@ -74,3 +74,21 @@ class CustomSignupForm(SignupForm):
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder']
             del field.widget.attrs['placeholder']
+
+
+class CancelBookingForm(forms.ModelForm):
+    
+    class Meta:
+        model = Booking
+        fields =  ['number_of_guests', 'date', 'time',]
+        labels = {
+        'number_of_guests': 'Number of guests',
+        'date': 'Date',
+        'time': 'Time',
+    }
+    
+        widgets={
+            'number_of_guests': forms.Select(attrs={'class': 'form-control' }),
+            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'time': forms.Select(attrs={'class': 'form-control' }),
+        }
