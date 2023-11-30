@@ -30,6 +30,7 @@ def get_available_tables(requested_date, requested_time):
     """
     #all_table_data = Booking.objects.values_list('table', flat=True)
     all_table_data = Booking.objects.values_list('table', flat=True)
+    
     available_tables = all_table_data.exclude(
         time=requested_time,
         date=requested_date)
@@ -69,7 +70,7 @@ def home(request):
 
                 
                     form_instance.save()
-                    return redirect('view_bookings')  # Redirect to the home page to clear the form
+                    return redirect('view_bookings')  # Redirect to the home page to clear the form      *** I indented these inwards ****
         else:
             form = BookingForm()
     else:
