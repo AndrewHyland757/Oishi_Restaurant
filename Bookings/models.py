@@ -65,6 +65,6 @@ class Booking(models.Model):
     def clean(self):
         if self.date < timezone.now().date():
             raise ValidationError("Please choose a valid date")
-        #overlapping_bookings = Booking.objects.filter(date= self.date, time=self.time, table=self.table)
+        #)
     
 
