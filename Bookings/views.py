@@ -13,37 +13,42 @@ from django.utils import timezone
 
 def get_booked_tables(requested_date, requested_time):
     """
-    Returns any tables in the Booking model assigned to requested time/date
+    Returns any tables assigned to requested time/date in the BOOKING MODEL 
     """
     #all_table_data = Booking.objects.values_list('table', flat=True)
-    all_table_data = Booking.objects.values_list('table', flat=True)
-    booked_tables = all_table_data.filter(
-        time=requested_time,
+    filtered_booking_data = Booking.objects.filter(time=requested_time,
         date=requested_date)
+
+    booked_tables = [booking.table for booking in filtered_booking_data] # give the table form booking in each iteration of the loop
     
     return booked_tables
 
 
-def get_available_tables(requested_date, requested_time):
-    """
-    Returns any tables in the Booking model available at requested time/date
-    """
-    #all_table_data = Booking.objects.values_list('table', flat=True)
-    all_table_data = Booking.objects.values_list('table', flat=True)
-    
-    available_tables = all_table_data.exclude(
-        time=requested_time,
-        date=requested_date)
-    
-    return available_tables
+
 
 def get_tables():
     """
-    Returns all tables in Table model
+    Returns all tables from the TABLE MODEL
     """
     tables = Table.objects.all()
-
     return tables
+
+
+def assign_table(available_tables, requested_guests):
+    for table in available_tables:
+        if int(table.table_seats) == int(requested_guests):
+            #return [table]  # Perfect size
+            return table
+            
+        elif int(table.table_seats) > int(requested_guests):
+            #return [table]  # Table will have spare seats - that ok
+            return table
+        else:
+            raise ValidationError("No available table for requested number of guests") # use alert from bootsrtap
+
+
+
+
 
 
 def home(request):
@@ -58,16 +63,18 @@ def home(request):
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
 
-                tables = get_tables() # list all tables in Table model
-                booked_tables = get_booked_tables(requested_date, requested_time) # list of tables in Booking model already assigned to requested time/date
-                available_tables = get_available_tables(requested_date, requested_time)
+                #tables = get_tables() # list all tables in Table model
+                booked_tables = get_booked_tables(requested_date, requested_time) # list of tables from BOOKING MODEL already assigned to requested time/date
+               
+                available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
 
-                if len(booked_tables) == len(tables):
+                if available_tables.count() <= 0:
                     raise ValidationError("Already fully booked") # use alert from bootsrtap
                 else:
-                    form_instance.table = tables.first()
+                    form_instance.table = assign_table(available_tables, requested_guests)
+                    #form_instance.table = tables.first()
                     #form_instance.table = available_tables.first()
-
+                    #form_instance.table = available_tables.first()
                 
                     form_instance.save()
                     return redirect('view_bookings')  # Redirect to the home page to clear the form      *** I indented these inwards ****
