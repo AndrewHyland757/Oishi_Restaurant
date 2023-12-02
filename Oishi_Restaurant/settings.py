@@ -58,8 +58,10 @@ INSTALLED_APPS = [
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # added because signup stopped working
 """
 ACCOUNT_EMAIL_REQUIRED = True
+
+
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = True
+
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 

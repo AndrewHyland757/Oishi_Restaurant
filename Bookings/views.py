@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Table, Booking
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from django.contrib import messages
 from .forms import BookingForm, BookingFormNotLoggedIn, CancelBookingForm
@@ -23,6 +23,21 @@ def get_booked_tables(requested_date, requested_time):
     
     return booked_tables
 
+"""
+def find_table(requested_date, requested_time,requested_guests):
+     
+    all_tables = Table.objects.all()
+
+    filtered_booking_data = Booking.objects.filter(time=requested_time,
+        date=requested_date)
+
+    booked_tables = [booking.table for booking in filtered_booking_data] # give the table form booking in each iteration of the loop
+
+    available_tables = []
+
+    for table in booked_tables:
+        if table 
+"""
 
 
 
@@ -35,19 +50,32 @@ def get_tables():
 
 
 def assign_table(available_tables, requested_guests):
+    available_tables = sorted(available_tables, key=lambda table:int(table.table_seats)) # lambda creates a function in one line
     for table in available_tables:
-        if int(table.table_seats) == int(requested_guests):
-            #return [table]  # Perfect size
+        if int(table.table_seats) >= int(requested_guests): # The perfertly sized table 
             return table
-            
-        elif int(table.table_seats) > int(requested_guests):
-            #return [table]  # Table will have spare seats - that ok
+        
+        elif int(table.table_seats) == sum([int(requested_guests), 1]): # finds table with one spare seat
             return table
-        else:
-            raise ValidationError("No available table for requested number of guests") # use alert from bootsrtap
+        elif int(table.table_seats) == sum([int(requested_guests), 2]): # finds table with two spare seats
+            return table
+        elif int(table.table_seats) == sum([int(requested_guests), 3]): # finds table with three spare seats
+            return table
+        
+    #raise ValidationError("No available table for requested number of guests") # any more than 3 spare seats is not allowed for a booking
+    message = f"Unfortunately we have no available tabele for {requested_guests} at {requested_time} on {requested_date}."
+    context = {
+        "message" : message
+    }
+    return render(request, "index.html", context )
+
+   
+        
 
 
-
+def end_time(requested_time):
+    if requested_time == "12:00":
+        end_time = "1:30"
 
 
 
@@ -58,24 +86,26 @@ def home(request):
             if form.is_valid():
                 form_instance = form.save(commit=False)
                 form_instance.customer_name = request.user
-
+                
                 requested_date = request.POST.get('date')
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
-
+                #form_instance.end_time = requested_
+                
                 #tables = get_tables() # list all tables in Table model
                 booked_tables = get_booked_tables(requested_date, requested_time) # list of tables from BOOKING MODEL already assigned to requested time/date
                
                 available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
 
                 if available_tables.count() <= 0:
-                    raise ValidationError("Already fully booked") # use alert from bootsrtap
+                    message = f"Unfortunately we fully booked at {requested_time} on {requested_date}."
+                    messages.success(request, message)
+                   
+
                 else:
                     form_instance.table = assign_table(available_tables, requested_guests)
                     #form_instance.table = tables.first()
-                    #form_instance.table = available_tables.first()
-                    #form_instance.table = available_tables.first()
-                
+                    
                     form_instance.save()
                     return redirect('view_bookings')  # Redirect to the home page to clear the form      *** I indented these inwards ****
         else:

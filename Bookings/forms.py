@@ -63,6 +63,13 @@ class CustomSignupForm(SignupForm):
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder']
             del field.widget.attrs['placeholder']
+    
+    user_email = user.email
+    filtered_email_data = Booking.objects.filter(email= user_email)
+
+   if filtered_email_data:
+    
+
 
 
 # Cancel booking form
