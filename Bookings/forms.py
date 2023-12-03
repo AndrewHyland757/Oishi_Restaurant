@@ -7,6 +7,10 @@ from allauth.account.forms import LoginForm
 
 # Registered user reserve table form
 class BookingForm(forms.ModelForm):
+    """
+    This form is used for registed users to make a booking. It takes the Booking model as its model and renders the 
+    time, guest and date fields. The email and customer name fields in the Booking model will be taken from the logged in user.  
+    """
     class Meta:
         model = Booking
         fields =  ['number_of_guests', 'date', 'time',]
@@ -15,6 +19,8 @@ class BookingForm(forms.ModelForm):
         'date': 'Date',
         'time': 'Time',
         }
+
+        # Widgets to add the 'form-control' class to each field displayed and set input type. 
         widgets={
             'number_of_guests': forms.Select(attrs={'class': 'form-control' }),
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -22,8 +28,12 @@ class BookingForm(forms.ModelForm):
         }
 
 
-# Guest user reserve table form
+
 class BookingFormNotLoggedIn(forms.ModelForm):
+    """
+    This form is used for non-registed users to make a booking. It also takes the Booking model as its model but renders the 
+    email and  guest_name fields as inputs as well as the time, guest and date fields.   
+    """
     class Meta:
         model = Booking
         fields =  ['number_of_guests', 'date', 'time', 'email', 'guest_name']
@@ -34,6 +44,8 @@ class BookingFormNotLoggedIn(forms.ModelForm):
         'guest_name': 'Name',
         'email': 'Email',
         }
+
+        # Widgets to add the 'form-control' class to each field displayed and set input type. 
         widgets={
             'number_of_guests': forms.Select(attrs={'class': 'form-control' }),
             'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
@@ -43,37 +55,37 @@ class BookingFormNotLoggedIn(forms.ModelForm):
         }
 
 
-# Custom allauth login form
 class YourLoginForm(LoginForm):
+    """
+    This form customises the allauth Login form. 
+    """
     def __init__(self, *args, **kwargs):
         super(YourLoginForm, self).__init__(*args, **kwargs)
+
+        # The 'form-control' class is added to each field. 
         self.fields['login'].widget = forms.TextInput(attrs={'class': 'form-control'})
         self.fields['password'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
-        #self.fields['remember'].widget = forms.CheckboxInput(attrs={'class': 'form-control'})
-        #for field_name, field in self.fields.items():
-            #field.widget.attrs['class'] = 'form-control'
-            #del field.widget.attrs['placeholder']
+        # The remember field is not included. 
+       
         
-        
-# Custom allauth signup form
 class CustomSignupForm(SignupForm):
+    """
+    This form customises the allauth Signup form. 
+    """
     def __init__(self, *args, **kwargs):
         super(CustomSignupForm, self).__init__(*args, **kwargs)
+
+        # As the fields are looped through; the 'form-control' class is added and placeholder deleted. 
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder']
             del field.widget.attrs['placeholder']
-    
-    user_email = user.email
-    filtered_email_data = Booking.objects.filter(email= user_email)
-
-   if filtered_email_data:
-    
 
 
-
-# Cancel booking form
 class CancelBookingForm(forms.ModelForm):
+    """
+    This form handles booking cancelations displaying the number of guests, date and time fields of the booking as read-only fields.
+    """
     class Meta:
         model = Booking
         fields =  ['number_of_guests', 'date', 'time',]
@@ -83,11 +95,12 @@ class CancelBookingForm(forms.ModelForm):
         'time': 'Time',
         }
 
-        # Fields are changed to read only
+        # Widgets are uesed to add the form-control and disable-hover class to each form field.
+        # The field attribute readonly is applied so that the form data can't be edited.
         widgets={
-            'number_of_guests': forms.TextInput(attrs={'readonly':'readonly', 'class': 'form-control'}),  # compared to the widgets on the Bookingform
-            'date': forms.DateInput(attrs={'readonly':'readonly', 'type': 'date', 'class': 'form-control'}),
-            'time': forms.TextInput(attrs={'readonly':'readonly', 'class': 'form-control' }),
+            'number_of_guests': forms.TextInput(attrs={'readonly':'readonly', 'class': 'form-control disable-hover'}),  
+            'date': forms.DateInput(attrs={'readonly':'readonly', 'type': 'date', 'class': 'form-control disable-hover'}),
+            'time': forms.TextInput(attrs={'readonly':'readonly', 'class': 'form-control disable-hover' }),
         }
 
 

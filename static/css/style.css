@@ -92,9 +92,7 @@ h1, h2, h3, h4, h5 {
 }
 
 a:link {
-  
   text-decoration: none;
-  
   }
 
 /*  CSS to style the specials-section headings and sub-headings */
@@ -135,6 +133,10 @@ a:link {
 
 .form-control:hover {
   border: 2px solid #c46f07; 
+}
+
+.disable-hover {
+  pointer-events: none;  
 }
 
 .form-control:focus {

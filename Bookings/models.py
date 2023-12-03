@@ -50,11 +50,42 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.CharField(default = '12:00', max_length=100, choices = time_choices)
     number_of_guests = models.IntegerField(default = 1, choices = guest_choices)
-    customer_name = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    guest_name = models.CharField(max_length=100, null=True)
+    customer_name = models.ForeignKey(User, on_delete=models.CASCADE, null=True) # change to user_name
+    guest_name = models.CharField(max_length=100, null=True) # change to guest_user_name
     table = models.ForeignKey(Table, on_delete=models.CASCADE, null=True)
     email = models.EmailField(null=True)
     
+    """
+    def user_field(self): # don't show customer_name if guest_name is populated
+        if guest_name == None:
+            del guest_name
+        return  self
+    """
+    """ 
+
+    def change_guest_name_to_customer_name(self):
+        
+        #If booking is made as a guest first and then an account is set up with the same email, 
+        #the older bookings associated with that email aare updated to include the new registered customer name
+        
+
+        customer_name = self.customer_name
+        email = self.email
+        guest_name = self.guest_name
+
+        user_bookings = Booking.objects.filter(email)  # all instances related to the email 
+
+        user_bookings_customer = Booking.objects.filter(customer_name) # all with a customer_name
+        user_bookings_guest = Booking.objects.filter(guest_name)  # all with a guest_name
+    
+        if user_bookings_guest and 
+
+            if booking.customer_name != None:
+                pass
+            else:
+                booking.customer_name = customer_name
+                del guest_name
+    """
 
     def __str__(self):
         if  self.guest_name == None:
@@ -65,6 +96,6 @@ class Booking(models.Model):
     def clean(self):
         if self.date < timezone.now().date():
             raise ValidationError("Please choose a valid date")
-        #)
+        
     
 

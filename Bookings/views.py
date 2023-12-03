@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-# from .forms import BookingForm
 from django.contrib.auth.decorators import login_required
 from .models import Table, Booking
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse, JsonResponse
-
+from django.http import HttpResponse
 from django.contrib import messages
 from .forms import BookingForm, BookingFormNotLoggedIn, CancelBookingForm
 from django.utils import timezone
@@ -13,32 +11,17 @@ from django.utils import timezone
 
 def get_booked_tables(requested_date, requested_time):
     """
-    Returns any tables assigned to requested time/date in the BOOKING MODEL 
+    Returns any tables in the BOOKING MODEL assigned to requested time/date. 
     """
-    #all_table_data = Booking.objects.values_list('table', flat=True)
+    
+    # Gets all the instances from the Booking model with the same time/date as the users requested time/date
     filtered_booking_data = Booking.objects.filter(time=requested_time,
         date=requested_date)
 
-    booked_tables = [booking.table for booking in filtered_booking_data] # give the table form booking in each iteration of the loop
+    # Creates a list from the "table" field in each iteration(booking) in the filtered_booking_data
+    booked_tables = [booking.table for booking in filtered_booking_data] 
     
     return booked_tables
-
-"""
-def find_table(requested_date, requested_time,requested_guests):
-     
-    all_tables = Table.objects.all()
-
-    filtered_booking_data = Booking.objects.filter(time=requested_time,
-        date=requested_date)
-
-    booked_tables = [booking.table for booking in filtered_booking_data] # give the table form booking in each iteration of the loop
-
-    available_tables = []
-
-    for table in booked_tables:
-        if table 
-"""
-
 
 
 def get_tables():
@@ -50,73 +33,127 @@ def get_tables():
 
 
 def assign_table(available_tables, requested_guests):
+    """
+    This function takes the available tables at users requested time/date and assigns the best size table according to the number of guests. 
+    The parameters "available_tables" and "requested_guests" will be defined in the home function. 
+    """
+    # The available_tables are sorted according to their number of seats
     available_tables = sorted(available_tables, key=lambda table:int(table.table_seats)) # lambda creates a function in one line
+
+    # A loop to iterate through the available_tables starting with lowest seat number
     for table in available_tables:
-        if int(table.table_seats) >= int(requested_guests): # The perfertly sized table 
+
+        # If the iterated table has the same amount of seats as requested guests it is the perfect fit and assigned first
+        if int(table.table_seats) >= int(requested_guests):  
             return table
         
-        elif int(table.table_seats) == sum([int(requested_guests), 1]): # finds table with one spare seat
+        # If the iterated table has the same amount of seats plus one spare it is next assigned. 
+        elif int(table.table_seats) == sum([int(requested_guests), 1]): 
             return table
-        elif int(table.table_seats) == sum([int(requested_guests), 2]): # finds table with two spare seats
+
+        # If the iterated table has the same amount of seats plus two spare it is assigned
+        elif int(table.table_seats) == sum([int(requested_guests), 2]): 
             return table
-        elif int(table.table_seats) == sum([int(requested_guests), 3]): # finds table with three spare seats
+
+        # If the iterated table has the same amount of seats plus three spare it is assigned
+        elif int(table.table_seats) == sum([int(requested_guests), 3]):
             return table
         
-    #raise ValidationError("No available table for requested number of guests") # any more than 3 spare seats is not allowed for a booking
-    message = f"Unfortunately we have no available tabele for {requested_guests} at {requested_time} on {requested_date}."
+    # If there will be more than three empty seats at a booking it is deemed inefficient and error message displayed
+    message = f"Unfortunately, we have no available tabele for {requested_guests} at {requested_time} on {requested_date}."
     context = {
         "message" : message
     }
     return render(request, "index.html", context )
 
    
-        
-
-
-def end_time(requested_time):
-    if requested_time == "12:00":
-        end_time = "1:30"
-
-
-
 def home(request):
+    """
+    Function to render the home page and handle the booking form
+    """
+
+    # Checks if user is logged in, and if so, uses the appropriate form 
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = BookingForm(request.POST)
+
             if form.is_valid():
                 form_instance = form.save(commit=False)
+
+                # Populate the booking instance customer_name field
                 form_instance.customer_name = request.user
-                
+
+                # Populate the booking instance email field
+                form_instance.email = request.user.email
+
+                # Create some variables from the form displayed fields
                 requested_date = request.POST.get('date')
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
-                #form_instance.end_time = requested_
+             
                 
-                #tables = get_tables() # list all tables in Table model
-                booked_tables = get_booked_tables(requested_date, requested_time) # list of tables from BOOKING MODEL already assigned to requested time/date
+                # List of tables from the BOOKING MODEL already assigned to requested time/date
+                booked_tables = get_booked_tables(requested_date, requested_time)
                
+                # List of tables in the TABLE MODEL excluding the tables assigned in BOOKING MODEL at requested time/date
                 available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
 
+                # Checks if there is at least one table available
                 if available_tables.count() <= 0:
                     message = f"Unfortunately we fully booked at {requested_time} on {requested_date}."
                     messages.success(request, message)
-                   
-
+                
                 else:
+                    # Calls the assign_table function to choose the most efficient table for the number of guests
                     form_instance.table = assign_table(available_tables, requested_guests)
-                    #form_instance.table = tables.first()
-                    
                     form_instance.save()
-                    return redirect('view_bookings')  # Redirect to the home page to clear the form      *** I indented these inwards ****
+
+                    # Redirects to the View Bookings page 
+                    #return redirect('view_bookings') 
+                    message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest(s)."
+                    messages.success(request, message)
         else:
             form = BookingForm()
+
     else:
+        # If the user is not logged in/registered, the guest booking form will be used which contains extra fields
         if request.method == 'POST':
             form = BookingFormNotLoggedIn(request.POST)
+
             if form.is_valid():
                 form_instance = form.save(commit=False)
-                form_instance.save()
-                return redirect('view_bookings')  # Redirect to the home page to clear the form
+
+                # Create some variables from the form displayed fields
+                requested_date = request.POST.get('date')
+                requested_time = request.POST.get('time')
+                requested_guests = request.POST.get('number_of_guests')
+             
+                # List of tables from the BOOKING MODEL already assigned to requested time/date
+                booked_tables = get_booked_tables(requested_date, requested_time)
+               
+                # List of tables in the TABLE MODEL excluding the tables assigned in BOOKING MODEL at requested time/date
+                available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
+
+                # Checks if there is at least one table available
+                if available_tables.count() <= 0:
+                    message = f"Unfortunately, we fully booked at {requested_time} on {requested_date}."
+                   
+                    messages.success(request, message)
+                
+                else:
+                    # Calls the assign_table function to choose the most efficient table for the number of guests
+                    form_instance.table = assign_table(available_tables, requested_guests)
+
+                    # Save sthe instance 
+                    form_instance.save()
+
+                    # Displays success message
+                    message = f"Your table  for {requested_guests} is booked at {requested_time} on {requested_date}."
+                    messages.success(request, message)
+
+                    # Cleans form fields
+                    form = BookingFormNotLoggedIn()
+                    
         else:
             form = BookingFormNotLoggedIn()
 
@@ -127,25 +164,96 @@ def home(request):
 
 @login_required(login_url='account_login')
 def view_bookings(request):
-    bookings = Booking.objects.filter(customer_name = request.user).order_by('date', 'time')
+    """
+    Gets the reservations from the logged in user based on their email or user name (incase the superuser hasn't used an email)
+    If bookings were made as a guest before the user registered an account, it gets these bookings by the their email. 
+    """
+
+    # Variable containing all bookings associated with the email used
+    bookings_from_emails = Booking.objects.filter(email = request.user.email).order_by('date', 'time') 
+
+    # Variable containing all bookings associated with the customer_name used
+    bookings_from_user_name = Booking.objects.filter(customer_name = request.user).order_by('date', 'time') # from user_name
+
+    # If bookings_from_emails exists then they are the bookings
+    if bookings_from_emails:
+        bookings = bookings_from_emails
+    else:
+        # Otherwise  bookings_from_user_name are the bookings
+        bookings = bookings_from_user_name
+
     context = {
         'bookings' : bookings
     }
+
+    # Renders the view bookings page with the desired context
     return render(request, 'manage_bookings/view_bookings.html', context )
 
 
+
 def edit_bookings(request, booking_id):
+    """
+    Function to render the edit bookings page and handle the form.
+    """
+
     booking = get_object_or_404(Booking, pk = booking_id)
+   
     if request.method == 'POST':
         form = BookingForm(request.POST, instance = booking)
         if form.is_valid():
             form_instance = form.save(commit=False)
+
+            # Populate the booking instance customer_name field
             form_instance.customer_name = request.user
-            form_instance.save()
-            return redirect('view_bookings')  # Redirect to the home page to clear the form
+
+            # Populate the booking instance email field
+            form_instance.email = request.user.email
+
+            # Create some variables from the form displayed fields
+            requested_date = request.POST.get('date')
+            requested_time = request.POST.get('time')
+            requested_guests = request.POST.get('number_of_guests')
+
+            """
+            if booking.date == requested_date and booking.time == requested_time and booking.number_of_guests== requested_guests:
+                message = f"Your booking has no changes applied"
+                messages.success(request, message)
+            else:
+            """
+            # List of tables from the BOOKING MODEL already assigned to requested time/date
+            booked_tables = get_booked_tables(requested_date, requested_time)
+            
+            # List of tables in the TABLE MODEL excluding the tables assigned in BOOKING MODEL at requested time/date
+            available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
+
+            # Checks if there is at least one table available
+            if available_tables.count() <= 0:
+                message = f"Unfortunately we fully booked at {requested_time} on {requested_date}."
+                messages.success(request, message)
+            
+            else:
+                # Calls the assign_table function to choose the most efficient table for the number of guests
+                form_instance.table = assign_table(available_tables, requested_guests)
+                form_instance.save()
+
+                """
+                if int(requested_guests) == 1:
+                    guest = "guest"
+                else:
+                    guest = "guests"
+                return guest
+                """
+
+                message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)."
+                messages.success(request, message)
+
+
         else:
             form = BookingForm()
             context = {'form': form}
+
+
+
             return render(request, 'manage_bookings/edit_bookings.html', context)
     else:
         form = BookingForm(instance = booking)
@@ -178,26 +286,11 @@ def cancel_bookings(request, booking_id):
 
 
 
-"""
-
-def get_booking_date(pk):
     
-    requested_date  = Booking.objects.filter(pk.requested_date)
-        
-    return requested_date
 
 
-def book_table(request):
-    if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
 
-            booking_details = form.cleaned_data # all the form data - from front end
-            if booking_details ['date'] < timezone.now().date:
-                raise ValidationError("Please choose a valid date") # use alert from bootsrtap
-            
-            overlapping_bookings = Booking.objects.filter(date= booking_details['date'], time= booking_details['time']).exclude(pk= booking_details.get("id", None)) # exclude this current forms instance
-            if overlapping_bookings.exists():
-                raise ValidationError("Already booked") # use alert from bootsrtap
 
-"""
+
+
+
