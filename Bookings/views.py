@@ -18,9 +18,10 @@ def get_booked_tables(requested_date, requested_time):
     filtered_booking_data = Booking.objects.filter(time=requested_time,
         date=requested_date)
 
-    # Creates a list from the "table" field in each iteration(booking) in the filtered_booking_data
+    # Creates a list from the "table" field in each iteration in the filtered_booking_data
     booked_tables = [booking.table for booking in filtered_booking_data] 
     
+    # Returns the booked tables
     return booked_tables
 
 
@@ -196,10 +197,17 @@ def edit_bookings(request, booking_id):
     Function to render the edit bookings page and handle the form.
     """
 
+    # Gets the required booking 
     booking = get_object_or_404(Booking, pk = booking_id)
    
     if request.method == 'POST':
         form = BookingForm(request.POST, instance = booking)
+
+        # Create some variables from booking instance
+        old_requested_date = getattr(booking, 'date')
+        old_requested_time = getattr(booking, 'time')
+        old_requested_guests = getattr(booking, 'number_of_guests')
+
         if form.is_valid():
             form_instance = form.save(commit=False)
 
@@ -210,42 +218,36 @@ def edit_bookings(request, booking_id):
             form_instance.email = request.user.email
 
             # Create some variables from the form displayed fields
-            requested_date = request.POST.get('date')
-            requested_time = request.POST.get('time')
-            requested_guests = request.POST.get('number_of_guests')
+            requested_date = booking.date
+            requested_time = booking.time
+            requested_guests = booking.number_of_guests
 
-            """
-            if booking.date == requested_date and booking.time == requested_time and booking.number_of_guests== requested_guests:
+           
+
+            # Checks if at least one on the fields has been edited
+            if requested_date == old_requested_date and requested_time == old_requested_time and requested_guests == old_requested_guests:
                 message = f"Your booking has no changes applied"
                 messages.success(request, message)
             else:
-            """
-            # List of tables from the BOOKING MODEL already assigned to requested time/date
-            booked_tables = get_booked_tables(requested_date, requested_time)
             
-            # List of tables in the TABLE MODEL excluding the tables assigned in BOOKING MODEL at requested time/date
-            available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
+                # List of tables from the BOOKING MODEL already assigned to requested time/date
+                booked_tables = get_booked_tables(requested_date, requested_time)
+                
+                # List of tables in the TABLE MODEL excluding the tables assigned in BOOKING MODEL at requested time/date
+                available_tables = Table.objects.exclude(pk__in = [table.pk for table in booked_tables])
 
-            # Checks if there is at least one table available
-            if available_tables.count() <= 0:
-                message = f"Unfortunately we fully booked at {requested_time} on {requested_date}."
-                messages.success(request, message)
-            
-            else:
-                # Calls the assign_table function to choose the most efficient table for the number of guests
-                form_instance.table = assign_table(available_tables, requested_guests)
-                form_instance.save()
-
-                """
-                if int(requested_guests) == 1:
-                    guest = "guest"
+                # Checks if there is at least one table available
+                if available_tables.count() <= 0:
+                    message = f"Unfortunately we fully booked at {requested_time} on {requested_date}."
+                    messages.success(request, message)
+                
                 else:
-                    guest = "guests"
-                return guest
-                """
+                    # Calls the assign_table function to choose the most efficient table for the number of guests
+                    form_instance.table = assign_table(available_tables, requested_guests)
+                    form_instance.save()
 
-                message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)."
-                messages.success(request, message)
+                    message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)."
+                    messages.success(request, message)
 
 
         else:
@@ -266,16 +268,29 @@ def cancel_bookings(request, booking_id):
     booking = get_object_or_404(Booking, pk = booking_id)
     if request.method == 'POST':
         form = CancelBookingForm(request.POST, instance = booking)
-        
+
+        # Create variables from booking instance
+        requested_date = getattr(booking, 'date')
+        requested_time = getattr(booking, 'time')
+        requested_guests = getattr(booking, 'number_of_guests')
+
         if form.is_valid():
             form_instance = form.save(commit=False)
             form_instance.customer_name = request.user
+
             form_instance.delete()
-            return redirect('view_bookings')  # Redirect to the view booking page to clear when instance is deleted
+            #return redirect('view_bookings')  # Redirect to the view booking page to clear when instance is deleted
+
+            message = f"Your booking on the {requested_date} at {requested_time} for {requested_guests} guest(s) has been canceled."
+            messages.success(request, message)
+            
+        """  
         else:
             form = CancelBookingForm()
             context = {'form': form}
             return render(request, 'manage_bookings/cancel_bookings.html', context)
+        """
+        
     else:
         form = CancelBookingForm(instance = booking)
     

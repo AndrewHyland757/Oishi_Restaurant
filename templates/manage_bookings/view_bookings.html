@@ -30,7 +30,7 @@
             <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
+            <a class="nav-link" href="#footer">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -45,142 +45,53 @@
 
 
 
-<div class="section bg-light" id="reservation">
-  <div class="container">
-    <div class="row section-heading mb-5 justify-content-center  ">
-      <div class="col-md-12 text-center">
-          <h2 class="mb-3">Your Bookings</h2>
-         
-            
-            
-                    <p class="mb-5">You can edit or cancel your bookings here</p>
-                    
-                    
+<!-- Section: Manage Bookings  -->
+
+<div class="section bg-light">
+    <div class="container">
+        <!--  Heading and description -->
+        <div class="row section-heading mb-5 justify-content-center  ">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-3">Manage Bookings</h2>
+                    <p class="mb-5">Manage your bookings here</p>                 
+            </div>
         </div>
-        
-      </div>
-    <div class="row justify-content-center">
-      <div class="col-md-10 p-5 form-wrap">
-        
-
-
+        <div class="row justify-content-center">
+            <!-- Form wrap-->
+            <div class="col-md-10 p-5 form-wrap">
+                <ul>
+                    <div class="row mb-4" >
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" scope="col">Date</th>
+                                    <th  class="text-center" scope="col">Time</th>
+                                    <th class="text-center" scope="col">Guests</th>
+                                    <th class="text-center" scope="col">Action</th>
+                                  </tr>
+                            </thead>
+                            <tbody>
+                                {% for booking in bookings %}
+                                    <tr>
+                                        <td class="text-center">{{ booking.date }}</td>
+                                        <td class="text-center">{{ booking.time }}</td>
+                                        <td class="text-center">{{ booking.number_of_guests }}</td>
+                                        <td class="text-center">
+                                            <a href="{% url 'edit_bookings' booking.id %}" style="color:#c46f07">Edit</a>
+                                            <a href="{% url 'cancel_bookings' booking.id %}" style="color:#c46f07">Cancel</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
       
-  
-  
-        <ul>
-          <div class="row mb-4" >
-            <table class="table table-striped">
-  <thead>
-    <tr>
-      <th class="text-center" scope="col">Date</th>
-      <th  class="text-center" scope="col">Time</th>
-      <th class="text-center" scope="col">Guests</th>
-      <th class="text-center" scope="col">Action</th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    {% for booking in bookings %}
-    <tr>
-      <td class="text-center">{{ booking.date }}</td>
-      <td class="text-center">{{ booking.time }}</td>
-      <td class="text-center">{{ booking.number_of_guests }}</td>
-
-      <!--
-      <td>
-
-        <a href="{% url 'edit_bookings' booking.id %}">
-          <button class="btn btn-primary btn-outline-white g"  style="background-color: #c46f07;" type="submit">Edit</button>
-        </a>
-      </a>
-      <a href="{% url 'cancel_bookings' booking.id %}">
-        <button class="btn  btn-outline-white "  style="background-color: #c46f07;" type="submit">Cancel</button>
-      </a>
-    </td>
-    -->
-
-    <td class="text-center">
-      <a href="{% url 'edit_bookings' booking.id %}" style="color:#c46f07">Edit</a>
-      
-      <a href="{% url 'cancel_bookings' booking.id %}" style="color:#c46f07">Cancel</a>
-    </td>
-    </tr>
-  
-    {% endfor %}
-    
-  </tbody>
-</table>
-
-<div class="text-center mt-5" >
-  <p class="mb-5"><a href="{% url 'home' %}#reservation" style="color:#c46f07">Create a new booking</a> </p>
-</div>
-
-
-
-
-
- 
-
-
-
-
-
-<!--
-  <ul>
-            {% for booking in bookings %}
-              
-                
-                <li>
-                  <p> Your booking on {{ booking.date }}  at {{ booking.time }} for {{ booking.number_of_guests }} 
-                  {% if booking.number_of_guests == 1 %} 
-                      guest
-                  {% else %}
-                      guests
-                  {% endif %}
-                  </p>
-                  <a href="{% url 'edit_bookings' booking.id %}">
-                    <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Edit</button>
-                  </a>
-                  <a href="{% url 'cancel_bookings' booking.id %}">
-                    <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Cancel</button>
-                  </a>
-                </li>
-               
-              
-            {% endfor %}
-          </div>
-        </ul>
-
-          --> 
-      </div>
+                            </tbody>
+                        </table>
+                        <div class="text-center mt-5" >
+                            <p class="mb-5"><a href="{% url 'home' %}#reservation" style="color:#c46f07">Create a new booking</a> </p>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
-
-
-
-
-
-<!--
-
-<ul>
-  
-  {% for booking in bookings %}
-  <li>
-    <p> Your booking on {{ booking.date }}  at {{ booking.time }} for {{ booking.number_of_guests }} 
-      {% if booking.number_of_guests == 1 %} 
-      guest
-      {% else %}
-      guests
-      {% endif %}
-      </p>
-      <a href="{% url 'edit_bookings' booking.id %}">Edit</a>
-      <a href="{% url 'cancel_bookings' booking.id %}">Cancel</a>
-  </li>
-  {% endfor %}
-</ul>
-
--->
-
-        {% endblock content %}
+{% endblock content %}

@@ -30,7 +30,7 @@
             <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
         </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
+            <a class="nav-link" href="#footer">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
@@ -41,77 +41,52 @@
   </nav>
 </div>
 
+<!-- Section: Cancel Bookings  -->
 
-
-
-
-
-
-
-
-<!-- Section: Edit Bookings  -->
-
-<div class="section bg-light" id="reservation">
-  <div class="container">
-    <div class="row section-heading mb-5 justify-content-center  ">
-      <div class="col-md-12 text-center">
-          <h2 class="mb-3">Cancel Bookings</h2>
-         
-            
-            
-                    <p class="mb-5">Cancel your bookings here</p>
-                    
-                          
+<div class="section bg-light">
+    <div class="container">
+        <!--  Heading and description -->
+        <div class="row section-heading mb-5 justify-content-center  ">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-3">Cancel Bookings</h2>
+                    <p class="mb-5">Cancel your bookings here</p>                 
+            </div>
         </div>
-        
-      </div>
-    <div class="row justify-content-center">
-      <div class="col-md-10 p-5 form-wrap">
-        
 
-<!--
-        <form action="" method="POST">
-          {% csrf_token %}
-          <div class="row mb-4">
-            <p class="text-center"> Are you sure you want to delete your booking on {{ booking.date}} at {{ booking.time}} for {{ booking.number_of_guests }}? </p>
-          </div>
-          
-          <div class="text-center mt-5" >
-            <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Cancel</button></div>
-        </form>
-      
--->
+        <div class="row justify-content-center">
+            <!-- Form wrap-->
+            <div class="col-md-10 p-5 form-wrap">
 
-        <form action="" method="POST">
-          {% csrf_token %}
-          <div class="row mb-4">
-            <p class="text-center"> Are you sure you want to delete your booking? </p>
-      
-            {% for field in form %}
-              <div class=" col-lg-4 col-md-6">
-                <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-                {{ field }}
-              </div>
-            {% endfor %}
-        
-          </div>
-          
-          <div class="text-center mt-5" >
-            <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Delete Booking</button></div>
-        </form>
-
-
-
-
-
-
-      </div>
+                <!-- Any messages displayed here -->
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} text-center">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <!-- Form -->
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <!-- Row containing the form fields -->
+                    <div class="row mb-4">
+                        <!-- Loop to iterate the fields in the form -->
+                        {% for field in form %}
+                            <div class=" col-lg-4 col-md-6">
+                                <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                                    {{ field }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Form button -->
+                    <div class="text-center mt-5" >
+                        <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit">Delete Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
-
-
-
-
-
-        {% endblock content %}
+{% endblock content %}

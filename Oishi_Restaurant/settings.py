@@ -37,7 +37,6 @@ DEBUG = True
 ALLOWED_HOSTS = ["oishi-35599e8d6360.herokuapp.com", "8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io"]
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,8 +82,9 @@ ACCOUNT_FORMS = {
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/#reservation"
+#LOGIN_REDIRECT_URL = 'view_bookings'
+LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL = "/#reservation"
 
 
 MIDDLEWARE = [

@@ -2,196 +2,103 @@
 {% load i18n %}
 {% load allauth account socialaccount %}
 
-
 {% block content %}
-
 
 <!-- Section: Nav Bar -->
 
 <div class="container-fluid bg-light">
     <nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
-      <div class="container-fluid mb-4">
-        <a class="navbar-brand navbar-brand-centered brand-style" style=" color: #23242a; position: absolute;" href="#">Oishī</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav ">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
-          </li>
-          
-          {% if user.is_authenticated %}
+        <div class="container-fluid mb-4">
+            <a class="navbar-brand navbar-brand-centered brand-style" style=" color: #23242a; position: absolute;" href="#">Oishī</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                        </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                    </li>
-                    {% endif %}
-                  
-        </ul>
-      </div>
-    </div>
-  </nav>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                        </li>
+                    {% endif %}   
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- Section: Sign in -->
 
-<div class="section bg-light" id="">
+<div class="section bg-light">
     <div class="container">
-      <div class="row section-heading mb-5 justify-content-center  ">
-        <div class="col-md-12 text-center">
-            <h2 class="mb-3">{% trans "Sign In" %}</h2>
-            <p class="mb-5"> {% blocktrans %}If you have not created an account yet, then please
-                <a  href="{{ signup_url }}" style="color: #c46f07;">sign up</a> first.{% endblocktrans %}
-                </p>
-                
-          </div>
-        </div>
-      
-            {% url 'account_login' as login_url %}
-
-           
-           <!-- Sign up form wrap-->
-    <div class="row justify-content-center">
-      <div class="col-md-10 p-5 form-wrap">
-        <!-- Sign up form -->
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-        {% csrf_token %}
-
-        
-          
-        <!-- If statement to handle Sign up form errors -->
-        {% if form.errors %}
-        {% for field in form %}
-        {% for error in field.errors %}
-        
-        <p class = "text-center">{{ error|escape }}</p> 
-        
-        {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-        
-        <p class = "text-center">{{ error|escape }}</p>
-      
-        {% endfor %}
-        {% endif %}
-      
-
-        <div class="row mb-4 justify-content-center">
-        
-        <div class=" col-lg-4 col-md-6">
-          <label class="form-label" for="{{ field.auto_id }}">Username</label>
-              {{ form.login }}
-        </div>
-        <div class=" col-lg-4 col-md-6">
-          <label class="form-label" for="{{ field.auto_id }}">Password</label>
-              {{ form.password }}
-        </div>
-        <!--
-        {% for field in form %}
-            <div class=" col-lg-4 col-md-6">
-                  <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-                      {{ field }}
+        <!--  Heading and description -->
+        <div class="row section-heading mb-5 justify-content-center  ">
+            <div class="col-md-12 text-center">
+                <h2 class="mb-3">Sign In</h2>
+                <p class="mb-5">If you have not created an account yet, then please
+                    <a  href="{{ signup_url }}" style="color: #c46f07;">sign up</a>
+                </p>     
             </div>
-          {% endfor %}
-          -->
+        </div>  
+        <div class="row justify-content-center">
+            <!-- Login form wrap-->
+            <div class="col-md-10 p-5 form-wrap">
+                <!-- Login form -->
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <!--  Login form errors -->
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-warning text-center" role="alert">
+                                    {{ error|escape }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
 
-
-          {% if redirect_field_value %}
-            <input type="hidden"
-                    name="{{ redirect_field_name }}"
-                    value="{{ redirect_field_value }}" />
-          {% endif %}
-        {% endslot %}
-        {% endelement %}
-
-        <div class="text-center mt-5" >
-          <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">{% trans "Sign In" %}</button></div>
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-warning text-center" role="alert">
+                                {{ error|escape }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <!-- Row containing the form fields -->
+                    <div class="row mb-4 justify-content-center">
+                        <div class=" col-lg-4 col-md-6">
+                            <label class="form-label" for="{{ field.auto_id }}">Username</label>
+                                {{ form.login }}
+                        </div>
+                        <div class=" col-lg-4 col-md-6">
+                            <label class="form-label" for="{{ field.auto_id }}">Password</label>
+                                {{ form.password }}
+                        </div>
+                    </div>
+                    <!-- Form button -->
+                    <div class="text-center mt-5" >
+                      <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">Sign In</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-      </div>
     </div>
-
-
-  </div>
 </div>
-
-  {% endblock content %}
-
-
-<!--
-  {% block head_title %}
-  {% trans "Sign In" %}
-{% endblock head_title %}
-
-
-
-
-  {% element h1 %}
-      {% trans "Sign In" %}
-  {% endelement %}
-  <p>
-      {% blocktrans %}If you have not created an account yet, then please
-  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
-  </p>
-  
-  {% url 'account_login' as login_url %}
-  {% element form form=form method="post" action=login_url tags="entrance,login" %}
-      {% slot body %}
-          {% csrf_token %}
-
-          {% element fields form=form unlabeled=True %}
-
-          {% endelement %}
-          {% if redirect_field_value %}
-              <input type="hidden"
-                     name="{{ redirect_field_name }}"
-                     value="{{ redirect_field_value }}" />
-          {% endif %}
-      {% endslot %}
-      {% slot actions %}
-          {% element button type="submit" tags="prominent,login" %}
-              {% trans "Sign In" %}
-          {% endelement %}
-      {% endslot %}
-  {% endelement %}
-
--->
- 
+{% endblock content %}
