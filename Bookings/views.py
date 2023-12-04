@@ -24,14 +24,14 @@ def get_booked_tables(requested_date, requested_time):
     return booked_tables
 
 
-def assign_table(available_tables, requested_guests):
+def assign_table(request, available_tables, requested_guests):
     """
     This function takes the available tables at users requested time/date and assigns the best size table according to the number of guests. 
     The parameters "available_tables" and "requested_guests" will be defined in the home function. 
     """
     # The available_tables are sorted according to their number of seats
-    available_tables = sorted(available_tables, key=lambda table:int(table.table_seats)) # lambda creates a function in one line
-
+    available_tables = sorted(available_tables, key=lambda table:int(table.table_seats))
+    message =""
     # A loop to iterate through the available_tables starting with lowest seat number
     for table in available_tables:
 
@@ -50,15 +50,20 @@ def assign_table(available_tables, requested_guests):
         # If the iterated table has the same amount of seats plus three spare it is assigned
         elif int(table.table_seats) == sum([int(requested_guests), 3]):
             return table
-    
-    # If there will be more than three empty seats at a booking it is deemed inefficient and error message displayed
-    message = f"Unfortunately, we have no available table for {requested_guests} at required date and time"
-    
+        
+        else:
+
+            # If there will be more than three empty seats at a booking it is deemed inefficient and error message displayed
+            message = f"Unfortunately, we have no available table for {requested_guests} at required date and time"
+
+    messages.error(request, message)
+
+    """
     context = {
         "message" : message
     }
     return render(request, "index.html", context )
-    
+    """
    
 def home(request):
     """
@@ -95,14 +100,17 @@ def home(request):
                 
                 else:
                     # Calls the assign_table function to choose the most efficient table for the number of guests
-                    form_instance.table = assign_table(available_tables, requested_guests)
-                    
-                    # Saves the instance
-                    form_instance.save()
+                    form_instance.table = assign_table(request, available_tables, requested_guests)
 
-                    # Displays success message
-                    message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest(s)"
-                    messages.success(request, message)
+                    # If the assign_table returns a table
+                    if form_instance.table:
+
+                        # Saves the instance
+                        form_instance.save()
+
+                        # Displays success message
+                        message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest(s)"
+                        messages.success(request, message)
         else:
             form = BookingForm()
 
@@ -133,12 +141,15 @@ def home(request):
                     # Calls the assign_table function to choose the most efficient table for the number of guests
                     form_instance.table = assign_table(available_tables, requested_guests)
 
-                    # Saves the instance 
-                    form_instance.save()
+                    # If the assign_table returns a table
+                    if form_instance.table:
+                        
+                        # Saves the instance
+                        form_instance.save()
 
-                    # Displays success message
-                    message = f"Your table  for {requested_guests} is booked at {requested_time} on {requested_date}"
-                    messages.success(request, message)      
+                        # Displays success message
+                        message = f"Your table  for {requested_guests} is booked at {requested_time} on {requested_date}"
+                        messages.success(request, message)      
         else:
             form = BookingFormNotLoggedIn()
 
@@ -225,12 +236,15 @@ def edit_bookings(request, booking_id):
                     # Calls the assign_table function to choose the most efficient table for the number of guests
                     form_instance.table = assign_table(available_tables, requested_guests)
 
-                    # Saves the edited instance 
-                    form_instance.save()
+                    # If the assign_table returns a table
+                    if form_instance.table:
+                        
+                        # Saves the instance
+                        form_instance.save()
 
-                    # Displays success message
-                    message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)"
-                    messages.success(request, message)
+                        # Displays success message
+                        message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)"
+                        messages.success(request, message)
     else:
         form = BookingForm(instance = booking)
     context = {
@@ -259,18 +273,8 @@ def cancel_bookings(request, booking_id):
             # Deletes the edited instance 
             form_instance.delete()
             
-            return redirect(view_bookings)
-            #message = "Your booking on has been canceled"
-            #(messages.success(request, message))
-
-            # Displays success message
-            #message = f"Your booking on the {requested_date} at {requested_time} for {requested_guests} guest(s) has been canceled"
-            #return redirect(view_bookings(messages.success(request, message)))
-            message = (messages.success(request, "Your booking on has been canceled"))
-            context = {
-                "message" : message
-            }
-            return render(request, "manage_bookings/view_bookings.html", context)
+            messages.warning(request, "Your booking on has been canceled")
+            return redirect("view_bookings")
     else:
         form = CancelBookingForm(instance = booking)
     
