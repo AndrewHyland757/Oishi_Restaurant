@@ -9,8 +9,10 @@
 <div class="container-fluid bg-light">
   <nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
     <div class="container-fluid mb-4">
-      <a class="navbar-brand navbar-brand-centered brand-style" style=" color: #23242a; position: absolute;" href="#">Oishī</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand navbar-brand-centered brand-style" style=" color: #23242a; position: absolute;"
+        href="#">Oishī</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -28,17 +30,17 @@
             <a class="nav-link" href="{% url 'home' %}#contact">Contact</a>
           </li>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+          </li>
           {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-            </li>
-          {% endif %}   
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>
@@ -55,10 +57,10 @@
       <div class="col-md-12 text-center">
         <h2 class="mb-3">Sign In</h2>
         <p class="mb-5">If you have not created an account yet, then please
-          <a  href="{{ signup_url }}" style="color: #c46f07;">sign up</a>
-        </p>     
+          <a href="{{ signup_url }}" style="color: #c46f07;">sign up</a>
+        </p>
       </div>
-    </div>  
+    </div>
     <div class="row justify-content-center">
       <!-- Login form wrap-->
       <div class="col-md-10 p-5 form-wrap">
@@ -67,34 +69,35 @@
           {% csrf_token %}
           <!--  Login form errors -->
           {% if form.errors %}
-            {% for field in form %}
-              {% for error in field.errors %}
-                <div class="alert alert {{ message.tags }} text-center alert-dismissible fade show" id="msg" role="alert">>
-                  {{ error|escape }}
-                </div>
-              {% endfor %}
-            {% endfor %}
+          {% for field in form %}
+          {% for error in field.errors %}
+          <div class="alert alert {{ message.tags }} text-center alert-dismissible fade show" id="msg" role="alert">>
+            {{ error|escape }}
+          </div>
+          {% endfor %}
+          {% endfor %}
 
-            {% for error in form.non_field_errors %}
-              <div class="alert alert {{ message.tags }} text-center alert-dismissible fade show" id="msg" role="alert">
-                {{ error|escape }}
-              </div>
-            {% endfor %}
+          {% for error in form.non_field_errors %}
+          <div class="alert alert {{ message.tags }} text-center alert-dismissible fade show" id="msg" role="alert">
+            {{ error|escape }}
+          </div>
+          {% endfor %}
           {% endif %}
           <!-- Row containing the form fields -->
           <div class="row mb-4 justify-content-center">
             <div class=" col-lg-4 col-md-6">
               <label class="form-label" for="{{ field.auto_id }}">Username</label>
-                {{ form.login }}
+              {{ form.login }}
             </div>
             <div class=" col-lg-4 col-md-6">
               <label class="form-label" for="{{ field.auto_id }}">Password</label>
-                {{ form.password }}
+              {{ form.password }}
             </div>
           </div>
           <!-- Form button -->
-          <div class="text-center mt-5" >
-            <button class="btn btn-primary btn-outline-white sub-heading"  style="background-color: #c46f07;" type="submit" tags="prominent,login">Sign In</button>
+          <div class="text-center mt-5">
+            <button class="btn btn-primary btn-outline-white sub-heading" style="background-color: #c46f07;"
+              type="submit" tags="prominent,login">Sign In</button>
           </div>
         </form>
       </div>
