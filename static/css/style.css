@@ -19,9 +19,15 @@
 
 .brand-style{
     font-family: dela gothic one, sans-serif;
-    font-size: 60px;
+    font-size: 75px;
     margin-top: 20px;   
     color: whitesmoke;
+}
+
+@media (max-width: 600px) {
+  .brand-style {
+    font-size: 50px;
+  }
 }
 
 .navbar-brand-centered {
@@ -30,16 +36,15 @@
     display: block;
     width: 160px;
     text-align: center;
-    margin-left: -90px;
+    margin-left: -105px;
 }
-.navbar>.container .navbar-brand-centered, 
-.navbar>.container-fluid .navbar-brand-centered {
-   
+
+.navbar-brand:hover {
+  background-color: transparent;
+  color: whitesmoke;
 }
  .nav-link{
   color:#c46f07;
-  /*color: #cb9c45;
-  color: #ff7a5c;*/
  }
 
  .nav-item>a:hover {

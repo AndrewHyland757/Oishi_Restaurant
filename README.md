@@ -56,7 +56,7 @@ As a MVP the website has to achieve the desired user & business goals, the follo
 - A logout page for logged in users.  
 
 ## Design
-***
+
 ### Brief
 The website aims to convey the brand values through mostly visual language and the use of powerful images to convey to the user its identity and ethos. 
 Therefore, a strong landing image was used. This also entices a new user to explore the website firther and find out more. 
@@ -87,7 +87,7 @@ the project progressed.
 
 I used two custom models to handle the booking data from the restaurant. 
      
-### Table Model
+#### Table Model
 
 This stores the tables in the restaurant. Each table has a number and the amount of seats.
 
@@ -104,70 +104,80 @@ It also has a guest name field for non-registered users in which case the custom
 
 | Field Name         |   Field Type    | Validation |
 | ------------- | ------------- | ------------- | 
-| date         |   DateField      | - | 
+| date         |   DateField      | null=False, blank=False | 
 | time         | CharField        |default = '12:00', max_length=100, choices = time_choices |
 | number of guests| category_image   | default = 1, choices = guest_choices  | 
 | customer name    | ForeignKey    | on_delete=models.CASCADE, null=True |
 | guest name       | CharField       |max_length=100, null=True |       
-| table      |ForeignKey      | on_delete=models.CASCADE |
-| email      |EmailField      | null=True | 
+| table      |ForeignKey      | Table, on_delete=models.CASCADE, null=False |
+| email      |EmailField      | null=False, blank=False | 
 
 
 ## Features
 ### Navigation Bar & Landing Page
 ![Screenshot of navigation, logo and main image](static/images/screenshot-home.jpg)
-* The nav-bar, situated on the top-right of the pages, provides the user with a clear and easily identifiable way to go between the sections and pages. 
-* The logo sits in the centerof the nav-bar. This works well with the image used as it draws the eye from the central action in the photo natuarlly to the logo and back. It uses an off-white colour to stand out.
-* The navigation links strike a balance between being easily located while also discrete enough as not to distract for the main landing images visual power.
- 
+Navigation bar: Situated on the top-right of the pages, provides the user with a clear and easily identifiable way to go between the sections and pages. The page that the user is on has an 'active' style, the text turns a darker orange to show to the user the current page they're on. When a nav link is hovered on the same style change occurs, again helping th euser navigate easily.
 
+Wither the user is logged in or logger out will determine wither nav links are shown or not; only logged in users can will see the "logout" link and likewise only
+logged out users willl see the "login" and "register" links. 
+This prevents any fustration on the users part, keeps the screen clutter free and enables easier navigation. Furthermore, it makes it clear what the logged-in status is to the user.
+In terms of styling, the navigation links strike a balance between being easily located while also discrete enough as not to distract for the main landing images visual power.
+The navigation bar is fully responsive and collapses on mobile screens to a hamburger icon on smaller sized screens. 
+
+Logo: The logo sits in the center of the nav-bar. This works well with the image used as it draws the eye from the central action in the photo natuarlly to the logo and back. It uses an off-white colour to stand out.
+
+ 
 ### About Section
 ![Screenshot of about section](static/images/screenshot-about.jpg)
-* This provides a brief description of the restaurant.
-* The images conveys a sense of location, identity and energy.
-* A Bootstrap card template was used to make this section with the text sections removed. 
+ This provides the user with a brief to the point description of the restaurant. It purpose is to entice further exploration of the site as well as using
+images to convey the emotions and atmosphere the brand wishes to communicate; that is, a sense of location, identity and energy
+A Bootstrap card template was used to make this section with the text sections removed. 
 
 ### Specials Section
 ![Screenshot of specials section](static/images/screenshot-specials.jpg)
-* In this section further details are given on some of the signature dishes on offer alon with an image.
-* A Bootstrap card template was modified to make this section. 
+In this section further details are given on some of the signature dishes on offer along with an  accompaning image.
+A Bootstrap card template was modified to make this section. The use of the colour for the subheadings as well as being capitalised
+helps add variation and injects a hint of colour to the texts. 
   
 
 ### Chef Section
 ![Screenshot of chef section](static/images/screenshot-chef.jpg)
-* Here a description of the head chef is given with a suitable image.
+Here a description of the head chef and his background is given with a suitable image in a circular frame. All section headings and texts are kept in the 
+same format throughout the website. 
 
 ### Reserve Section
 ![Screenshot of reserve section](static/images/screenshot-reserve.jpg)
-* This provides the user with fields to make a booking
-* If logged in th euser will only enter the date, time and numberof guests to make a booking.
-* If a guest user then the will have to enter their email address, name as well as th eother booking fields.
-If the guest widhes to view their booking they will have to register an account with the same email.  
+Reservation form: This section the booking form. If logged in,  the user will only enter the date, time and numberof guests to make a booking.
+The email field and customer name fields are taked from Allauth. It was important that the logged in user wouldn't have to repeat 
+entering personal information in the booking form as it woul be fustrating for a registered user. 
+If a the user is a guest, then they will have to enter their email address, name as well as the other booking fields.
+If the guest wishes to view their booking they will have to register an account. Using either the same email or username will fetch their bookings. 
  
 
 ### Footer Section
 ![Screenshot of footer section](static/images/screenshot-footer.jpg)
-* In the footer section links are provided to the restaurant's social media accounts.
-* Contact details and address are given.
-* Details of opening hours.
-* Links to other areas of the site.
+The footer displays some of the restaurants key information. It is split into four sections, social medial links, 'Opening Times', 'Contact', 
+and 'Useful Links'. It utilizes a dark grey background and has the effect of giving a strong base to the website. 
+
 
 ### Register/Login/Logout pages
 ![Screenshot of register section](static/images/screenshot-register.jpg)
-* Register and login/logout pages using Django allauth.
-* The same form template is used throughout with tweeks made accoreding to the number of fields rendered. 
-* A logout link is provided in the nav-bar for logged in users.
+ This is done through Allauth. In setting up an account a email is necessary. This is because a user is more likely to use the same 
+ email address rather that username if they make a booking as a guest first and then wish to register an account. Also, the restaurant needs a point of contact.
+ The same form template is used throughout with tweeks made accoreding to the number of fields rendered to allow for the most symetrical rendering. 
 
-### Manage Booking page
+
+### View Bookings page
 ![Screenshot of manage bookings page](static/images/screenshot-manage.jpg)
-* Here the user can view and edit their bookings.
-* A Bootstrap table template is used to easily and clearly present the details. 
+Here logged in users are able to view the 'view bookings' page; if not logged in they are redirected to the sign in page. 
+In the view bookings page their bookings are displayed in a table in order of date. All reservation they have previously made using the email address associated with their user account will be shown. 
+A Bootstrap table template is used to easily and clearly present the details. 
 
 ### Edit/Cancel Booking pages
 ![Screenshot of edit page](static/images/screenshot-edit.jpg)
-* Here the user can change or delete their bookings. 
+on these pages the user can change or delete their bookings. If deletind a booking they are redirected abck to the view bookings page where a confirmation message will appear. On the edit page new booking enquiries can be made. 
 
-The reservation app requires a database to store information. This incluses ywo custom models. 
+
 
 ## Technologies Used
 

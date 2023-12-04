@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Table, Booking
-#from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.contrib import messages
 from .forms import BookingForm, BookingFormNotLoggedIn, CancelBookingForm
@@ -139,7 +138,7 @@ def home(request):
                 
                 else:
                     # Calls the assign_table function to choose the most efficient table for the number of guests
-                    form_instance.table = assign_table(available_tables, requested_guests)
+                    form_instance.table = assign_table(request, available_tables, requested_guests)
 
                     # If the assign_table returns a table
                     if form_instance.table:
@@ -234,7 +233,7 @@ def edit_bookings(request, booking_id):
                 
                 else:
                     # Calls the assign_table function to choose the most efficient table for the number of guests
-                    form_instance.table = assign_table(available_tables, requested_guests)
+                    form_instance.table = assign_table(request, available_tables, requested_guests)
 
                     # If the assign_table returns a table
                     if form_instance.table:
@@ -282,16 +281,3 @@ def cancel_bookings(request, booking_id):
         'form': form
         }
     return render(request, "manage_bookings/cancel_bookings.html", context)
-
-
-
-
-
-    
-
-
-
-
-
-
-
