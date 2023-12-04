@@ -11,14 +11,12 @@
 
 </head>
 <body>
-{% block content %}
+  {% block content %}
+  <!-- Content Goes here -->
+  {% endblock content %}
 
-
-{% endblock content %}
-
-<!-- Section: Footer -->
-
-<footer class="text-center text-lg-start  text-muted mt-5 pb-5 footer-font" style="background-color: #23242a; position: static;" id="footer">
+  <!-- Section: Footer -->
+  <footer class="text-center text-lg-start  text-muted mt-5 pb-5 footer-font" style="background-color: #23242a; position: static;" id="footer">
     <!-- Footer Social media -->
     <div class="row">
       <div class="col-12 text-center pt-3">
@@ -28,11 +26,11 @@
           <a><i style="color:#c46f07; font-size: 24px;" class="fab fa-instagram p-2"></i
           ></a>
           <a ><i style="color:#c46f07; font-size: 24px;" class="fab fa-twitter p-2"></i
-            ></a>
+          ></a>
         </section>
       </div>
     </div>
-  
+    
     <!-- Footer Contact  -->
     <section class="">
       <div class="container text-center text-md-start mt-5">
@@ -48,7 +46,7 @@
             <p>Lunch:<br>Tuesday - Sunday 12:00 - 3:00</p>
             <p>Dinner:<br>Tuesday - Sunday 6:00 - 9:00</p>
           </div>
-          
+            
           <!-- Footer Links  -->
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
             <h6 class="text-uppercase fw-bold mb-4" style="color:#c46f07">
@@ -61,7 +59,7 @@
               <a href="#!" class="text-reset" style="text-decoration: none;">Login</a>
             </p>
             <p>
-              <a href="#!" class="text-reset" style="text-decoration: none;">Reservatiion</a>
+              <a href="#!" class="text-reset" style="text-decoration: none;">Reserve</a>
             </p>
             <p>
               <a href="#!" class="text-reset" style="text-decoration: none;">Register</a>
@@ -71,11 +69,18 @@
       </div>
     </section>
   </footer>
+
+  <script>
+    setTimeout(function () {
+      let messages = document.getElementById('msg');
+      let alert = new bootstrap.Alert(messages);
+          alert.close();
+          }, 3000);
+  </script>
 </body>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/1002ac1991.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </html>
