@@ -17,20 +17,56 @@
   background-position: center center;
 }
 
-.brand-style{
-    font-family: dela gothic one, sans-serif;
-    font-size: 75px;
-    margin-top: 20px;   
-    color: whitesmoke;
-}
 
+/*
 @media (max-width: 600px) {
   .brand-style {
     font-size: 50px;
   }
 }
+*/
 
-.navbar-brand-centered {
+/* Nav-bar brand logo styling */
+
+.brand-style{
+  font-family: dela gothic one, sans-serif;
+  font-size: 45px;
+  
+  color: whitesmoke;
+}
+
+.nav-link{
+  color: whitesmoke;
+ }
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+
+  #navbarSupportedContent{
+    text-align: center;
+  }
+
+ /* Large screens */
+@media (min-width: 768px) {
+
+  .nav-link{
+    color:#c46f07;
+   }
+
+  .brand-style{
+    font-family: dela gothic one, sans-serif;
+    font-size: 75px;
+    margin-top: 20px;   
+    color: whitesmoke;
+  }
+
+  .navbar-brand-centered {
     position: absolute;
     left: 50%;
     display: block;
@@ -38,14 +74,13 @@
     text-align: center;
     margin-left: -105px;
 }
+}
 
 .navbar-brand:hover {
   background-color: transparent;
   color: whitesmoke;
 }
- .nav-link{
-  color:#c46f07;
- }
+
 
  .nav-item>a:hover {
     color:#7c4111;
