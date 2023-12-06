@@ -252,11 +252,13 @@ def edit_bookings(request, booking_id):
 
                 # Checks if there is at least one table available
                 if available_tables.count() <= 0:
+
+                    # Displays fully booked message
                     message = f"Unfortunately we fully booked at {requested_time} on {requested_date}"
                     messages.error(request, message)
 
                 else:
-                    # Calls the assign_table function to choose the most
+                    # Calls the assign table function to choose the most
                     # efficient table for the number of guests
                     form_instance.table = assign_table(
                         request, available_tables, requested_guests)

@@ -45,6 +45,7 @@
   color: whitesmoke;
  }
 
+ 
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
@@ -53,56 +54,45 @@
 }
 
 
-
   #navbarSupportedContent{
     text-align: right;
   }
 
- /* Large screens */
-@media (min-width: 768px) {
-
-
-
-  .position{
+  .navbar-brand:hover {
+    background-color: transparent;
+    color: whitesmoke;
+  }
   
+  
+   .nav-item>a:hover {
+      color:#7c4111;
+  }
+  
+  .navbar-nav>.active>a {
+      color:#7c4111;
+  }
+
+
+
+@media (min-width: 1200px) {
+  .position-xl-absolute{
     position: absolute;
   }
+}
+
+@media (min-width: 1200px) {
+/* X-Large screens - changes to the nav-bar after the links expand */
   .nav-link{
     color:#c46f07;
    }
 
   .brand-style{
-    font-family: dela gothic one, sans-serif;
     font-size: 80px;
     line-height: 55px;
-    color: whitesmoke;
-    
   }
-
-  .navbar-brand-centered {
-    position: absolute;
-    left: 50%;
-    display: block;
-    width: 160px;
-    text-align: center;
-    margin-left: -105px;
-}
-
-}
-
-.navbar-brand:hover {
-  background-color: transparent;
-  color: whitesmoke;
 }
 
 
- .nav-item>a:hover {
-    color:#7c4111;
-}
-
-.navbar-nav>.active>a {
-    color:#7c4111;
-}
 
 /*  CSS to style fonts, section headings and sub-headings */
 

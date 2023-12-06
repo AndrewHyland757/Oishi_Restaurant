@@ -111,5 +111,5 @@ class CancelBookingForm(forms.ModelForm):
                 'readonly': 'readonly', 'type': 'date',
                 'class': 'form-control disable-hover'}),
             'time': forms.TextInput(attrs={
-                'readonly': 'readonly',
-                'class': 'form-control, disable-hover'})}
+                    'readonly': 'readonly', 'class':
+                    'form-control disable-hover'})}
