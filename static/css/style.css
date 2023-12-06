@@ -6,6 +6,7 @@
 
 .background{
   background: url("../images/home-image2.jpg");
+  
   height: 100vh;
   background-size: cover;
   width: 100vw;
@@ -15,8 +16,13 @@
   z-index: -1;
   background-repeat: no-repeat;
   background-position: center center;
+  
 }
 
+
+.nav-background{
+  background-color: transparent;
+}
 
 /*
 @media (max-width: 600px) {
@@ -30,8 +36,8 @@
 
 .brand-style{
   font-family: dela gothic one, sans-serif;
-  font-size: 45px;
-  
+  font-size: 55px;
+  line-height: 30px;
   color: whitesmoke;
 }
 
@@ -49,21 +55,28 @@
 
 
   #navbarSupportedContent{
-    text-align: center;
+    text-align: right;
   }
 
  /* Large screens */
 @media (min-width: 768px) {
 
+
+
+  .position{
+  
+    position: absolute;
+  }
   .nav-link{
     color:#c46f07;
    }
 
   .brand-style{
     font-family: dela gothic one, sans-serif;
-    font-size: 75px;
-    margin-top: 20px;   
+    font-size: 80px;
+    line-height: 55px;
     color: whitesmoke;
+    
   }
 
   .navbar-brand-centered {
@@ -74,6 +87,7 @@
     text-align: center;
     margin-left: -105px;
 }
+
 }
 
 .navbar-brand:hover {
