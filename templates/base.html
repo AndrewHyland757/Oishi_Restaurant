@@ -44,31 +44,55 @@
 
       <div class="collapse navbar-collapse position-xl-absolute" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          
+          <li {% url 'home' as url %}  
+              {% if request.path == url %} class="nav-item active"
+              {% else %} class="nav-item"
+              {% endif %}>
             <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
+
+          
           <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#about">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
-          </li>
+
+          
+
           <li class="nav-item"> </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'home' %}#footer">Contact</a>
           </li>
           {% if user.is_authenticated %}
-          <li class="nav-item">
+
+          <li {% url 'view_bookings' as url %}  
+              {% if request.path == url %} class="nav-item active"
+              {% else %} class="nav-item"
+              {% endif %}>
+            <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
+          </li>
+
+          <li {% url 'account_logout' as url %}  
+              {% if request.path == url %} class="nav-item active"
+              {% else %} class="nav-item"
+              {% endif %}>
             <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
           </li>
           {% else %}
-          <li class="nav-item">
+          <li {% url 'account_signup' as url %}  
+              {% if request.path == url %} class="nav-item active"
+              {% else %} class="nav-item"
+              {% endif %}>
             <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
           </li>
-          <li class="nav-item">
+          
+          <li {% url 'account_login' as url %}  
+              {% if request.path == url %} class="nav-item active"
+              {% else %} class="nav-item"
+              {% endif %}>
             <a class="nav-link" href="{% url 'account_login' %}">Login</a>
           </li>
           {% endif %}
@@ -77,6 +101,7 @@
     </div>
   </nav>
 </div>
+
   {% block content %}
   <!-- Content Goes here -->
   {% endblock content %}
