@@ -6,7 +6,6 @@
 
 .background{
   background: url("../images/home-image2.jpg");
-  
   height: 100vh;
   background-size: cover;
   width: 100vw;
@@ -16,9 +15,7 @@
   z-index: -1;
   background-repeat: no-repeat;
   background-position: center center;
-  
 }
-
 
 .nav-background{
   background-color: transparent;
@@ -33,14 +30,31 @@
 */
 
 /* Nav-bar brand logo styling */
+.brand{
+  font-family: dela gothic one, sans-serif;
+  font-size: 55px;
+  line-height: 30px;
+  color: rgb(58,60,70);
+}
 
-.brand-style{
+.brand:hover {
+  background-color: transparent;
+  color:rgb(58,60,70, .9);
+}
+
+.brand-home{
   font-family: dela gothic one, sans-serif;
   font-size: 55px;
   line-height: 30px;
   color: whitesmoke;
 }
 
+.brand-home:hover {
+  background-color: transparent;
+  color:rgb(245,245,245, .8);
+}
+
+/* Styling for nav-links */
 .nav-link-color{
   color: #c46f07;
  }
@@ -49,66 +63,84 @@
   color: whitesmoke;
  }
 
+ 
 
+/* Change nav-links on collasped menu on home screen to white */
  @media (max-width: 1200px) {
 
   .nav-link-color-home {
   color: whitesmoke;
  }
+}
 
+
+.nav-item>a:hover {
+  color:#7c4111;
+}
+
+
+.active>a { 
+  color:#7c4111;
+}
+
+
+.navbar-nav>.active>a { 
+  color:#7c4111;
 }
 
 
 
- 
 
- 
+
+/* Styling for navigation toggler icon */
+
+.navbar-toggler,
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
     outline: none;
+    border: none;
     box-shadow: none;
 }
 
 
-  #navbarSupportedContent{ /* Needed */
-    text-align: right;
-  }
 
-  .navbar-brand:hover {
-    background-color: transparent;
-    color: whitesmoke;
-  }
-  
-  
-   .nav-item>a:hover {
-      color:#7c4111;
-  }
-  
-  
-  .navbar-nav>.active>a { /* Needed? */
-      color:#7c4111;
-  }
 
-  .active {
-    color:#7c4111;
+#toggle-icon {
+  color: #c46f07;
+  font-size:28px;
 }
 
 
+#navbarSupportedContent{ /* Needed */
+  text-align: right;
+}
+
+  
+  
+
+
 @media (min-width: 1200px) {
-  .position-xl-absolute{
-    position: absolute;
-  }
+  
 }
 
 @media (min-width: 1200px) {
 /* X-Large screens - changes to the nav-bar after the links expand */
-/*
-  .nav-link{
-    color:#c46f07;
-   }
-*/
-  .brand-style{
+
+.position-xl-absolute{
+  position: absolute;
+}
+
+.nav-link-color-home{
+   color:#c46f07;
+ }
+  
+ .brand {
+  font-size: 80px;
+  line-height: 55px;
+ } 
+ 
+ .brand-home{
     font-size: 80px;
     line-height: 55px;
   }
@@ -126,7 +158,7 @@
 }
   
 h1, h2, h3, h4, h5 {
-    color: #23242a;
+    color: rgb(58,60,70);
     font-family: "noto serif jp", serif;
     font-weight: 500;
 }
@@ -140,7 +172,7 @@ h1, h2, h3, h4, h5 {
   
 .section-heading h2 {
     font-size: 50px;
-    color: #23242a;
+    color: rgb(58,60,70);
 }
   
 @media (max-width: 991.98px) {

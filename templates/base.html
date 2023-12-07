@@ -18,113 +18,36 @@
 <body>
 
   <!-- Section: Nav bar and home page image -->
-<!--
+
+
+
 
   {% url 'home' as url %}  
   {% if request.path == url %}
 
+
+
 <div class="container-fluid bg-light background">
-  <nav class="navbar navbar-expand-xl navbar-light" style="position: relative">
-{% else %}
-<div class="container-fluid bg-light">
-  <nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
-{% endif %}
-
-    <div class="container-fluid mb-4   justify-content-end ">
-      <a class="navbar-brand mx-auto brand-style">Oishī</a>
-
-      <button class="navbar-toggler position-absolute mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="remove(this)">
-        <span class="navbar-toggler-icon"  >
-          
-          <i class="fa fa-navicon" style="color:#fff; font-size:28px;" id="toggle-icon" onclick="remove(this)"></i>
-        </span>
-      </button>
-
-
-      <div class="collapse navbar-collapse position-xl-absolute" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-         
-          <li {% url 'home' as url %}  
-              {% if request.path == url %} class="nav-item active"
-              {% else %} class="nav-item"
-              {% endif %}>
-            <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-
-          
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
-          </li>
-
-          
-
-          <li class="nav-item"> </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home' %}#footer">Contact</a>
-          </li>
-          {% if user.is_authenticated %}
-
-          <li {% url 'view_bookings' as url %}  
-              {% if request.path == url %} class="nav-item active"
-              {% else %} class="nav-item"
-              {% endif %}>
-            <a class="nav-link" href="{% url 'view_bookings' %}">View Bookings</a>
-          </li>
-
-          <li {% url 'account_logout' as url %}  
-              {% if request.path == url %} class="nav-item active"
-              {% else %} class="nav-item"
-              {% endif %}>
-            <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-          </li>
-          {% else %}
-          <li {% url 'account_signup' as url %}  
-              {% if request.path == url %} class="nav-item active"
-              {% else %} class="nav-item"
-              {% endif %}>
-            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-          </li>
-          
-          <li {% url 'account_login' as url %}  
-              {% if request.path == url %} class="nav-item active"
-              {% else %} class="nav-item"
-              {% endif %}>
-            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
 </div>
--->
 
 
 
-
-
-{% url 'home' as url %}  
-{% if request.path == url %}
-
-<div class="container-fluid bg-light background">
-<nav class="navbar navbar-expand-xl navbar-light" style="position: relative">
-{% else %}
-<div class="container-fluid bg-light">
-<nav class="navbar navbar-expand-lg navbar-dark " style="position: relative;">
-{% endif %}
+<div class="sticky-top" style=" display:block;
+position:absolute;
+top:0;
+left:0;
+right:0;
+width:100%;">
+<nav class="navbar navbar-expand-xl sticky-top"  style="position: relative">
 
   <div class="container-fluid mb-4   justify-content-end ">
-    <a class="navbar-brand mx-auto brand-style">Oishī</a>
+    <a class="navbar-brand mx-auto" href="{% url 'home' %}">Oishī</a>
 
     <button class="navbar-toggler position-absolute mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="remove(this)">
-      <span class="navbar-toggler-icon"  >
+      <span  >
         
-        <i class="fa fa-navicon" style="color:#fff; font-size:28px;" id="toggle-icon" onclick="remove(this)"></i>
+        <i class="fa fa-navicon" id="toggle-icon" onclick="remove(this)"></i>
       </span>
     </button>
 
@@ -134,7 +57,7 @@
 
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link"  href="{% url 'home' %}">Home</a>
+          <a class="nav-link" id="home" href="{% url 'home' %}">Home</a>
         </li>
 
         <li class="nav-item">
@@ -148,7 +71,6 @@
         </li>
 
         {% if user.is_authenticated %}
-
         <li class="nav-item">
           <a class="nav-link" href="{% url 'view_bookings' %}">View bookings</a>
         </li>
@@ -173,9 +95,76 @@
 
 
 
+  
+
+<!--
+  
+  
+  <div class="container-fluid bg-light background">
+  <nav class="navbar navbar-expand-xl"  style="position: relative">
+  {% else %}
+  <div class="container-fluid bg-light">
+  <nav class="navbar navbar-expand-lg" style="position: relative;">
+  {% endif %}
+  
+  
+  
+  
+    <div class="container-fluid mb-4   justify-content-end ">
+      <a class="navbar-brand mx-auto" href="{% url 'home' %}">Oishī</a>
+  
+      <button class="navbar-toggler position-absolute mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="remove(this)">
+        <span  >
+          
+          <i class="fa fa-navicon" id="toggle-icon" onclick="remove(this)"></i>
+        </span>
+      </button>
+  
+  
+      <div class="collapse navbar-collapse position-xl-absolute" id="navbarSupportedContent">
+  
+  
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" id="home" href="{% url 'home' %}">Home</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}#reservation">Reserve</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}#footer">Contact</a>
+          </li>
+  
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_bookings' %}">View bookings</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+          </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            {% endif %}
+        </ul>  
+          
+      </div>
+    </div>
+  </nav>
+  </div>
 
 
-
+-->
 
 
 
