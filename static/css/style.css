@@ -34,7 +34,7 @@
   font-family: dela gothic one, sans-serif;
   font-size: 55px;
   line-height: 30px;
-  color: rgb(58,60,70);
+  color: #23242a;
 }
 
 .brand:hover {
@@ -60,7 +60,7 @@
  }
  
  .nav-link-color-home{
-  color: whitesmoke;
+  color:rgb(245,245,245, .9);
  }
 
  
@@ -69,7 +69,7 @@
  @media (max-width: 1200px) {
 
   .nav-link-color-home {
-  color: whitesmoke;
+  color:rgb(245,245,245);
  }
 }
 
@@ -118,11 +118,6 @@
 
   
   
-
-
-@media (min-width: 1200px) {
-  
-}
 
 @media (min-width: 1200px) {
 /* X-Large screens - changes to the nav-bar after the links expand */

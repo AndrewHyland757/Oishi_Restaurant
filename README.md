@@ -4,113 +4,130 @@
 
 [Live application can be found here](https://oishi-restaurant.herokuapp.com/)
 
-This is a full-stack framework project built using Django, Python, HTML, & CSS. The website is built for a fictional Japanese restaurant called Oishi as an educational project for Code Institue's portfolio four. It is designed to showcase the restaurant and allow the customer to make, edit and delete reservations through their account. 
+## About
+This is a full-stack framework project built using Django, Python, Javascript, HTML, & CSS. The website is built for a fictional Japanese restaurant called Oishī as an educational project for Code Institue's portfolio four. It is designed to showcase the restaurant and allow the customer to make, edit and delete reservations through their account. 
 
+## Business Goals
+- Communicates the restaurants brand values and identity through visual language, styling and text.
+- Entice interest and further exploration upon landing on the website.
+- Appeal to the target demographic.
+- Provide the potential customer with a platform to book a table at hte restaurant.
+- Provide the potential customer necessary essential information about the restaurant.
+ 
 
 ---
-## UX
+## User Experience
 
-## Strategy
-Using the core UX principles I first started with Strategy, thinking about the target audience for this restaurant & the features they would benefit from.
-
+### Target Audience
 The target audience for the website are:
-- 25-60 year olds
-- People interested in food, fine-dining and eating-out
-- People that are interested in culture, travel and local hotspots
+- 25-60 year olds.
+- People interested in food, fine-dining and eating-out.
+- People that are interested in culture, travel and local hotspots.
 
-These users will be looking for:
-- A user-friendly website that balances information with an aesthetic that communicates the restaurant's values and reflects target customers
-- Information about the restaurant, types of dishes it serves and who runs it
-- A way to book a table 
-- A way to view and manage reservations
-- Contact information
-- A way to easily access social media accounts form the website
-
- It is increasingly common for people to make restaurant reservations on the go from their mobile devices. Therefore, creating a mobile friendly website is essential. Bootstrap grids and elements along side custom CSS has benn used in the front-end creation. 
+#### User Requirements and Expectations
+- A user-friendly website that balances information with an aesthetic that communicates the restaurant's values and reflects target customers.
+- A mobile friendly website as bookings are often made on the go. 
+- Information about the restaurant, types of dishes it serves and who runs it.
+- A way to book a table.
+- A way to view and manage reservations.
+- Contact information and address.
+- A way to easily access social media accounts form the website.
 
 ## User Stories
 
 1. As a  user I can intuitively navigate through the site so that I can view desired content.
 2. As a user I can get key information about the restaurant from the home page.
-3.  As a non-logged in user I can make a booking quickly without having an account.
-4. As a non-logged in user I can register an account to view and manage my bookings.
-5. As a user I can easily see if I'm logged in or not and have easy access to the logout page. 
-6. As a logged in user, form fields like email and username are auto-populated in the booking form.  
-7. As an admin user I can view all the customer bookings. 
-8. As an admin user I can add tables to the Table model.
-9. As an admin user I can add bookings, edit and delete bookings. 
-10. As a logged-in customer I can edit/delete an existing enquiry so that I can make changes if required online.
-11. As a user I can edit my customer information so that I can make sure my details are up to date for any future communication with the restaurant.
+3. As a user I can easily see if I'm logged in or not and have easy access to the logout page.
+4. As a non-registered user I can make a booking quickly without having an account.
+5. As a non-registered user I can register an account to view and manage my previous bookings.
+6. As a logged in user, user information, ie. email address and name, is not required to fill in when making a booking.   
+7. As a logged-in customer I can edit an existing booking.
+8. As a logged-in customer I can delete an existing booking.
+9. As an admin user I can view all the customer bookings. 
+10. As an admin user I can add and delete tables in the Table model.
+11. As an admin user I can add, edit and delete bookings. 
+
 
 ## Scope
-As a MVP the website has to achieve the desired user & business goals, the following features will be included in this version:
+As a MVP the website has to achieve the essential user & business goals. The following features will be included in this version:
 
-- A responsive navbar that will have links to all the sections and pages in the website
-- A visually strong landing page that entices the user on to further exploration of the business 
-- About section, with a brief suitable description and three images. 
+- A responsive navbar that will have links to all the sections and pages in the website.
+- A visually strong landing page that entices the user on to further exploration of the business.
+- Visual language and styling that reflects the brands values and appeals to the target audience.
+- About section, with a brief suitable description of the restaurant with three images. 
 - Specials section showcasing some of the menu items on offer. 
 - Chef section describing the head chef with an image. 
-- Reservations section, where logged-in users can make reservations.
-- A footer section with contact information, social media links and opening times. 
-- Register and login pages using Django allauth.
+- Reservations section, where logged-in and logged-out users can make reservations.
+- A footer section with contact information, social media links, site links and opening times. 
+- Register and login pages using Django Allauth.
+- A view bookings page to manage bookings.
 - A logout page for logged in users.  
 
-## Design
+## Front-End Design
 
 ### Brief
-The website aims to convey the brand values through mostly visual language and the use of powerful images to convey to the user its identity and ethos. 
-Therefore, a strong landing image was used. This also entices a new user to explore the website firther and find out more. 
+- Communicate the brand values through through visual language, styling and text.
+- Appeal to the target audience. 
+- Easily  navigate and locate necessary information for optimal user expeerience.
+
+### Images
+
+- A strong landing image is used. This entices interest urging a potential customer to explore the website further and find out more. 
+- Further images are used to communicate brand values, offer visual stimulation and provide information such as images of dishes and the head chef. 
+
 
 ### Colours
-The website uses a light theme throughout. This works well in creating a clean, modern and refined feel to the content.
-Section headings utilize a dark grey offering contrast and easy readibility.
-A orange hue was choosen for the sub-headings and buttons. This was picked form the home image using [imagecolorpicker.com](https://imagecolorpicker.com/). As well as giving
-a strong contrast it offers a sense of continuity and  harmony as these colours will have been first notices upon the landing page image. 
-As one scrolls dowen through the sections the backgorund colour changes from a shade of white to a light grey.
+#### Background Colours
+- The website uses a light theme throughout. This works well in creating a clean, modern and refined feel to the content.
+- As one scrolls down through the sections, the backgorund colour changes from a shade of white to a light grey giving a subtle sense of seperation to the content.
+
+#### Styling Colours
+![Image of colour palette](static/images/oishī-palette.jpg)
+- The brand logo, section headings and the footer background utilize a dark grey, offering contrast and easy readibility.
+- The home page brand logo uses a shade of white to stand out. 
+- A orange hue was choosen for the sub-headings, buttons and as a hover border on form fields. This was picked form the home image using [imagecolorpicker.com](https://imagecolorpicker.com/).
+As well as achieving a strong contrast it offers a sense of continuity and  harmony as these colours will have been first noticed upon viewing the landing page image.
+- A darker shade of this orange was used to show the active navigation link.
+- Paragraph text colour is grey offering clean and subtle readability.
+
 
 ### Fonts
-Google fonts Dela Gothic One is used on the brand logo. Its thick bold character design shows a confidence and energy that alins with the restaurant's brand  values. 
-It also constrasts well with the background image and prevents an over-seriousness creeping in from the minimal sans-serif used in the nav-bar links and texts in the website. 
+- Google fonts Dela Gothic One is used on the brand logo. 
+Its thick bold character design and Japanese influence alins well with the brands confidence, youthfullness and location. 
+It also constrasts well with the background image and prevents an over-sterile feel creeping in from the minimal sans-serif used in the nav-bar links and texts in the website. 
 
-Noto Serif JP, again from Google fonts, is used on the section headings. It links well to the Japanese heritage of the restaurant while still being subtle and refined.
+- Noto Serif JP, again from Google fonts, is used on the section headings. It links well to the Japanese heritage of the restaurant while still being subtle and refined.
 
-Sans-serif is used on the paragraphs section of the website. It offers a clean, refined and legible design, which makes it easy to read on screens of different sizes and resolutions. It has a neutral appearance and doesn't have any distracting features that can make it difficult to read. 
+- Sans-serif is used on the paragraphs section of the website. It offers a clean, refined and legible design, which makes it easy to read on screens of different sizes and resolutions. It has a neutral appearance and doesn't have any distracting features that can make it difficult to read. 
 
-### Agile
 
-Agile  was used to keep development in line with the core requirments of the project. In Github a kanban board was created where the user stories 
-were located. This made it easy to keep on track of getting the essential aspects of the project covered as well as being able to see progress happening as 
-the project progressed. 
-![Screenshot of user stories](static/images/screenshot-userstories.jpg)
 
-### Database Design
+## Back-End Design
 
-I used two custom models to handle the booking data from the restaurant. 
+### User Model
+- User model as part of the Django allauth library contains basic information about authenticated user and contains folowing fields: username, password,email
      
-#### Table Model
+### Table Model
 
-This stores the tables in the restaurant. Each table has a number and the amount of seats.
+This custom model stores the tables in the restaurant. Each table has a number and the amount of seats.
 
-| Field Name         |   Field Type    | Validation |
-| ------------- | ------------- | ------------- |
-| table no         | Integer          | unique=True | 
-| table seats           | Integer        | -    | 
+![Image of colour palette](static/images/)
 
-#### Booking Model
+### Booking Model
 
 The Booking Model stores all the restaurant bookings. It stores the date, time, number of guests, table, customer name and email.
 The table field is taken form the Table model and the customer name from the logged in Allauth user.
 It also has a guest name field for non-registered users in which case the customer field is not used. 
 
-| Field Name         |   Field Type    | Validation |
-| ------------- | ------------- | ------------- | 
-| date         |   DateField      | null=False, blank=False | 
-| time         | CharField        |default = '12:00', max_length=100, choices = time_choices |
-| number of guests| category_image   | default = 1, choices = guest_choices  | 
-| customer name    | ForeignKey    | on_delete=models.CASCADE, null=True |
-| guest name       | CharField       |max_length=100, null=True |       
-| table      |ForeignKey      | Table, on_delete=models.CASCADE, null=False |
-| email      |EmailField      | null=False, blank=False | 
+![Image of colour palette](static/images/)
+
+
+## Agile
+
+Agile  was used to keep development in line with the core requirments of the project. In Github a kanban board was created where the user stories 
+were located. This made it easy to keep on track of getting the essential aspects of the project covered as well as being able to see progress happening as 
+the project progressed. 
+![Screenshot of user stories](static/images/screenshot-userstories.jpg)
 
 
 ## Features
@@ -190,18 +207,87 @@ on these pages the user can change or delete their bookings. If deletind a booki
 - Python 
 - Django 
 
-### Libraries & Tools
+### Libraries & Tools 
 
+- [Django](https://www.djangoproject.com/) Django is the framework that has been used to build the over project and its apps.
 - [GitHub](https://github.com/) was used as a remote repository to store project code
-- [Bootstrap](https://getbootstrap.com/). This project uses the Bootstrap library components such as (Navbar, Buttons, Card, Footer,)
-- [Google Fonts](https://fonts.google.com/) - for typography in project
-- [Lucidcharts](https://lucid.app/) has been used to design  data model logic.
-
-
-
+- [Bootstrap](https://getbootstrap.com/). - This project uses the Bootstrap library components such as (Navbar, Buttons, Card, Footer,)
+- [Google Fonts](https://fonts.google.com/) - For fonts used in the project.
+- [Font Awesome](https://fontawesome.com/)- Used to obtain the social media icons used in the footer section. 
 - [Cloudinary](https://cloudinary.com/) to store static files
+- [Bootstrap](https://getbootstrap.com/) - Used for creating the HTML templates.
+- [Lucidcharts](https://lucid.app/) has been used to design  data model logic.
+- [Heroku](https://dashboard.heroku.com/apps) - Used to deploy my application.
+
+
+
+
 
 - [Favicon.io](https://favicon.io) for making the site favicon
 - [Chrome dev tools](https://developers.google.com/web/tools/chrome-devtools/) was used for debugging of the code and checking site for responsiveness
 
 
+---
+## Technologies Used
+
+I have used several technologies that have enabled this design to work:
+
+
+- [Python](https://www.python.org/)
+    - Python is the core programming language used to write all of the code in this application to make it fully functional.
+
+- [Google Fonts](https://fonts.google.com/)
+    - Used to obtain the fonts linked in the header, fonts used were Raleway and Lobster
+- [Font Awesome](https://fontawesome.com/)
+    - Used to obtain the icons used on the high scores and rules pages.
+- [Google Developer Tools](https://developers.google.com/web/tools/chrome-devtools)
+    - Used as a primary method of fixing spacing issues, finding bugs, and testing responsiveness across the project.
+- [GitHub](https://github.com/)
+    - Used to store code for the project after being pushed.
+- [Git](https://git-scm.com/)
+    - Used for version control by utilising the Gitpod terminal to commit to Git and Push to GitHub.
+- [Gitpod](https://www.gitpod.io/)
+    - Used as the development environment.
+- [Heroku](https://dashboard.heroku.com/apps)
+    - Used to deploy my application.
+- [Lucid](https://lucid.app/documents#/dashboard)
+    - Used to create the ERD for the project.
+- [Grammarly](https://www.grammarly.com/)
+    - Used to fix the thousands of grammar errors across the project.
+- [ImageResizer](https://imageresizer.com/)
+    - Used to resize images to reduce loading time.
+- [Pep8](http://pep8online.com/)
+    - Used to test my code for any issues or errors.
+- [Grammarly](https://www.grammarly.com/)
+    - Used to fix the grammar errors across the project.
+- [Unicorn Revealer](https://chrome.google.com/webstore/detail/unicorn-revealer/lmlkphhdlngaicolpmaakfmhplagoaln?hl=en-GB)
+    - Used to detect overflow of elements, which allowed me to quickly debug any issues.
+- [Coloors](https://coolors.co/)
+    - Used to create a colour palette for the design.
+- [Cloudinary](https://cloudinary.com/)
+    - Used to store all of my static files and images.
+- [Favicon.io](https://favicon.io/)
+    - Used to create favicon's for my website
+- [Color Contrast Accessibility Validator](https://color.a11y.com/)
+    - Allowed me to test the colour contrast of my webpage.
+- [W3C Markup Validation Service](https://validator.w3.org/) 
+    - Used to validate all HTML code written and used in this webpage.
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
+    - Used to validate all CSS code written and used in this webpage.
+- [JSHint](https://jshint.com/)
+    - Used to validate JS code
+- [Freeformatter CSS Beautify](https://www.freeformatter.com/css-beautifier.html)
+    - Used to accurately format my CSS code.
+- [Freeformatter HTML Formatter](https://www.freeformatter.com/html-formatter.html)
+    - Used to accurately format my HTML code.
+- [AmIResponsive](http://ami.responsivedesign.is/)
+    - Used to generate responsive image used in README file.
+- [Wave](https://wave.webaim.org/)
+    - Used to test the accessibility of the website.
+- [Animate](https://animate.style/)
+    - Used to animate main heading and forms. 
+- [SQLite](https://www.sqlite.org/index.html)
+    - I have SQLite to run my database tests locally.
+- [PostgreSQL](https://www.postgresql.org/)
+    - I have used Heroku's PostgreSQL relational database in deployment to store the data for my models.
+---
