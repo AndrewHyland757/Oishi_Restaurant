@@ -140,6 +140,10 @@ It also constrasts well with the background image and prevents an over-sterile f
 
 
 ![Image of locic-flow chart](static/images/readme-images/logic-flow.png)
+<details><summary>Flowchart</summary>
+    <img src="./static/images/readme-images/logic-flow.png" >
+        
+</details>
 
 
 
@@ -209,6 +213,102 @@ helps add variation and injects a hint of colour to the texts.
 and 'Useful Links'. 
 - It utilizes a dark grey background and has the effect of giving a strong end to the website. 
 
+
+
+
+## Manual Testing of User Stories
+
+WAS = Works as expected
+
+### 1. As a user I can intuitively navigate through the website so that I can easily access key information and view desired content.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Navigating to :https://.herokuapp.com/ | home page loads | WAS |
+User scrolls through the home page | Content of the page is presented | WAS |
+User click on a Link in the nav bar | user taken to desired part of the web app | WAS |
+
+
+### 2. As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Navigating to :https://.herokuapp.com/ | home page loads | WAS |
+Non-logged user views nav-bar | "Login" link is shown | WAS |
+Logged user views nav-bar | "Logout" link is shown | WAS |
+
+### 3. As a non-registered user I can make a booking so that I don't need to spend time setting up an account.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Navigating to :https://.herokuapp.com/ | home page loads | WAS |
+Click on reservation link in the nav-bar | Site navigates to reservation section | WAS |
+Submit form with missing form fields | Prompt shown to fill in field | WAS |
+Use past date in date field | Error message shown | WAS |
+Fill in all fields with valid date| Success message displayed. Instance saved in model | WAS |
+Fill in form fields on date/time fully booked | Unsuccessfull message displayed | WAS |
+Fill in form fields on date/time with no suitable table available | Unsuccessfull message displayed | WAS |
+
+### 4. As a non-registered user I can set up an account so that I can view and manage potential bookings or any previously made bookings
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Navigating to :https://.herokuapp.com/ | Home page loads | WAS |
+Click on register link in the nav-bar | Site navigates to register page | WAS |
+Submit form with missing form fields | Prompt shown to fill in fields | WAS |
+Use invalid email address | Error message shown | WAS |
+Use already registered email address | Error message shown | WAS |
+Use already registered username | Error message shown | WAS |
+Use invalid password | Error message shown | WAS |
+Use non-matching passwords | Error message shown | WAS |
+Fill in all fields with valid data| Redireccts to reservatiion section. Success message displayed. User saved in model | WAS |
+
+
+### 5. As a logged in user I can make a booking without filling in account information like name and email.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Navigating to :https://.herokuapp.com/ | home page loads | WAS |
+Click on login link in the nav-bar | Site navigates to login page | WAS |
+User logs in | Site navigates to reservation section. Success message displayed | WAS |
+Submit form with no date | Prompt shown to fill in date field | WAS |
+Use past date in date field | Error message shown | WAS |
+Fill in all fields with valid date| Success message displayed. Instance saved in model | WAS |
+Fill in form fields on date/time fully booked | Unsuccessfull message displayed | WAS |
+Fill in form fields on date/time with no suitable table available | Unsuccessfull message displayed | WAS |
+
+### 6. As a logged in user I can easily view all my bookings so that I can see any upcoming reservations.  
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+Logged in user navigates to manage bookings | User taken to required page | WAS |
+User can see in order of date all their bookings | Bookings displaed in a table | WAS |
+User can navigate to edit/cancel booking pages via link|  Edit/cancel links takes the user to the desired page with the desired booking instance | WAS |
+
+### 7. As a logged in user I can edit an existing booking so that I can change the time, date or number of guests of a booking.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+User navigates to the edit booking page via the link in the manage booking table | Edit page loads with correct booking instance in the form | WAS |
+User does not make any changes to the fields | Warning message appears | WAS |
+Submit form with no date | Prompt shown to fill in date field | WAS |
+Use past date in date field | Error message shown | WAS |
+Fill in form fields on date/time fully booked | Unsuccessfull message displayed | WAS |
+Fill in form fields on date/time with no suitable table available | Unsuccessfull message displayed | WAS |
+Fill in all fields with valid date| Success message displayed. Instance saved in model | WAS |
+
+### 8. As a logged in user I can delete an existing booking so that I can remove any unwanted reservations.
+
+**Step** | **Expected Result** | **Actual Result**
+------------ | ------------ | ------------ |
+User navigates to the cancel booking page via the link in the manage booking table | Cancel page loads with correct booking instance in the form | WAS |
+User can not edit the form field data | Form fields are not editable | WAS |
+User deletes the booking by clicking on the form button | Instance is deleted, user redirected to manage bookings page, success message displayed | WAS |
+Submit form with no date | Prompt shown to fill in date field | WAS |
+
+
+
+
 ## Technologies Used
 
 ### Languages & Frameworks
@@ -219,6 +319,7 @@ and 'Useful Links'.
 - Boostrap 
 - Python 
 - Django 
+
 
 ### Libraries & Tools 
 
@@ -304,3 +405,5 @@ I have used several technologies that have enabled this design to work:
 - [PostgreSQL](https://www.postgresql.org/)
     - I have used Heroku's PostgreSQL relational database in deployment to store the data for my models.
 ---
+
+
