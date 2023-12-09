@@ -19,13 +19,13 @@ This is a full-stack framework project built using Django, Python, Javascript, H
 ## User Experience
 
 ### Target Audience
-The target audience for the website are:
+
 - 25-60 year olds.
 - People interested in food, fine-dining and eating-out.
 - People that are interested in culture, travel and local hotspots.
 
-#### User Requirements and Expectations
-- A user-friendly website that balances information with an aesthetic that communicates the restaurant's values and reflects target customers.
+### User Requirements and Expectations
+- A user-friendly website that balances information with an aesthetic that communicates the restaurant's values and appeals to the target customers.
 - A mobile friendly website as bookings are often made on the go. 
 - Information about the restaurant, types of dishes it serves and who runs it.
 - A way to book a table.
@@ -35,18 +35,23 @@ The target audience for the website are:
 
 ## User Stories
 
-1. As a  user I can intuitively navigate through the site so that I can view desired content.
-2. As a user I can get key information about the restaurant from the home page.
-3. As a user I can easily see if I'm logged in or not and have easy access to the logout page.
-4. As a non-registered user I can make a booking quickly without having an account.
-5. As a non-registered user I can register an account to view and manage my previous bookings.
-6. As a logged in user, user information, ie. email address and name, is not required to fill in when making a booking.   
-7. As a logged-in customer I can edit an existing booking.
-8. As a logged-in customer I can delete an existing booking.
+Agile  was used to keep development in line with the core requirments of the project. In Github a kanban board was created where the user stories 
+were located. This made it easy to keep on track of getting the essential aspects of the project covered as well as being able to see progress happening as 
+the project progressed.
+
+1. As a user I can intuitively navigate through the website so that I can easily access key information and view desired content. 
+2. As a user I can easily see if I'm logged in or not so that I can choose to log in or log out depending on what I'm doing.
+3. As a non-registered user I can make a booking so that I don't need to spend time setting up an account..
+4. As a non-registered user I can set up an account so that I can view and manage potential bookings or any previously made bookings
+5. As a logged in user I can make a booking without filling in account information like name and email so that bookings can be made easily without causing annoyance.
+6. As a logged in user I can easily view all my bookings so that I can see any upcoming reservations.  
+7. As a logged in user I can edit an existing booking so that I can change the time, date or number of guests of a booking.
+8. As a logged in user I can delete an existing booking so that I can remove any unwanted reservations.
 9. As an admin user I can view all the customer bookings. 
 10. As an admin user I can add and delete tables in the Table model.
 11. As an admin user I can add, edit and delete bookings. 
 
+![Image of user stories](static/images/readme-images/user-stories.jpg)
 
 ## Scope
 As a MVP the website has to achieve the essential user & business goals. The following features will be included in this version:
@@ -54,13 +59,15 @@ As a MVP the website has to achieve the essential user & business goals. The fol
 - A responsive navbar that will have links to all the sections and pages in the website.
 - A visually strong landing page that entices the user on to further exploration of the business.
 - Visual language and styling that reflects the brands values and appeals to the target audience.
-- About section, with a brief suitable description of the restaurant with three images. 
+- About section with a brief suitable description of the restaurant with three images. 
 - Specials section showcasing some of the menu items on offer. 
 - Chef section describing the head chef with an image. 
 - Reservations section, where logged-in and logged-out users can make reservations.
 - A footer section with contact information, social media links, site links and opening times. 
 - Register and login pages using Django Allauth.
 - A view bookings page to manage bookings.
+- An edit bookings page.
+- A delete bookings page.
 - A logout page for logged in users.  
 
 ## Front-End Design
@@ -78,17 +85,17 @@ As a MVP the website has to achieve the essential user & business goals. The fol
 
 ### Colours
 #### Background Colours
-- The website uses a light theme throughout. This works well in creating a clean, modern and refined feel to the content.
+- The website uses a light theme throughout. This works well in creating a clean, modern and refined feel to the content as well as enhancing readability.
 - As one scrolls down through the sections, the backgorund colour changes from a shade of white to a light grey giving a subtle sense of seperation to the content.
 
 #### Styling Colours
-![Image of colour palette](static/images/oishī-palette.jpg)
+![Image of colour palette](static/images/readme-images/oishī-palette.jpg)
 - The brand logo, section headings and the footer background utilize a dark grey, offering contrast and easy readibility.
 - The home page brand logo uses a shade of white to stand out. 
 - A orange hue was choosen for the sub-headings, buttons and as a hover border on form fields. This was picked form the home image using [imagecolorpicker.com](https://imagecolorpicker.com/).
 As well as achieving a strong contrast it offers a sense of continuity and  harmony as these colours will have been first noticed upon viewing the landing page image.
 - A darker shade of this orange was used to show the active navigation link.
-- Paragraph text colour is grey offering clean and subtle readability.
+- Paragraph text colour is grey offering a clean minimal look as well as good readability.
 
 
 ### Fonts
@@ -104,36 +111,46 @@ It also constrasts well with the background image and prevents an over-sterile f
 
 ## Back-End Design
 
+![Image of database models](static/images/readme-images/database.png)
+
 ### User Model
 - User model as part of the Django allauth library contains basic information about authenticated user and contains folowing fields: username, password,email
      
 ### Table Model
 
-This custom model stores the tables in the restaurant. Each table has a number and the amount of seats.
-
-![Image of colour palette](static/images/)
+- This custom model stores the tables in the restaurant.
+- Each table has a number and the amount of seats.
 
 ### Booking Model
 
-The Booking Model stores all the restaurant bookings. It stores the date, time, number of guests, table, customer name and email.
-The table field is taken form the Table model and the customer name from the logged in Allauth user.
-It also has a guest name field for non-registered users in which case the customer field is not used. 
+- This custom model holds all the restaurant bookings. 
+- It stores the date, time, number of guests, table, customer name and email.
+- The table field is taken form the Table model and the customer name from the logged in Allauth user model.
+- It also has a guest name field for non-registered users in which case the customer field is not used. 
 
-![Image of colour palette](static/images/)
+### Flowchat
+
+- When making a booking on the reservation section, the form fields deisplayed will depend on th user being loggged in or not.
+- It was import that logged in users were not entering account information like username and email as this would be fustrating. 
+- Equally, it was important that non-registered users could make a booking without having to go through the sign up process. Therefore, a guest user field was included in the Booking model to  handle this. The guest will haver to enter thier email when making a booking. Any  past bookings accociated  with this email will be retrivied if the user decides to create an account later. 
+- Once the booking form is validated it the code checks if ther are any available tables.
+- If so, it was important that tables were assigned according to the number of guests, not just the first table from the Table Model.
+- The code then finds the best matched table to exclude or lower the number of empty seats. 
+- If more that three empty seats is the only availability the booking will not proceed as there will be too many empty seats.
 
 
-## Agile
+![Image of locic-flow chart](static/images/readme-images/logic-flow.png)
 
-Agile  was used to keep development in line with the core requirments of the project. In Github a kanban board was created where the user stories 
-were located. This made it easy to keep on track of getting the essential aspects of the project covered as well as being able to see progress happening as 
-the project progressed. 
-![Screenshot of user stories](static/images/screenshot-userstories.jpg)
+
 
 
 ## Features
+
 ### Navigation Bar & Landing Page
-![Screenshot of navigation, logo and main image](static/images/screenshot-home.jpg)
-Navigation bar: Situated on the top-right of the pages, provides the user with a clear and easily identifiable way to go between the sections and pages. The page that the user is on has an 'active' style, the text turns a darker orange to show to the user the current page they're on. When a nav link is hovered on the same style change occurs, again helping th euser navigate easily.
+
+![Screenshot of navigation, logo and main image](static/images/)
+
+Situated on the top-right of the pages, provides the user with a clear and easily identifiable way to go between the sections and pages. The page that the user is on has an 'active' style, the text turns a darker orange to show to the user the current page they're on. When a nav link is hovered on the same style change occurs, again helping th euser navigate easily.
 
 Wither the user is logged in or logger out will determine wither nav links are shown or not; only logged in users can will see the "logout" link and likewise only
 logged out users willl see the "login" and "register" links. 
@@ -145,56 +162,52 @@ Logo: The logo sits in the center of the nav-bar. This works well with the image
 
  
 ### About Section
-![Screenshot of about section](static/images/screenshot-about.jpg)
- This provides the user with a brief to the point description of the restaurant. It purpose is to entice further exploration of the site as well as using
-images to convey the emotions and atmosphere the brand wishes to communicate; that is, a sense of location, identity and energy
-A Bootstrap card template was used to make this section with the text sections removed. 
+![Screenshot of about section](static/images/readme-images/screenshot-about.jpg)
+- This provides the user with a brief to the point description of the restaurant. It purpose is to provide information and visual stimulation as well as entice further exploration.
 
 ### Specials Section
-![Screenshot of specials section](static/images/screenshot-specials.jpg)
-In this section further details are given on some of the signature dishes on offer along with an  accompaning image.
-A Bootstrap card template was modified to make this section. The use of the colour for the subheadings as well as being capitalised
+![Screenshot of specials section](static/images/readme-images/screenshot-specials.jpg)
+- In this section further details are given on some of the signature dishes on offer along with an  accompaning image.
+- A Bootstrap card template was modified to make this section. The use of the colour for the subheadings as well as being capitalised
 helps add variation and injects a hint of colour to the texts. 
   
-
 ### Chef Section
-![Screenshot of chef section](static/images/screenshot-chef.jpg)
-Here a description of the head chef and his background is given with a suitable image in a circular frame. All section headings and texts are kept in the 
-same format throughout the website. 
+![Screenshot of chef section](static/images/readme-images/screenshot-chef.jpg)
+- Here a description of the head chef and his background is given with a suitable image.
 
 ### Reserve Section
-![Screenshot of reserve section](static/images/screenshot-reserve.jpg)
-Reservation form: This section the booking form. If logged in,  the user will only enter the date, time and numberof guests to make a booking.
-The email field and customer name fields are taked from Allauth. It was important that the logged in user wouldn't have to repeat 
-entering personal information in the booking form as it woul be fustrating for a registered user. 
-If a the user is a guest, then they will have to enter their email address, name as well as the other booking fields.
-If the guest wishes to view their booking they will have to register an account. Using either the same email or username will fetch their bookings. 
+![Screenshot of reserve section](static/images/readme-images/screenshot-reserve.jpg)
+- The displayed reservation form fields will depend on wither the user is logged in or not. 
+- Links in the description are provided for easy access to the login and register pages for logged out users. 
+- For logged in users a link os provided to the view bookings page.  
  
-
-### Footer Section
-![Screenshot of footer section](static/images/screenshot-footer.jpg)
-The footer displays some of the restaurants key information. It is split into four sections, social medial links, 'Opening Times', 'Contact', 
-and 'Useful Links'. It utilizes a dark grey background and has the effect of giving a strong base to the website. 
-
-
 ### Register/Login/Logout pages
-![Screenshot of register section](static/images/screenshot-register.jpg)
+![Screenshot of register section](static/images/readme-images/screenshot-register.jpg)
  This is done through Allauth. In setting up an account a email is necessary. This is because a user is more likely to use the same 
  email address rather that username if they make a booking as a guest first and then wish to register an account. Also, the restaurant needs a point of contact.
  The same form template is used throughout with tweeks made accoreding to the number of fields rendered to allow for the most symetrical rendering. 
 
 
-### View Bookings page
+### Manage Bookings page
 ![Screenshot of manage bookings page](static/images/screenshot-manage.jpg)
-Here logged in users are able to view the 'view bookings' page; if not logged in they are redirected to the sign in page. 
-In the view bookings page their bookings are displayed in a table in order of date. All reservation they have previously made using the email address associated with their user account will be shown. 
-A Bootstrap table template is used to easily and clearly present the details. 
+- Only accessible to logged in users.
+- Here their bookings are displayed in a table in order of date. All reservation they have previously made using the email address associated with their user account will be shown.
+- Each booking has a link to the edit booking and cancel booking pages. 
+- A Bootstrap table template is used to clearly present the details.
+- A link is provided to the reservation section to make new bookings. 
 
 ### Edit/Cancel Booking pages
-![Screenshot of edit page](static/images/screenshot-edit.jpg)
-on these pages the user can change or delete their bookings. If deletind a booking they are redirected abck to the view bookings page where a confirmation message will appear. On the edit page new booking enquiries can be made. 
+![Screenshot of edit page](static/images/readme-images/screenshot-edit.jpg)
+- Only accessible to logged in users through the Manage Bookings page. 
+- On these pages the user can change or delete their bookings.
+- If a booking is deleted, they are redirected abck to the view bookings page where a confirmation message will appear.
+- On the edit page new booking enquiries can be made. 
 
-
+### Footer Section
+![Screenshot of footer section](static/images/readme-images/screenshot-footer.jpg)
+- The footer displays some of the restaurants key information. It is split into four sections, social medial links, 'Opening Times', 'Contact', 
+and 'Useful Links'. 
+- It utilizes a dark grey background and has the effect of giving a strong end to the website. 
 
 ## Technologies Used
 
