@@ -84,9 +84,8 @@ ACCOUNT_FORMS = {
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = "/#reservation"
-#LOGIN_REDIRECT_URL = 'view_bookings'
-LOGOUT_REDIRECT_URL = LOGIN_REDIRECT_URL = "/#reservation"
+LOGIN_REDIRECT_URL = '/#reserve'
+LOGOUT_REDIRECT_URL = "/#reserve"
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-info',

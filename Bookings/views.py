@@ -66,8 +66,8 @@ def assign_table(request, available_tables, requested_guests):
 
 def home(request):
     """
-    Function to render the home page and handle the booking form
-    """
+    Function to render the home page and handle the reservation form
+    """   
     # Checks if user is logged in, and if so, uses the appropriate form
     if request.user.is_authenticated:
         if request.method == 'POST':
@@ -180,7 +180,11 @@ def home(request):
     context = {
         'form': form
         }
-    return render(request, "index.html", context)
+   
+    return render(request, 'index.html', context)
+
+
+
 
 
 @login_required(login_url='account_login')
@@ -243,20 +247,21 @@ def edit_bookings(request, booking_id):
             requested_date = booking.date
             requested_time = booking.time
             requested_guests = booking.number_of_guests
+            
+            
 
-            # Checks if the date is valid
-            if requested_date <= str(timezone.now().date()):
-                message = f"{requested_date} is in the past. Please choose a valid date and time"
-                messages.error(request, message)
+            # Checks if at least one on the fields has been edited
+            if requested_date == old_requested_date and requested_time == old_requested_time and requested_guests == old_requested_guests:
 
+                # Show message
+                message = f"You have made no changes to your booking"
+                messages.warning(request, message)
             else:
+                # Checks if the date is valid
+                if str(requested_date) <= str(timezone.now().date()):
+                    message = f"{requested_date} is in the past. Please choose a valid date and time"
+                    messages.error(request, message)
 
-                # Checks if at least one on the fields has been edited
-                if requested_date == old_requested_date and requested_time == old_requested_time and requested_guests == old_requested_guests:
-
-                    # Show message
-                    message = f"You have made no changes to your booking"
-                    messages.warning(request, message)
                 else:
                     # List of tables from the BOOKING MODEL already
                     # assigned to requested time/date
