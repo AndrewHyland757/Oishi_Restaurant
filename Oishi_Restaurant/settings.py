@@ -38,6 +38,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["oishi-35599e8d6360.herokuapp.com", "8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io"]
 
 
+
 # Application definition
 
 INSTALLED_APPS = [

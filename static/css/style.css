@@ -55,6 +55,7 @@
 }
 
 /* Styling for nav-links */
+
 .nav-link-color{
   color: #c46f07;
  }
@@ -64,7 +65,6 @@
  }
 
  
-
 /* Change nav-links on collasped menu on home screen to white */
  @media (max-width: 1200px) {
 
@@ -74,19 +74,20 @@
 }
 
 
-.nav-item>a:hover {
+
+
+.nav-link.active-link { 
   color:#7c4111;
 }
 
 
-.active>a { 
+
+
+.nav-link:hover {
   color:#7c4111;
 }
 
 
-.navbar-nav>.active>a { 
-  color:#7c4111;
-}
 
 
 

@@ -55,7 +55,7 @@ def assign_table(request, available_tables, requested_guests):
         # If the iterated table has three extra seat it's returned next
         elif int(table.table_seats) == sum([int(requested_guests), 3]):
             return table
-
+        
         else:
             # If there will be more than three empty seats at a booking it is
             # deemed inefficient and error message displayed
@@ -86,37 +86,42 @@ def home(request):
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
 
-                # List of tables from the BOOKING MODEL already assigned to
-                # requested time/date
-                booked_tables = get_booked_tables(
-                    requested_date, requested_time)
-
-                # List of tables in the TABLE MODEL excluding the tables
-                # assigned in BOOKING MODEL at requested time/date
-                available_tables = Table.objects.exclude(pk__in=[
-                    table.pk for table in booked_tables])
-
-                # Checks if there is at least one table available
-                if available_tables.count() <= 0:
-
-                    # If not, message is shown
-                    message = f"Unfortunately we fully booked at {requested_time} on {requested_date}"
+                # Checks if the date is valid
+                if requested_date <= str(timezone.now().date()):
+                    message = f"{requested_date} is in the past. Please choose a valid date and time"
                     messages.error(request, message)
-
                 else:
-                    # Calls the assign_table function to choose the most
-                    # efficient table for the number of guests
-                    form_instance.table = assign_table(request, available_tables, requested_guests)
+                    # List of tables from the BOOKING MODEL already assigned to
+                    # requested time/date
+                    booked_tables = get_booked_tables(
+                        requested_date, requested_time)
 
-                    # If the assign_table returns a table
-                    if form_instance.table:
+                    # List of tables in the TABLE MODEL excluding the tables
+                    # assigned in BOOKING MODEL at requested time/date
+                    available_tables = Table.objects.exclude(pk__in=[
+                        table.pk for table in booked_tables])
 
-                        # Saves the instance
-                        form_instance.save()
+                    
+                    # Checks if there is at least one table available
+                    if available_tables.count() <= 0:
 
-                        # Displays success message
-                        message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest(s)"
-                        messages.success(request, message)
+                        # If not, message is shown
+                        message = f"Unfortunately we fully booked at {requested_time} on {requested_date}"
+                        messages.error(request, message)
+                    else:
+                        # Calls the assign_table function to choose the most
+                        # efficient table for the number of guests
+                        form_instance.table = assign_table(request, available_tables, requested_guests)
+
+                        # If the assign_table returns a table
+                        if form_instance.table:
+
+                            # Saves the instance
+                            form_instance.save()
+
+                            # Displays success message
+                            message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest(s)"
+                            messages.success(request, message)
         else:
             form = BookingForm()
 
@@ -133,36 +138,42 @@ def home(request):
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
 
-                # Gets tables from the BOOKING MODEL already assigned to
-                # requested time/date
-                booked_tables = get_booked_tables(
-                    requested_date, requested_time)
-
-                # Gets the tables in the TABLE MODEL excluding the tables
-                # assigned in BOOKING MODEL at requested time/date
-                available_tables = Table.objects.exclude(
-                    pk__in=[table.pk for table in booked_tables])
-
-                # Checks if there is at least one table available
-                if available_tables.count() <= 0:
-                    message = f"Unfortunately, we fully booked at {requested_time} on {requested_date}"
+                # Checks if the date is valid
+                if requested_date <= str(timezone.now().date()):
+                    message = f"{requested_date} is in the past. Please choose a valid date and time"
                     messages.error(request, message)
-
                 else:
-                    # Calls the assign_table function to choose the most
-                    # efficient table for the number of guests and fills the
-                    # table field in the booking instance
-                    form_instance.table = assign_table(request, available_tables, requested_guests)
 
-                    # If the assign_table returns a table
-                    if form_instance.table:
+                    # Gets tables from the BOOKING MODEL already assigned to
+                    # requested time/date
+                    booked_tables = get_booked_tables(
+                        requested_date, requested_time)
 
-                        # Saves the instance
-                        form_instance.save()
+                    # Gets the tables in the TABLE MODEL excluding the tables
+                    # assigned in BOOKING MODEL at requested time/date
+                    available_tables = Table.objects.exclude(
+                        pk__in=[table.pk for table in booked_tables])
 
-                        # Displays success message
-                        message = f"Your table  for {requested_guests} is booked at {requested_time} on {requested_date}"
-                        messages.success(request, message)
+                    # Checks if there is at least one table available
+                    if available_tables.count() <= 0:
+                        message = f"Unfortunately, we fully booked at {requested_time} on {requested_date}"
+                        messages.error(request, message)
+
+                    else:
+                        # Calls the assign_table function to choose the most
+                        # efficient table for the number of guests and fills the
+                        # table field in the booking instance
+                        form_instance.table = assign_table(request, available_tables, requested_guests)
+
+                        # If the assign_table returns a table
+                        if form_instance.table:
+
+                            # Saves the instance
+                            form_instance.save()
+
+                            # Displays success message
+                            message = f"Your table  for {requested_guests} is booked at {requested_time} on {requested_date}"
+                            messages.success(request, message)
         else:
             form = BookingFormNotLoggedIn()
 
@@ -233,45 +244,52 @@ def edit_bookings(request, booking_id):
             requested_time = booking.time
             requested_guests = booking.number_of_guests
 
-            # Checks if at least one on the fields has been edited
-            if requested_date == old_requested_date and requested_time == old_requested_time and requested_guests == old_requested_guests:
+            # Checks if the date is valid
+            if requested_date <= str(timezone.now().date()):
+                message = f"{requested_date} is in the past. Please choose a valid date and time"
+                messages.error(request, message)
 
-                # Show message
-                message = f"You have made no changes to your booking"
-                messages.warning(request, message)
             else:
-                # List of tables from the BOOKING MODEL already
-                # assigned to requested time/date
-                booked_tables = get_booked_tables(
-                    requested_date, requested_time)
 
-                # List of tables in the TABLE MODEL excluding the tables
-                # assigned in BOOKING MODEL at requested time/date
-                available_tables = Table.objects.exclude(
-                    pk__in=[table.pk for table in booked_tables])
+                # Checks if at least one on the fields has been edited
+                if requested_date == old_requested_date and requested_time == old_requested_time and requested_guests == old_requested_guests:
 
-                # Checks if there is at least one table available
-                if available_tables.count() <= 0:
-
-                    # Displays fully booked message
-                    message = f"Unfortunately we fully booked at {requested_time} on {requested_date}"
-                    messages.error(request, message)
-
+                    # Show message
+                    message = f"You have made no changes to your booking"
+                    messages.warning(request, message)
                 else:
-                    # Calls the assign table function to choose the most
-                    # efficient table for the number of guests
-                    form_instance.table = assign_table(
-                        request, available_tables, requested_guests)
+                    # List of tables from the BOOKING MODEL already
+                    # assigned to requested time/date
+                    booked_tables = get_booked_tables(
+                        requested_date, requested_time)
 
-                    # If the assign_table returns a table
-                    if form_instance.table:
+                    # List of tables in the TABLE MODEL excluding the tables
+                    # assigned in BOOKING MODEL at requested time/date
+                    available_tables = Table.objects.exclude(
+                        pk__in=[table.pk for table in booked_tables])
 
-                        # Saves the instance
-                        form_instance.save()
+                    # Checks if there is at least one table available
+                    if available_tables.count() <= 0:
 
-                        # Displays success message
-                        message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)"
-                        messages.success(request, message)
+                        # Displays fully booked message
+                        message = f"Unfortunately we fully booked at {requested_time} on {requested_date}"
+                        messages.error(request, message)
+
+                    else:
+                        # Calls the assign table function to choose the most
+                        # efficient table for the number of guests
+                        form_instance.table = assign_table(
+                            request, available_tables, requested_guests)
+
+                        # If the assign_table returns a table
+                        if form_instance.table:
+
+                            # Saves the instance
+                            form_instance.save()
+
+                            # Displays success message
+                            message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)"
+                            messages.success(request, message)
     else:
         form = BookingForm(instance=booking)
     context = {

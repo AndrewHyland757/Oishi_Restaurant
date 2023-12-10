@@ -1,4 +1,4 @@
-# Oishi Restaurant
+# Oishī Restaurant
 
 ![](assets/images/)
 
@@ -80,7 +80,7 @@ As a MVP the website has to achieve the essential user & business goals. The fol
 ### Images
 
 - A strong landing image is used. This entices interest urging a potential customer to explore the website further and find out more. 
-- Further images are used to communicate brand values, offer visual stimulation and provide information such as images of dishes and the head chef. 
+- Further images are used to communicate brand values, offer visual stimulation and provide information such as types of dishes and the head chef. 
 
 
 ### Colours
@@ -218,7 +218,7 @@ and 'Useful Links'.
 
 ## Manual Testing of User Stories
 
-WAS = Works as expected
+<mark>WAS = Works as expected</mark>
 
 ### 1. As a user I can intuitively navigate through the website so that I can easily access key information and view desired content.
 
@@ -234,8 +234,8 @@ User click on a Link in the nav bar | user taken to desired part of the web app 
 **Step** | **Expected Result** | **Actual Result**
 ------------ | ------------ | ------------ |
 Navigating to :https://.herokuapp.com/ | home page loads | WAS |
-Non-logged user views nav-bar | "Login" link is shown | WAS |
-Logged user views nav-bar | "Logout" link is shown | WAS |
+Logged out user views nav-bar | "Login" link is shown | WAS |
+Logged in user views nav-bar | "Logout" link is shown | WAS |
 
 ### 3. As a non-registered user I can make a booking so that I don't need to spend time setting up an account.
 

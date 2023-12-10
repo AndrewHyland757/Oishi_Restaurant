@@ -12,6 +12,7 @@ class BookingForm(forms.ModelForm):
     fields in the Booking model will be taken from the logged in user.
     """
     class Meta:
+        
         model = Booking
         fields = ['number_of_guests', 'date', 'time']
         labels = {
