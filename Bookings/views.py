@@ -23,6 +23,15 @@ def get_booked_tables(requested_date, requested_time):
     return booked_tables
 
 
+def booking_success_message(requested_date, requested_time, requested_guests):
+    if int(requested_guests) == 1:
+        message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest"
+    else:
+        message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guests"
+    return message
+
+
+
 def assign_table(request, available_tables, requested_guests):
     """
     This function takes the available tables at users requested time/date and
@@ -55,13 +64,16 @@ def assign_table(request, available_tables, requested_guests):
         # If the iterated table has three extra seat it's returned next
         elif int(table.table_seats) == sum([int(requested_guests), 3]):
             return table
-        
+    
         else:
             # If there will be more than three empty seats at a booking it is
             # deemed inefficient and error message displayed
             message = f"Unfortunately, we have no available table for {requested_guests} at required date and time"
-
+    
     messages.error(request, message)
+   
+    
+    
 
 
 def home(request):
@@ -115,13 +127,20 @@ def home(request):
 
                         # If the assign_table returns a table
                         if form_instance.table:
+                            
+
+                            message = booking_success_message(requested_date, requested_time, requested_guests)
+                            messages.success(request, message)
 
                             # Saves the instance
                             form_instance.save()
-
+                            
                             # Displays success message
-                            message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest(s)"
-                            messages.success(request, message)
+                           
+                            
+                            return redirect('home')
+
+                            
         else:
             form = BookingForm()
 
@@ -167,20 +186,25 @@ def home(request):
 
                         # If the assign_table returns a table
                         if form_instance.table:
+                            
+
+                            message = booking_success_message(requested_date, requested_time, requested_guests)
+                            messages.success(request, message)
 
                             # Saves the instance
                             form_instance.save()
-
+                            
                             # Displays success message
-                            message = f"Your table  for {requested_guests} is booked at {requested_time} on {requested_date}"
-                            messages.success(request, message)
+                           
+                            
+                            return redirect('home')
         else:
             form = BookingFormNotLoggedIn()
 
     context = {
         'form': form
         }
-   
+
     return render(request, 'index.html', context)
 
 
@@ -293,7 +317,7 @@ def edit_bookings(request, booking_id):
                             form_instance.save()
 
                             # Displays success message
-                            message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest(s)"
+                            message = booking_success_message(requested_date, requested_time, requested_guests)
                             messages.success(request, message)
     else:
         form = BookingForm(instance=booking)

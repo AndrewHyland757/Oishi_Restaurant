@@ -27,8 +27,7 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 
 
 
-if (location.pathname === '/') {
-    console.log('works');}
+
 
 
 
