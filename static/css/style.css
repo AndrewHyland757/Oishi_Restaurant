@@ -188,6 +188,15 @@ a:link {
   text-decoration: none;
   }
 
+  
+
+    p {
+      font-size: 15px; 
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  
+
 /*  CSS to style the specials-section headings and sub-headings */
 
 .specials-heading {
@@ -276,4 +285,29 @@ textarea.form-control {
 .footer-font p{
     font-size: 15px;
     font-weight: 400;
+  }
+
+  /*  Small screen sizes */
+
+  @media (max-width: 576px) {
+
+    p {
+      font-size: 15px; 
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .chef-image {
+      height: 150px;
+      width: 150px;
+    }
+
+    .form-label {
+      font-size: 15px; 
+      margin-top: 15px;
+    }
+
+    .form-control{
+      font-size: 13px;
+    }
   }

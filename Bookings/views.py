@@ -6,6 +6,10 @@ from django.contrib import messages
 from .forms import BookingForm, BookingFormNotLoggedIn, CancelBookingForm
 from django.utils import timezone
 
+from datetime import datetime
+
+
+
 
 def get_booked_tables(requested_date, requested_time):
     """
@@ -24,10 +28,24 @@ def get_booked_tables(requested_date, requested_time):
 
 
 def booking_success_message(requested_date, requested_time, requested_guests):
+    """
+    Returns the message used if the booking is a success
+    """
     if int(requested_guests) == 1:
         message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guest"
     else:
         message = f"Your booking has been made on the {requested_date} at {requested_time} for {requested_guests} guests"
+    return message
+
+
+def booking_successful_change_message(requested_date, requested_time, requested_guests):
+    """
+    Returns the message used if the booking is a success
+    """
+    if int(requested_guests) == 1:
+        message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guest"
+    else:
+        message = f"Your booking has been changed to the {requested_date} at {requested_time} for {requested_guests} guests"
     return message
 
 
@@ -69,13 +87,10 @@ def assign_table(request, available_tables, requested_guests):
             # If there will be more than three empty seats at a booking it is
             # deemed inefficient and error message displayed
             message = f"Unfortunately, we have no available table for {requested_guests} at required date and time"
-    
+
+    # Error message shown if a table is not returned from the loop
     messages.error(request, message)
     
-   
-    
-    
-
 
 def home(request):
     """
@@ -98,6 +113,11 @@ def home(request):
                 requested_date = request.POST.get('date')
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
+                '''
+                your_date = datetime(request.POST.get('date'))
+                formatted_requested_date = your_date.strftime("%d-%m-%Y")
+                '''
+                
 
                 # Checks if the date is valid
                 if requested_date <= str(timezone.now().date()):
@@ -122,22 +142,27 @@ def home(request):
                         message = f"Unfortunately we fully booked at {requested_time} on {requested_date}"
                         messages.error(request, message)
                     else:
-                        # Calls the assign_table function to choose the most
-                        # efficient table for the number of guests
-                        
-
+                        # Calls the assign_table function to check if any available table is a fit
+                        # and assign the most efficent one 
                         assigned_table = assign_table(request, available_tables, requested_guests)
-
+                        
+                        # If a suitable table is found
                         if assigned_table:
+
+                            # Fills the booking field
                             form_instance.table = assigned_table
 
-                            # Displays success message
+                            # Gets the success message
                             message = booking_success_message(requested_date, requested_time, requested_guests)
+
+                            # Displays success message
                             messages.success(request, message)
 
                             # Saves the instance
                             form_instance.save()
-                        
+
+                            # Duplicates avoided. Page is prevented from refreshing by the HTMX script in 
+                            # the head section of base.html template
                             return redirect('home')
                             
         else:
@@ -178,21 +203,27 @@ def home(request):
                         messages.error(request, message)
 
                     else:
-                        # Calls the assign_table function to choose the most
-                        # efficient table for the number of guests and fills the
-                        # table field in the booking instance
-                        form_instance.table = assign_table(request, available_tables, requested_guests)
+                        # Calls the assign_table function to check if any available table is a fit
+                        # and assign the most efficent one 
+                        assigned_table = assign_table(request, available_tables, requested_guests)
+                        
+                        # If a suitable table is found
+                        if assigned_table:
 
-                        # If the assign_table returns a table
-                        if form_instance.table:
+                            # Fills the booking field
+                            form_instance.table = assigned_table
+
+                            # Gets the success message
+                            message = booking_success_message(requested_date, requested_time, requested_guests)
 
                             # Displays success message
-                            message = booking_success_message(requested_date, requested_time, requested_guests)
                             messages.success(request, message)
 
                             # Saves the instance
                             form_instance.save()
-                        
+
+                            # Duplicates avoided. Page is prevented from refreshing by the HTMX script in 
+                            # the head section of base.html template
                             return redirect('home')
         else:
             form = BookingFormNotLoggedIn()
@@ -301,20 +332,28 @@ def edit_bookings(request, booking_id):
                         messages.error(request, message)
 
                     else:
-                        # Calls the assign table function to choose the most
-                        # efficient table for the number of guests
-                        form_instance.table = assign_table(
-                            request, available_tables, requested_guests)
+                        # Calls the assign_table function to check if any available table is a fit
+                        # and assign the most efficent one 
+                        assigned_table = assign_table(request, available_tables, requested_guests)
+                        
+                        # If a suitable table is found
+                        if assigned_table:
 
-                        # If the assign_table returns a table
-                        if form_instance.table:
+                            # Fills the booking field
+                            form_instance.table = assigned_table
+
+                            # Gets the success message
+                            message = booking_successful_change_message(requested_date, requested_time, requested_guests)
+
+                            # Displays success message
+                            messages.success(request, message)
 
                             # Saves the instance
                             form_instance.save()
 
-                            # Displays success message
-                            message = booking_success_message(requested_date, requested_time, requested_guests)
-                            messages.success(request, message)
+                            # Duplicates avoided. Page is prevented from refreshing by the HTMX script in 
+                            # the head section of base.html template
+                            return redirect('view_bookings')
     else:
         form = BookingForm(instance=booking)
     context = {
