@@ -3,8 +3,9 @@
 
 const navbarBrand = document.querySelector(".navbar-brand")
 
-if (location.pathname === '/') {
+if (location.pathname === '/' || location.pathname === '/#reservation/' ) {
     navbarBrand.classList.add("brand-home");}
+
 else {
     navbarBrand.classList.add("brand");}
 
