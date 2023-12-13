@@ -46,8 +46,8 @@ class Booking(models.Model):
         User, on_delete=models.CASCADE, null=True)
     guest_name = models.CharField(max_length=100, null=True)
     table = models.ForeignKey(
-        Table, on_delete=models.CASCADE, null=False)
-    email = models.EmailField(null=False, blank=False)
+        Table, on_delete=models.CASCADE, null=True)
+    email = models.EmailField(null=True, blank=False)
 
     def __str__(self):
         if self.guest_name is None:
