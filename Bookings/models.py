@@ -54,3 +54,4 @@ class Booking(models.Model):
             return f"{self.customer_name}'s reservation on {self.date}"
         else:
             return f"{self.guest_name}'s reservation on {self.date}"
+            

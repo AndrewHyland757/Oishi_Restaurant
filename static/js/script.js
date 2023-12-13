@@ -1,24 +1,5 @@
 
-
-/*
-const navbarBrand = document.querySelector(".navbar-brand")
-
-if (location.pathname === '/' || location.pathname === '/#reservation/' ) {
-    navbarBrand.classList.add("brand-home");}
-
-else {
-    navbarBrand.classList.add("brand");}
-
-
-document.querySelectorAll(".nav-link").forEach((link) => {
-    if (location.pathname === '/') {
-        link.classList.add("nav-link-color-home");}
-    else {
-        link.classList.add("nav-link-color");}
-    } 
-);
-
-*/
+/* Applies the active class to the link of the current page */
 
 document.querySelectorAll(".nav-link").forEach((link) => {
     if (link.href === window.location.href) {
@@ -28,9 +9,10 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 });
 
 
+/* Removes an element after being clicked - used on burger menu in nav bar */
 
-function remove(element) {
-var element = element;
+function remove(elem) {
+var element = elem;
 element.remove();
 }
 

@@ -1,98 +1,84 @@
 
+ 
+-Beautified CSS-
+ 
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Serif+Display:wght@300&family=Noto+Serif+JP&display=swap');
 
 
-/*  landing page background image and navbar */
+/*  Landing page background image */
 
-.background{
-  
-  background: url("https://res.cloudinary.com/dstl8vaey/image/upload/v1702508270/landing-image_ujghsy.jpg");
-  height: 100vh;
-  background-size: cover;
-  width: 100vw;
-  filter:brightness(0.8);
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background-repeat: no-repeat;
-  background-position: center center;
+.background {
+
+	background: url("https://res.cloudinary.com/dstl8vaey/image/upload/v1702508270/landing-image_ujghsy.jpg");
+	height: 100vh;
+	background-size: cover;
+	width: 100vw;
+	filter: brightness(0.8);
+	top: 0;
+	left: 0;
+	z-index: -1;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
-.nav-background{
-  background-color: transparent;
-}
-
-/*
-@media (max-width: 600px) {
-  .brand-style {
-    font-size: 50px;
-  }
-}
-*/
 
 /* Nav-bar brand logo styling */
-.brand{
-  font-family: dela gothic one, sans-serif;
-  font-size: 55px;
-  line-height: 30px;
-  color: #23242a;
+
+.nav-background {
+	background-color: transparent;
+}
+
+.brand {
+	font-family: dela gothic one, sans-serif;
+	font-size: 55px;
+	line-height: 30px;
+	color: #23242a;
 }
 
 .brand:hover {
-  background-color: transparent;
-  color:rgb(58,60,70, .9);
+	background-color: transparent;
+	color: rgb(58, 60, 70, .9);
 }
 
-.brand-home{
-  font-family: dela gothic one, sans-serif;
-  font-size: 55px;
-  line-height: 30px;
-  color: whitesmoke;
+.brand-home {
+	font-family: dela gothic one, sans-serif;
+	font-size: 55px;
+	line-height: 30px;
+	color: whitesmoke;
 }
 
 .brand-home:hover {
-  background-color: transparent;
-  color:rgb(245,245,245, .8);
+	background-color: transparent;
+	color: rgb(245, 245, 245, .8);
 }
 
-/* Styling for nav-links */
+/* Nav-bar links styling */
 
-.nav-link-color{
-  color: #c46f07;
- }
- 
- .nav-link-color-home{
-  color:rgb(245,245,245, .9);
- }
 
- 
+.nav-link-color {
+	color: #c46f07;
+}
+
+.nav-link-color-home {
+	color: rgb(245, 245, 245, .9);
+}
+
+
 /* Change nav-links on collasped menu on home screen to white */
- @media (max-width: 1200px) {
+@media (max-width: 1200px) {
 
-  .nav-link-color-home {
-  color:rgb(245,245,245);
- }
+	.nav-link-color-home {
+		color: rgb(245, 245, 245);
+	}
 }
 
-
-
-
-.nav-link.active-link { 
-  color:#7c4111;
+.nav-link.active-link {
+	color: #7c4111;
 }
-
-
-
 
 .nav-link:hover {
-  color:#7c4111;
+	color: #7c4111;
 }
-
-
-
-
-
-
 
 /* Styling for navigation toggler icon */
 
@@ -100,208 +86,204 @@
 .navbar-toggler:focus,
 .navbar-toggler:active,
 .navbar-toggler-icon:focus {
-    outline: none;
-    border: none;
-    box-shadow: none;
+	outline: none;
+	border: none;
+	box-shadow: none;
 }
-
-
-
 
 #toggle-icon {
-  color: #c46f07;
-  font-size:28px;
+	color: #c46f07;
+	font-size: 28px;
 }
 
-
-#navbarSupportedContent{ /* Needed */
-  text-align: right;
+#navbarSupportedContent {
+	text-align: right;
 }
-
-  
-  
 
 @media (min-width: 1200px) {
-/* X-Large screens - changes to the nav-bar after the links expand */
+	/* X-Large screens - changes to the nav-bar after the links expand */
 
-.position-xl-absolute{
-  position: absolute;
+	.position-xl-absolute {
+		position: absolute;
+	}
+
+	.nav-link-color-home {
+		color: #c46f07;
+	}
+
+	.brand {
+		font-size: 80px;
+		line-height: 55px;
+	}
+
+	.brand-home {
+		font-size: 80px;
+		line-height: 55px;
+	}
 }
-
-.nav-link-color-home{
-   color:#c46f07;
- }
-  
- .brand {
-  font-size: 80px;
-  line-height: 55px;
- } 
- 
- .brand-home{
-    font-size: 80px;
-    line-height: 55px;
-  }
-}
-
 
 
 /*  CSS to style fonts, section headings and sub-headings */
 
- p {
-    margin-bottom: 30px;
-    font-size: 20px; 
-    font-weight: 300;
-    color: gray;
+p {
+	margin-bottom: 30px;
+	font-size: 20px;
+	font-weight: 300;
+	color: gray;
 }
-  
-h1, h2, h3, h4, h5 {
-    color: rgb(58,60,70);
-    font-family: "noto serif jp", serif;
-    font-weight: 500;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	color: rgb(58, 60, 70);
+	font-family: "noto serif jp", serif;
+	font-weight: 500;
 }
-  
+
 .section {
-    padding-top: 5em ;
-    padding-bottom: 5em;
-    z-index: 2;
-    position: relative;
+	padding-top: 5em;
+	padding-bottom: 5em;
+	z-index: 2;
+	position: relative;
 }
-  
+
 .section-heading h2 {
-    font-size: 50px;
-    color: rgb(58,60,70);
+	font-size: 50px;
+	color: rgb(58, 60, 70);
 }
-  
+
 @media (max-width: 991.98px) {
-    .section-heading h2 {
-      font-size: 30px;
-    }
+	.section-heading h2 {
+		font-size: 30px;
+	}
 }
-  
+
 .sub-heading {
-    color: #c46f07;
-    margin: 0 0 20px 0;
-    letter-spacing: .2em;
-    text-transform: uppercase; 
+	color: #c46f07;
+	margin: 0 0 20px 0;
+	letter-spacing: .2em;
+	text-transform: uppercase;
 }
 
 a:link {
-  text-decoration: none;
-  }
+	text-decoration: none;
+}
 
-  
+
 /*  CSS to style the specials-section headings and sub-headings */
 
 .specials-heading {
-    text-transform: uppercase;
-    font-size: 20px;
-    margin-bottom: 30px;
-  }
-  
-  .specials-sub-heading{
-      color: #c46f07;
-      margin: 0 0 20px 0;
-      letter-spacing: .1em;
-      text-transform: uppercase; 
-      font-size: 14px; 
-    }
-  
-/*  CSS to style the chef section image */
-
-.chef-image{
-    background-image: url("cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey/images/chef2.jpg");
-    
-    background-position:center;
-    background-size:cover;
-    height: 220px;
-    width: 220px;
-    border-radius: 50%;
+	text-transform: uppercase;
+	font-size: 20px;
+	margin-bottom: 30px;
 }
 
- /*  CSS to style the reservation section */
+.specials-sub-heading {
+	color: #c46f07;
+	margin: 0 0 20px 0;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	font-size: 14px;
+}
+
+/*  CSS to style the chef section image */
+
+.chef-image {
+	background-image: url("https://res.cloudinary.com/dstl8vaey/image/upload/v1702495605/static/images/chef2.56e99b51fb6e.jpg");
+
+	background-position: center;
+	background-size: cover;
+	height: 220px;
+	width: 220px;
+	border-radius: 50%;
+}
+
+/*  CSS to style the reservation section and forms */
 
 .form-wrap {
-    padding: 40px;
-    background: #fff;
-    -webkit-box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
-  }
+	padding: 40px;
+	background: #fff;
+	-webkit-box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+}
 
 .form-control:hover {
-  border: 2px solid #c46f07; 
+	border: 2px solid #c46f07;
 }
 
 .disable-hover {
-  pointer-events: none;  
+	pointer-events: none;
 }
 
 .form-control:focus {
-  box-shadow: none;
+	box-shadow: none;
 }
 
 .form-label {
-  font-size: 18px; 
-  margin-top: 15px;
-  font-weight: normal;
+	font-size: 18px;
+	margin-top: 15px;
+	font-weight: normal;
 }
 
 textarea.form-control {
-  height: inherit;
+	height: inherit;
 }
 
 .btn {
-  background-color: #c46f07;
-  text-transform: uppercase;
-  letter-spacing: .2em;
-  font-size: 14px;
-  font-weight: 700;
+	background-color: #c46f07;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+	font-size: 14px;
+	font-weight: 700;
 }
 
-.btn.sub-heading{
-  color:white;
+.btn.sub-heading {
+	color: white;
 }
 
 .btn.btn-primary.btn-outline-primary {
-  border-width: 2px;
-  cursor: pointer;
+	border-width: 2px;
+	cursor: pointer;
 }
 
 .btn.btn-outline-white {
-  border: 2px solid #fff;
+	border: 2px solid #fff;
 }
 
 .btn.btn-outline-white:hover {
-    border: 2px solid transparent;
+	border: 2px solid transparent;
 }
 
- /*  CSS to style the footer section */
- 
-.footer-font p{
-    font-size: 15px;
-    font-weight: 400;
-  }
+/*  CSS to style the footer section */
 
-  /*  Small screen sizes */
+.footer-font p {
+	font-size: 15px;
+	font-weight: 400;
+}
 
-  @media (max-width: 576px) {
+/*  Small screen sizes */
 
-    p {
-      font-size: 15px; 
-      padding-left: 10px;
-      padding-right: 10px;
-    }
+@media (max-width: 576px) {
 
-    .chef-image {
-      height: 150px;
-      width: 150px;
-    }
+	p {
+		font-size: 15px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 
-    .form-label {
-      font-size: 15px; 
-      margin-top: 15px;
-    }
+	.chef-image {
+		height: 150px;
+		width: 150px;
+	}
 
-    .form-control{
-      font-size: 13px;
-    }
-  }
+	.form-label {
+		font-size: 15px;
+		margin-top: 15px;
+	}
+
+	.form-control {
+		font-size: 13px;
+	}
+}
