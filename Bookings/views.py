@@ -113,11 +113,21 @@ def home(request):
                 requested_date = request.POST.get('date')
                 requested_time = request.POST.get('time')
                 requested_guests = request.POST.get('number_of_guests')
+                
+                print(type(request.POST.get('date')))
                 '''
-                your_date = datetime(request.POST.get('date'))
+                requested_date_int = int(request.POST.get('date'))
+
+                your_date = datetime(requested_date_int)
+
+                
                 formatted_requested_date = your_date.strftime("%d-%m-%Y")
                 '''
                 
+                date_obj = datetime.strptime(request.POST.get('date'), '%Y-%m-%d')
+
+                # Format the datetime object to a string in dd-mm-yyyy format
+                formatted_date_str = date_obj.strftime('%d-%m-%Y')
 
                 # Checks if the date is valid
                 if requested_date <= str(timezone.now().date()):
@@ -153,7 +163,7 @@ def home(request):
                             form_instance.table = assigned_table
 
                             # Gets the success message
-                            message = booking_success_message(requested_date, requested_time, requested_guests)
+                            message = booking_success_message(formatted_date_str, requested_time, requested_guests)
 
                             # Displays success message
                             messages.success(request, message)
