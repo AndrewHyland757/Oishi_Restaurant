@@ -21,8 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
-#AUTH_USER_MODEL = "allauth.CustomUser"
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -32,12 +30,7 @@ SECRET_KEY = 'Oishi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-#ALLOWED_HOSTS = ['8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io']
-
-
 ALLOWED_HOSTS = ["oishi-35599e8d6360.herokuapp.com", "8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io"]
-
-
 
 # Application definition
 
@@ -60,27 +53,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # added because
 
 ACCOUNT_EMAIL_REQUIRED = True
 
-
 ACCOUNT_UNIQUE_EMAIL = True
-
-"""
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-
-#ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
-
-
-
-#ACCOUNT_SESSION_REMEMBER = 
-"""
 
 ACCOUNT_FORMS = {
     'login': 'Bookings.forms.YourLoginForm',
     'signup': 'Bookings.forms.CustomSignupForm'
 }
-
 
 SITE_ID = 1
 
@@ -126,10 +104,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Oishi_Restaurant.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 """
 DATABASES = {
     'default': {
@@ -143,9 +117,6 @@ DATABASES = {
 DATABASES = {
     'default':dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
