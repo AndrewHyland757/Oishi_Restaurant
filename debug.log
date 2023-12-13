@@ -20581,3 +20581,26 @@ File /workspace/.pip-modules/lib/python3.9/site-packages/django/contrib/auth/con
 File /workspace/.pip-modules/lib/python3.9/site-packages/django/contrib/messages/storage/cookie.py first seen with mtime 1700752650.0
 File /workspace/.pip-modules/lib/python3.9/site-packages/django/contrib/messages/storage/fallback.py first seen with mtime 1700752650.0
 File /workspace/.pip-modules/lib/python3.9/site-packages/django/template/context_processors.py first seen with mtime 1700752650.0
+"GET / HTTP/1.1" 200 13807
+Not Found: /static/css/style.css
+Not Found: /static/images/mt-fuji2.jpg
+"GET /static/images/mt-fuji2.jpg HTTP/1.1" 404 179
+"GET /static/css/style.css HTTP/1.1" 404 179
+Not Found: /static/images/frying-pan-flame2.jpg
+"GET /static/images/frying-pan-flame2.jpg HTTP/1.1" 404 179
+Not Found: /static/images/neon-street2.jpg
+Not Found: /static/images/ramen2.jpg
+"GET /static/images/neon-street2.jpg HTTP/1.1" 404 179
+"GET /static/images/ramen2.jpg HTTP/1.1" 404 179
+Not Found: /static/images/steak2.jpg
+Not Found: /static/js/script.js
+"GET /static/js/script.js HTTP/1.1" 404 179
+"GET /static/images/steak2.jpg HTTP/1.1" 404 179
+Not Found: /static/images/wok2.jpg
+"GET /static/images/wok2.jpg HTTP/1.1" 404 179
+Not Found: /static/images/favicon/site.webmanifest
+"GET /static/images/favicon/site.webmanifest HTTP/1.1" 404 179
+Not Found: /static/images/favicon/favicon-32x32.png
+"GET /static/images/favicon/favicon-32x32.png HTTP/1.1" 404 179
+Not Found: /static/images/favicon/favicon-16x16.png
+"GET /static/images/favicon/favicon-16x16.png HTTP/1.1" 404 179
