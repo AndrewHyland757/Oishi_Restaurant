@@ -2,16 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Noto+Serif+Display:wght@300&family=Noto+Serif+JP&display=swap');
 
 
-/*  CSS to style the background image and navbar */
+/*  landing page background image and navbar */
 
 .background{
-  /*
-  background: url("../images/home-image2.jpg");
-  */
-  /*
-  cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey
-  */
-  background: url("https://res.cloudinary.com/dstl8vaey/image/upload/v1702464928/static/images/home-image2.jpg");
+  
+  background: url("https://res.cloudinary.com/dstl8vaey/image/upload/v1702508270/landing-image_ujghsy.jpg");
   height: 100vh;
   background-size: cover;
   width: 100vw;
