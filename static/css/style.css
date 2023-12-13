@@ -5,7 +5,13 @@
 /*  CSS to style the background image and navbar */
 
 .background{
+  /*
   background: url("../images/home-image2.jpg");
+  */
+  /*
+  cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey
+  */
+  background: url("cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey/images/home-image2.jpg");
   height: 100vh;
   background-size: cover;
   width: 100vw;
@@ -189,10 +195,6 @@ a:link {
   }
 
   
-
-  
-  
-
 /*  CSS to style the specials-section headings and sub-headings */
 
 .specials-heading {
@@ -212,7 +214,8 @@ a:link {
 /*  CSS to style the chef section image */
 
 .chef-image{
-    background-image:url("../images/chef2.jpg");
+    background-image: url("cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey/images/chef2.jpg");
+    
     background-position:center;
     background-size:cover;
     height: 220px;
