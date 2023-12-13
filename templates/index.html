@@ -22,7 +22,7 @@
   <div class="container mb-5">
     <div class="row">
       <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <img src="../static/images/mt-fuji2.jpg" height="580" class="w-100 shadow-1-strong mb-4 d-none d-lg-block" alt="Mt Fuji" />
+        <img src="{% static 'images/mt-fuji2.jpg' %}" height="580" class="w-100 shadow-1-strong mb-4 d-none d-lg-block" alt="Mt Fuji" />
       </div>
       <div class="col-lg-4 mb-4 mb-lg-0">
         <img src="../static/images/frying-pan-flame2.jpg" height="580" class="w-100 shadow-1-strong mb-4 d-none d-lg-block"
@@ -176,3 +176,178 @@
 
 
 {% endblock content %}
+
+<!-- Section: About  -->
+
+<div class="section mt-5 mb-5 pb-5 pt-md-5 bg-white" id="about">
+  <div class="container mb-5">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-12 col-lg-8 section-heading">
+        <h2 class="heading mb-5 pt-0">The Restaurant</h2>
+        <p>Don’t let the takeaway at the front fool you.</p>
+        <p>Oishī brings the bustling flavours and varieties of authentic
+          Japanese food indoors with a restaurant experience that fuses an
+          energetic ambience with killer tastes.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+        <img src="../static/images/mt-fuji2.jpg" height="580" class="w-100 shadow-1-strong mb-4 d-none d-lg-block" alt="Mt Fuji" />
+      </div>
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img src="../static/images/frying-pan-flame2.jpg" height="580" class="w-100 shadow-1-strong mb-4 d-none d-lg-block"
+          alt="Frying pan with flame" />
+      </div>
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img src="../static/images/neon-street2.jpg" class="w-100 shadow-1-strong mb-4" height="580"
+          alt="Tokyo neon street at night" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section: Specials  -->
+
+<div class="section bg-light">
+  <div class="container">
+    <div class="row section-heading mb-5 justify-content-center">
+      <div class="col-md-12 text-center">
+        <h2 class="mb-3">Our Specials</h2>
+        <p class="mb-5">Some of our best loved dishes</p>
+      </div>
+    </div>
+
+    <div class="card-group container">
+      <div class="card border-0" style="border-radius: 0%">
+        <img class="card-img-top d-none d-lg-block" style="border-radius: 0%" height="50%"
+          src="../static/images/ramen2.jpg" alt="Bowl of ramen"/>
+        <div class="card-body border-0">
+          <h6 class="specials-sub-heading text-center mt-3">From the pot</h6>
+          <h3 class="specials-heading text-center">Tonkotsu Ramen</h3>
+          <p class="text-center mb-5">Classic noodles in an enriched soy sauce broth and roast pork belly
+            & kikurage. Topped with spring onions, sesame seeds and & half a
+            seasoned egg</p>
+        </div>
+      </div>
+
+      <div class="card border-0">
+        <div class="card-body border-0" style="border-radius: 0%">
+          <h6 class="specials-sub-heading text-center mt-3">From the grill</h6>
+          <h3 class="specials-heading text-center">Wagyu Steak</h3>
+          <p class="text-center mb-5">Our wagyu steak is from grass fed organic beef with an incredibly
+            high level of fat marbling</p>
+        </div>
+        <img class="card-img-top d-none d-lg-block" style="border-radius: 0%" height="50%"
+          src="../static/images/steak2.jpg" alt="Wagyu steak" />
+      </div>
+
+      <div class="card border-0" style="border-radius: 0%">
+        <img class="card-img-top d-none d-lg-block" style="border-radius: 0%" height="50%"
+          src="../static/images/wok2.jpg" alt="Wok stir-fry" />
+        <div class="card-body border-0">
+          <h6 class="specials-sub-heading text-center mt-3">From the wok</h6>
+          <h3 class="specials-heading text-center">Yasai Itame</h3>
+          <p class="text-center mb-5">A classic Japanese stir-fry available in a selection of meats and
+            vegetables. A local favourite that never disappoints</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section: Chef  -->
+
+<div class="section bg-white">
+  <div class="container">
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-12">
+        <div class="section-heading text-center">
+          <h2 class="mb-5">Meet The Chef</h2>
+        </div>
+        <div class="d-flex justify-content-center">
+          <div class="chef-image mb-5"> </div>
+        </div>
+        <div>
+          <h2 class="text-center">Yuri Yamamoto</h2>
+        </div>
+        <div>
+          <h6 class="sub-heading text-center mt-3">Head Chef</h6>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4">
+        <p class="text-center">
+          Born in Osaka, Yukio has built a reputation as a pioneering and
+          creative adventurer. Still only in his thirties, he continually
+          surprises with his unique approach to Japanese cooking, which he
+          describes as a fusion of street food and high cuisine.</p>
+        <p class="text-center">His team of chefs and staff at Oishi create something new and
+          exciting; bringing together seasons, aromas, temperature, textures and
+          unique combinations to give you an experience you won't forget.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+
+<div class="section bg-light" id="reservation">
+  <div class="container">
+    <div class="row section-heading mb-5 justify-content-center">
+      <div class="col-md-12 text-center">
+        <h2 class="mb-3">Reservation</h2>
+        {% if user.is_authenticated %}
+        <p class="mb-2">Please fill in your reservation details to make a booking</p>
+        <p>
+          You can view and manage your bookings
+          <a href="{% url 'view_bookings' %}" style="color: #c46f07">here</a></p>
+        {% else %}
+        <p class="mb-5">If you have an account please
+          <a href="{% url 'account_login' %}" style="color: #c46f07">login</a>
+          to make a booking.<br />
+          Otherwise, you can
+          <a href="{% url 'account_signup' %}" style="color: #c46f07">create</a>
+          an account or make a booking as a guest below</p>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-10 p-5 form-wrap">
+        {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+          <div class="alert alert {{ message.tags }} text-center alert-dismissible fade show" id="msg" role="alert">
+            {{ message }}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form action="" method="POST" hx-post="" hx-target="body">
+          {% csrf_token %}
+          <div class="row mb-4 justify-content-center">
+            {% for field in form %}
+            <div class="col-lg-4 col-md-6">
+              <label class="form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+              {{ field }}
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="text-center mt-5">
+            <button class="btn btn-primary btn-outline-white sub-heading" style="background-color: #c46f07"
+              type="submit" id="reserve-btn">Book a Table</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+-->
