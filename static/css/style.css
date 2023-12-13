@@ -11,7 +11,7 @@
   /*
   cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey
   */
-  background: url("cloudinary://162238861858273:6LZlM-qmC6k_Hv6ItC1b4ik5pxk@dstl8vaey/images/home-image2.jpg");
+  background: url("https://res.cloudinary.com/dstl8vaey/image/upload/v1702464928/static/images/home-image2.jpg");
   height: 100vh;
   background-size: cover;
   width: 100vw;
