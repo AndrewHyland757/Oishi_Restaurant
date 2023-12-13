@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = 'Oishi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["oishi-35599e8d6360.herokuapp.com", "8000-andrewhylan-oishirestau-lo9lr6ujhg0.ws-eu106.gitpod.io"]
 
