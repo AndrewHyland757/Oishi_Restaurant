@@ -1,6 +1,6 @@
 # Oishī Restaurant
 
-![](assets/images/)
+![Image of user landing page on different size screens](static/images/readme-images/screenshot-screen-sizes.png)
 
 [Live application can be found here](https://oishi-restaurant.herokuapp.com/)
 
