@@ -54,19 +54,6 @@
 	color: #c46f07;
 }
 
-.nav-link-color-home {
-	color: rgb(245, 245, 245, .9);
-}
-
-
-/* Change nav-links on collasped menu on home screen to white */
-@media (max-width: 1200px) {
-
-	.nav-link-color-home {
-		color: rgb(245, 245, 245);
-	}
-}
-
 .nav-link.active-link {
 	color: #7c4111;
 }

@@ -139,8 +139,7 @@ It also contrasts well with the background image and prevents an over-sterile fe
 
 
 ![Image of locic-flow chart](static/images/readme-images/logic-flow.png)
-<details><summary>Flowchart</summary>
-    <img src="./static/images/readme-images/logic-flow.png" >
+
         
 </details>
 
@@ -188,10 +187,10 @@ helps add variation and injects a hint of colour to the texts.
  The same form template is used throughout with tweaks made according to the number of fields rendered to allow for the most symetrical rendering. 
 
 
-### Manage Bookings page
-![Screenshot of manage bookings page](static/images/screenshot-manage.jpg)
+### View Bookings page
+![Screenshot of manage bookings page](static/images/readme-images/screenshot-view-bookings.png)
 - Only accessible to logged in users.
-- Here their bookings are displayed in a table in order of date. All reservation they have previously made using the email address associated with their user account will be shown.
+- Here their bookings are displayed in a table in order of date. All reservations they have previously made using the email address associated with their user account will be shown.
 - Each booking has a link to the edit booking and cancel booking pages. 
 - A Bootstrap table template is used to present the details clearly.
 - A link is provided to the reservation section to make new bookings. 
@@ -328,12 +327,12 @@ All of my code has been validated using an online validator specific to the lang
 
 ## Bugs and Fixes
 
- - I noticed that upon submitting the reservation form the form would clear the fields but if the user refreshed the page the booking would be made again. This was resolved by adding a redirect ate the end of the reservation function.
+ - I noticed that upon submitting the reservation form the form would clear the fields but if the user refreshed the page the booking would be made again. This was resolved by adding a redirect at the end of the reservation function.
 
- - Once a booking was made the page, due to the redirect, would refresh and because the reservation form is not at the top of the page, the user would would miss the
- subsequent message. this was resolved by using  a script from htmx.org to prevent this. This can be found in the head section of base.html.
+ - Once a booking was made, the page now would refresh, and because the reservation form is not at the top of the page, the user would miss the
+ subsequent message. This was resolved by using a script from htmx.org to prevent the refresh. This can be found in the head section of base.html.
 
----
+
 ## Deployment
 
 
@@ -420,6 +419,13 @@ In the Deploy tab:
 - [PostgreSQL](https://www.postgresql.org/)
     - I have used Heroku's PostgreSQL relational database in deployment to store the data for my models.
 
+## Further Possible Additions
+
+These are some features that can be implemented in the future.
+
+- More complexity to the reservation function. This could include the possibility of joining certain tables in the restaurant if needed.
+- Also, another realistic feature would be to have booking times every half an hour instead of one hour. This would mean each booking would have an end time, of say one hour and thirty minutes after the start of the booking. This would be a more realistic experience. 
+- A platform to order a takaway.
 
 ## Credits
 
@@ -427,9 +433,13 @@ Throughout the process of building this website, I have used various sources onl
 
 [IStock](https://www.istockphoto.com/) - All photos used in the project were taken from istock.
 
-[Allauth Styling](https://builtwithdjango.com/blog/styling-authentication-pages)
+[Allauth Styling](https://builtwithdjango.com/blog/styling-authentication-pages) - Used to add classes to the form fields via widgets
 
-[Django reservation system](https://www.youtube.com/watch?v=s5xbtuo9pR0&ab_channel=JohnAbdsho)
+[Django reservation system](https://www.youtube.com/watch?v=s5xbtuo9pR0&ab_channel=JohnAbdsho) - A tutorial on how to make a reservation system which helped me further understand the project requirements.
 
-[Bootstrap Nav-bars](https://www.youtube.com/watch?v=7AT1X9Z41sA&ab_channel=NetNinja)
+[Bootstrap Nav-bars](https://www.youtube.com/watch?v=7AT1X9Z41sA&ab_channel=NetNinja) - A tutorial on nav-bars in bootstrap.
+
+[Bootstrap Templatees](https://mdbootstrap.com/) - I used the MDB website to get a template for the footer section.
+
+
 
