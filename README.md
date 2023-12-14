@@ -2,7 +2,7 @@
 
 ![Image of user landing page on different size screens](static/images/readme-images/screenshot-screen-sizes.png)
 
-[Live application can be found here](https://oishi-restaurant.herokuapp.com/)
+[Live application can be found here](https://oishi-35599e8d6360.herokuapp.com/)
 
 ## About
 This is a project for a full-stack framework built using Django, Python, Javascript, HTML, and CSS. The project is designed for an imaginary Japanese restaurant named Oishī and was created as a part of Code Institute's portfolio four for educational purposes. The website serves as a platform for showcasing the restaurant and allows customers to make, edit, and delete reservations through their personal accounts.
