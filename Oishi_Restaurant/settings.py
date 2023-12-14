@@ -65,8 +65,8 @@ ACCOUNT_FORMS = {
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = '/#reserve'
-LOGOUT_REDIRECT_URL = "/#reserve"
+LOGIN_REDIRECT_URL = '/#reservation'
+LOGOUT_REDIRECT_URL = '/#reservation'
 
 MESSAGE_TAGS = {
         messages.DEBUG: 'alert-info',
@@ -171,10 +171,6 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 LOGGING = {
    'version': 1,

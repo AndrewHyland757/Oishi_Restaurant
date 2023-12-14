@@ -268,4 +268,7 @@ textarea.form-control {
 	.form-control {
 		font-size: 13px;
 	}
+	 td {
+		font-size: 13px;
+	 }
 }

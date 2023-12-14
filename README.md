@@ -305,15 +305,18 @@ All of my code has been validated using an online validator specific to the lang
 
 - [W3C Markup Validation Service](https://validator.w3.org/) 
     - Used to validate all HTML code written and used in this webpage.
-    - One error exception is the "hx-target="body" in the form element in index.html.
+    - One error exception is the "hx-target="body" in the form element in index.html. This is needed to stop the page from refreshing after submitting.
+    
 
 
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/#validate_by_input)
     - Used to validate all CSS code written and used in this webpage.
+    - No errors shown. 
 
 
 - [JSHint](https://jshint.com/)
     - Used to validate JS code
+    - No errors shown.
 
 - [Code Institute Python Linter](https://pep8ci.herokuapp.com/)
     - Used to test my code for any issues or errors.
