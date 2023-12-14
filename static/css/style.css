@@ -275,3 +275,20 @@ textarea.form-control {
 		font-size: 13px;
 	 }
 }
+
+#about-image {
+	height: 580px:
+	width: 100%;
+
+}
+
+
+@media (max-width: 1200px) {
+
+	
+	width: auto;
+	height: 100%:
+
+}
+
+
