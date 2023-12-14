@@ -42,7 +42,7 @@
       </div>
       <div class="card-group container">
          <div class="card border-0" style="border-radius: 0%">
-            <img class="card-img-top d-none d-lg-block" style="border-radius: 0% height: 50%;"
+            <img class="card-img-top d-none d-lg-block" style="border-radius: 0%; height: 50%;"
                src="{% static 'images/ramen2.jpg' %}" alt="Bowl of ramen">
             <div class="card-body border-0">
                <h6 class="specials-sub-heading text-center mt-3">From the pot</h6>
@@ -54,18 +54,18 @@
             </div>
          </div>
          <div class="card border-0">
-            <div class="card-body border-0" style="border-radius: 0%">
+            <div class="card-body border-0" style="border-radius: 0%;">
                <h6 class="specials-sub-heading text-center mt-3">From the grill</h6>
                <h3 class="specials-heading text-center">Wagyu Steak</h3>
                <p class="text-center mb-5">Our wagyu steak is from grass fed organic beef with an incredibly
                   high level of fat marbling
                </p>
             </div>
-            <img class="card-img-top d-none d-lg-block" style="border-radius: 0% height: 50%;"
+            <img class="card-img-top d-none d-lg-block" style="border-radius: 0%; height: 50%;"
                src="{% static 'images/steak2.jpg' %}" alt="Wagyu steak">
          </div>
          <div class="card border-0" style="border-radius: 0%">
-            <img class="card-img-top d-none d-lg-block" style="border-radius: 0% height: 50%;"
+            <img class="card-img-top d-none d-lg-block" style="border-radius: 0%; height: 50%;"
                src="{% static 'images//wok2.jpg' %}" alt="Wok stir-fry">
             <div class="card-body border-0">
                <h6 class="specials-sub-heading text-center mt-3">From the wok</h6>
@@ -126,7 +126,7 @@
             {% else %}
             <p class="mb-5">If you have an account please
                <a href="{% url 'account_login' %}" style="color: #c46f07">login</a>
-               to make a booking.<br />
+               to make a booking<br>
                Otherwise, you can
                <a href="{% url 'account_signup' %}" style="color: #c46f07">create</a>
                an account or make a booking as a guest below
@@ -145,7 +145,7 @@
                {% endfor %}
             </div>
             {% endif %}
-            <form method="POST" hx-post="" hx-target="body">
+            <form method="POST">
                {% csrf_token %}
                <div class="row mb-4 justify-content-center">
                   {% for field in form %}
