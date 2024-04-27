@@ -8,7 +8,6 @@
 This is a project for a full-stack framework built using Django, Python, Javascript, HTML, and CSS. The project is designed for an imaginary Japanese restaurant named Oishī and was created as a part of Code Institute's portfolio four for educational purposes. The website serves as a platform for showcasing the restaurant and allows customers to make, edit, and delete reservations through their personal accounts.
 
 ## Business Goals
-The following text has been revised for clarity and corrected for any spelling, grammar, and punctuation errors:
 
 - The restaurant's brand values and identity should be communicated through visual language, styling, and text on the website. 
 - This will help to entice interest and encourage further exploration of the website. 
